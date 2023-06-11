@@ -26,7 +26,7 @@ export default function Work() {
           <h1 className='text-7xl sm:text-9xl font-black mb-4'>Works</h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-              Responsive Web Development
+              Responsive Web Design &amp; Development
             </h2>
           </BorderLeft>
           <p className='text-xl leading-8 text-slate-500'>
