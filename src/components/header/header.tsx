@@ -45,7 +45,7 @@ function Logo() {
       <Image
         src={LogoSVG}
         alt='Mike Gulline Logo'
-        className='mx-auto w-60 sm:w-auto'
+        className='mx-auto w-60 sm:w-auto pt-1 sm:pt-0'
       />
       <h1 className='sr-only'>Mike Gulline</h1>
       <p className='sr-only'>Front End Engineer</p>
@@ -55,7 +55,7 @@ function Logo() {
 
 function Navigation() {
   return (
-    <nav className='flex-grow items-center pt-2 sm:pt-0'>
+    <nav className='flex-grow items-center pt-2 px-5 sm:px-0 sm:pt-0'>
       <ul className='flex sm:gap-8 md:gap-10 justify-between sm:justify-end items-center'>
         {menu.map(({ title, link }) => (
           <li key={link}>

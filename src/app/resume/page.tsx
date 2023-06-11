@@ -15,9 +15,9 @@ export default function Resume() {
     <GridContainer columns={3}>
       <main className='py-20 sm:py-60 flex-col mt-24'>
         <div className='w-full px-5 relative mb-24 sm:pr-10'>
-          <h1 className='text-7xl sm:text-9xl font-black mb-4 '>Resume</h1>
+          <h1 className='text-7xl sm:text-9xl font-black mb-4'>Resume</h1>
           <BorderLeft>
-            <h2 className='text-2xl sm:text-3xl mb-8 font-medium '>
+            <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
               Mike Gulline—<em>Front End Engineer</em>
             </h2>
           </BorderLeft>
@@ -32,13 +32,13 @@ export default function Resume() {
         </div>
         <div className='w-full lg:flex'>
           <div className='lg:w-2/3 '>
-            <h3 className='text-4xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
+            <h3 className='text-5xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
               Work History
             </h3>
             <Work />
           </div>
           <div className='lg:w-1/3 pl-5 pr-5'>
-            <h3 className='text-4xl sm:text-6xl mb-8 font-bold '>Skills</h3>
+            <h3 className='text-5xl sm:text-6xl mb-8 font-bold '>Skills</h3>
             <Skills />
           </div>
         </div>
