@@ -18,7 +18,7 @@ export default function Job({
   properties,
 }: IJob) {
   return (
-    <div className='mb-12 relative pl-5 sm:pr-10'>
+    <div className='mb-12 relative px-5 sm:pr-10'>
       <BorderLeft>
         <h4 className='text-2xl font-bold '>{title}</h4>
       </BorderLeft>

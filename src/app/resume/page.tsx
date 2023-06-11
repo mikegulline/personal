@@ -32,13 +32,13 @@ export default function Resume() {
         </div>
         <div className='w-full lg:flex'>
           <div className='lg:w-2/3 '>
-            <h3 className='text-6xl mb-8 font-bold pl-5 sm:pr-10'>
+            <h3 className='text-4xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
               Work History
             </h3>
             <Work />
           </div>
           <div className='lg:w-1/3 pl-5 pr-5'>
-            <h3 className='text-6xl mb-8 font-bold '>Skills</h3>
+            <h3 className='text-4xl sm:text-6xl mb-8 font-bold '>Skills</h3>
             <Skills />
           </div>
         </div>
