@@ -41,8 +41,12 @@ function Wrapper({ children }: { children: ReactNode }) {
 
 function Logo() {
   return (
-    <Link href='/'>
-      <Image src={LogoSVG} alt='Mike Gulline Logo' />
+    <Link href='/' className='block text-center sm:flex sm:text-left'>
+      <Image
+        src={LogoSVG}
+        alt='Mike Gulline Logo'
+        className='mx-auto w-60 sm:w-auto'
+      />
       <h1 className='sr-only'>Mike Gulline</h1>
       <p className='sr-only'>Front End Engineer</p>
     </Link>
@@ -51,13 +55,13 @@ function Logo() {
 
 function Navigation() {
   return (
-    <nav className='flex-grow items-center pt-3 sm:pt-0'>
+    <nav className='flex-grow items-center pt-2 sm:pt-0'>
       <ul className='flex sm:gap-8 md:gap-10 justify-between sm:justify-end items-center'>
         {menu.map(({ title, link }) => (
           <li key={link}>
             <Link
               href={link}
-              className=' text-slate-800 hover:text-teal-400 font-semibold'
+              className=' text-lg sm:text-base text-slate-800 hover:text-teal-400 font-semibold'
             >
               {title}
             </Link>
