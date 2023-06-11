@@ -77,12 +77,14 @@ function Contact() {
     <div className='hidden lg:flex items-center gap-6 border-l border-dashed border-slate-300 pl-6'>
       <Link
         href='https://www.linkedin.com/in/michael-gulline/'
+        target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
         <TfiLinkedin />
       </Link>
       <Link
         href='https://github.com/mikegulline'
+        target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
         <GoMarkGithub />

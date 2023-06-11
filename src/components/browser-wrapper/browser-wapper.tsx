@@ -43,7 +43,10 @@ export default function BrowserWrapper({
           id='url-bar'
           className='bg-[#f9f9fb] border py-px flex gap-2 text-xs px-2'
         >
-          <div id='url-bar-left-icons' className='flex items-stretch my-1'>
+          <div
+            id='url-bar-left-icons'
+            className='hidden sm:flex items-stretch my-1'
+          >
             <div
               id='icon-back'
               className='rounded-md flex justify-center items-center hover:bg-[#f0f0f4] w-8 h-8'

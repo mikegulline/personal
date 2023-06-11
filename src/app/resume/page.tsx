@@ -13,7 +13,7 @@ export const metadata = {
 export default function Resume() {
   return (
     <GridContainer columns={3}>
-      <main className='py-20 sm:py-60 flex-col mt-24'>
+      <main className='py-20 md:py-40 lg:py-60 flex-col mt-24'>
         <div className='w-full px-5 relative mb-24 sm:pr-10'>
           <h1 className='text-7xl sm:text-9xl font-black mb-4'>Resume</h1>
           <BorderLeft>

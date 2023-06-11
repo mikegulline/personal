@@ -21,37 +21,37 @@ export const metadata = {
 export default function Work() {
   return (
     <GridContainer columns={3}>
-      <main className='py-60 flex-col mt-24'>
-        <div className='w-full px-5 relative mb-24'>
-          <h1 className='text-9xl font-black mb-4 text-center'>Works</h1>
+      <main className='py-20 md:py-40 lg:py-60 flex-col mt-24'>
+        <div className='w-full px-5 relative mb-24 sm:pr-10 text-left sm:text-center'>
+          <h1 className='text-7xl sm:text-9xl font-black mb-4'>Works</h1>
           <BorderLeft>
-            <h2 className='text-3xl mb-8 font-medium text-center mx-auto'>
-              Design and Responsive Web Development
+            <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
+              Responsive Web Development
             </h2>
           </BorderLeft>
-          <p className='text-xl leading-8 text-slate-500 text-center'>
+          <p className='text-xl leading-8 text-slate-500'>
             From idea to oh WOW!
           </p>
         </div>
         {/* Loyal to Few */}
         <div id='ltf' className='mb-24'>
-          <div className='px-5 mb-10'>
+          <div className='px-5 mb-5 sm:mb-10'>
             <BrowserWrapper url='loyaltofew.com/store/mens/tee/stamp/black'>
               <Image src={ssLTFHero} alt='Loyal to Few Screenshot' />
             </BrowserWrapper>
           </div>
-          <div className='w-full flex '>
-            <div className='w-1/3 px-5'>
+          <div className='w-full sm:flex'>
+            <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
               <BrowserWrapper url='loyaltofew.com/' small>
                 <Image src={ssLTF1} alt='Loyal to Few Screenshot' />
               </BrowserWrapper>
             </div>
-            <div className='w-1/3 px-5'>
+            <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
               <BrowserWrapper url='loyaltofew.com/store/mens' small>
                 <Image src={ssLTF2} alt='Loyal to Few Screenshot' />
               </BrowserWrapper>
             </div>
-            <div className='w-1/3 px-5'>
+            <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
               <BrowserWrapper
                 url='loyaltofew.com/store/womens/tank/arch/maroon'
                 small
@@ -63,23 +63,23 @@ export default function Work() {
         </div>
         {/* HempLand USA */}
         <div id='hl' className='mb-24'>
-          <div className='px-5 mb-10'>
+          <div className='px-5 mb-5 sm:mb-10'>
             <BrowserWrapper url='hemplandusa.com/products/restorative-cbd-cream'>
               <Image src={ssHLHero} alt='HempLand USA Product Screenshot' />
             </BrowserWrapper>
           </div>
-          <div className='w-full flex '>
-            <div className='w-1/3 px-5'>
+          <div className='w-full sm:flex '>
+            <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
               <BrowserWrapper url='hemplandusa.com/' small>
                 <Image src={ssHL1} alt='HempLand USA Home Screenshot' />
               </BrowserWrapper>
             </div>
-            <div className='w-1/3 px-5'>
+            <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
               <BrowserWrapper url='hemplandusa.com/' small>
                 <Image src={ssHL2} alt='HempLand USA Footer Screenshot' />
               </BrowserWrapper>
             </div>
-            <div className='w-1/3 px-5'>
+            <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
               <BrowserWrapper url='hemplandusa.com/cart' small>
                 <Image src={ssHL3} alt='HempLand USA Cart Screenshot' />
               </BrowserWrapper>
