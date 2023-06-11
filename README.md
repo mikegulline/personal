@@ -1,3 +1,3 @@
-## Michael Gulline—Front End Engineer
+## Mike Gulline—Front End Engineer
 
 TailwindCSS, TypeScript, React Js, Next JS

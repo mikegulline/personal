@@ -1,0 +1,92 @@
+import Image from 'next/image';
+import GridContainer from '@/components/grid-container';
+import BrowserWrapper from '@/components/browser-wrapper';
+import BorderLeft from '@/components/border-left';
+import ssLTFHero from '@/public/images/loyal-to-few-screenshot.jpg';
+import ssLTF1 from '@/public/images/loyal-to-few-home-screenshot.jpg';
+import ssLTF2 from '@/public/images/loyal-to-few-category-screenshot.jpg';
+import ssLTF3 from '@/public/images/loyal-to-few-side-cart-screenshot.jpg';
+
+import ssHLHero from '@/public/images/hempland-usa-product-2-screenshot.jpg';
+import ssHL1 from '@/public/images/hempland-usa-home-screenshot.jpg';
+import ssHL2 from '@/public/images/hempland-usa-footer-screenshot.jpg';
+import ssHL3 from '@/public/images/hempland-usa-cart-screenshot.jpg';
+
+export const metadata = {
+  title: 'Work',
+  description:
+    'Works Mike Gulline—Front End Engineer (TailwindCSS, TypeScript, React Js, Next JS)',
+};
+
+export default function Work() {
+  return (
+    <GridContainer columns={3}>
+      <main className='py-60 flex-col mt-24'>
+        <div className='w-full px-5 relative mb-24'>
+          <h1 className='text-9xl font-black mb-4 text-center'>Works</h1>
+          <BorderLeft>
+            <h2 className='text-3xl mb-8 font-medium text-center mx-auto'>
+              Design and Responsive Web Development
+            </h2>
+          </BorderLeft>
+          <p className='text-xl leading-8 text-slate-500 text-center'>
+            From idea to oh WOW!
+          </p>
+        </div>
+        {/* Loyal to Few */}
+        <div id='ltf' className='mb-24'>
+          <div className='px-5 mb-10'>
+            <BrowserWrapper url='loyaltofew.com/store/mens/tee/stamp/black'>
+              <Image src={ssLTFHero} alt='Loyal to Few Screenshot' />
+            </BrowserWrapper>
+          </div>
+          <div className='w-full flex '>
+            <div className='w-1/3 px-5'>
+              <BrowserWrapper url='loyaltofew.com/' small>
+                <Image src={ssLTF1} alt='Loyal to Few Screenshot' />
+              </BrowserWrapper>
+            </div>
+            <div className='w-1/3 px-5'>
+              <BrowserWrapper url='loyaltofew.com/store/mens' small>
+                <Image src={ssLTF2} alt='Loyal to Few Screenshot' />
+              </BrowserWrapper>
+            </div>
+            <div className='w-1/3 px-5'>
+              <BrowserWrapper
+                url='loyaltofew.com/store/womens/tank/arch/maroon'
+                small
+              >
+                <Image src={ssLTF3} alt='Loyal to Few Screenshot' />
+              </BrowserWrapper>
+            </div>
+          </div>
+        </div>
+        {/* HempLand USA */}
+        <div id='hl' className='mb-24'>
+          <div className='px-5 mb-10'>
+            <BrowserWrapper url='hemplandusa.com/products/restorative-cbd-cream'>
+              <Image src={ssHLHero} alt='HempLand USA Product Screenshot' />
+            </BrowserWrapper>
+          </div>
+          <div className='w-full flex '>
+            <div className='w-1/3 px-5'>
+              <BrowserWrapper url='hemplandusa.com/' small>
+                <Image src={ssHL1} alt='HempLand USA Home Screenshot' />
+              </BrowserWrapper>
+            </div>
+            <div className='w-1/3 px-5'>
+              <BrowserWrapper url='hemplandusa.com/' small>
+                <Image src={ssHL2} alt='HempLand USA Footer Screenshot' />
+              </BrowserWrapper>
+            </div>
+            <div className='w-1/3 px-5'>
+              <BrowserWrapper url='hemplandusa.com/cart' small>
+                <Image src={ssHL3} alt='HempLand USA Cart Screenshot' />
+              </BrowserWrapper>
+            </div>
+          </div>
+        </div>
+      </main>
+    </GridContainer>
+  );
+}
