@@ -22,7 +22,7 @@ export default function Work() {
   return (
     <GridContainer columns={3}>
       <main className='py-20 md:py-40 lg:py-60 flex-col mt-24'>
-        <div className='w-full px-5 relative mb-24 sm:pr-10 text-left sm:text-center'>
+        <div className='w-full px-5 relative mb-12 sm:mb-24 sm:pr-10 text-left sm:text-center'>
           <h1 className='text-7xl sm:text-9xl font-black mb-4'>Works</h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
@@ -30,7 +30,8 @@ export default function Work() {
             </h2>
           </BorderLeft>
           <p className='text-xl leading-8 text-slate-500'>
-            From idea to oh WOW!
+            From idea to completion, Mike Gulline has been providing full
+            service web design and responsive web development for over 24 years.
           </p>
         </div>
         {/* Loyal to Few */}
