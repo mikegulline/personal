@@ -18,7 +18,7 @@ export const work: IJob[] = [
   {
     company: 'Immunocorp®',
     description:
-      'Hired as a graphic designer, I was quickly promoted to front-end web developer for Immunocorp®. Principal creative and technical lead in the start-up and growth of the ARO Company (2012) and HempLand® USA (2014)',
+      'Online retailer and direct mail marketer for health and immune system supplements ',
     city: 'Long Beach',
     state: 'CA',
     onsite: 'Hybrid',
@@ -29,10 +29,12 @@ export const work: IJob[] = [
     end: 'Present',
     details: '',
     notes: [
-      'Communicate daily with the founder/CEO—able to effectively collaborate, multitask, prioritize and deliver a broad range of tasks; web design/development, email marketing, page speed optimization, search engine optimization, and graphic design',
+      'Communicate daily with the founder/CEO',
+      'Able to effectively collaborate, multitask, prioritize and deliver a broad range of tasks',
+      'Principal creative and technical lead in the start-up and growth of the ARO Company (2012) and HempLand® USA (2014)',
       'Extended the product page to match the companies Good, Better, Best acquisition offers, increasing the average web order from $132 to $196',
       'Initialized and grew the companies email newsletter lists to over 90,000 subscribers',
-      'Increased internet revenue over 200% by sending customer retention and abandoned cart emails with MailChimp',
+      'Increased internet revenue 200% by sending customer retention and abandoned cart emails',
     ],
 
     properties: [
@@ -67,7 +69,7 @@ export const work: IJob[] = [
   {
     company: 'Galaxy4Gamers',
     description:
-      'Social/gaming platform, hosting skill based competitions for cash and prizes on the PlayStation, Xbox, and Nintendo entertainment systems',
+      'Social/gaming platform, hosting skill based competitions for cash and prizes',
     city: 'Huntington Beach',
     state: 'CA',
     onsite: 'Remote',
@@ -79,9 +81,9 @@ export const work: IJob[] = [
     details: '',
     notes: [
       'Developed live single and double elimination tournament brackets with drag and drop advancement',
-      'Built a custom Ajax chat system for one-to-one, one-to-many and group chats, increasing user engagement over 10x',
-      "Incorporated and extended Justin.tv's API (now Twitch.tv) allowing users to broadcast, edit and save video to their profile",
-      'Sponsored professional gamers and held the first Beat-a-Pro competitions where users could pay to play their favorite pros',
+      'Custom chat for one-to-one, one-to-many and group chats, increasing user engagement over 10x',
+      "Extended Justin.tv's API (Twitch.tv) allowing users to broadcast, edit and save video to their profile",
+      'Sponsored professional gamers and hosted the first live Beat-a-Pro competitions',
     ],
   },
   {
