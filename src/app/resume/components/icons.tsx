@@ -1,5 +1,5 @@
 import { stackIcons } from '../data/icons';
-import Icon from './icon';
+import Icon from './single-icon';
 
 const Icons = () => (
   <div className='mt-12 flex gap-3 sm:gap-5 flex-wrap'>
