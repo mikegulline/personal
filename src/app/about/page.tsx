@@ -52,7 +52,7 @@ export default function About() {
               stuff, I am a happily married father of three. I love plants,
               golf, food, and crushing my kids at 🎮 video games{' '}
               <em>(for now)</em>. I almost got a kiss from a sea lion when I was
-              seven. And my favorite color is green.
+              seven. And my favorite color is green. Now you know everything.
             </p>
           </div>
           <div className='lg:w-1/2 mt-12 lg:mt-0'>
