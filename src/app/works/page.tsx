@@ -23,7 +23,7 @@ export default function Work() {
     <GridContainer columns={3}>
       <main className='py-20 md:py-40 lg:py-60 flex-col mt-24'>
         <div className='w-full px-5 relative mb-12 sm:mb-24 sm:pr-10 text-left sm:text-center'>
-          <h1 className='text-7xl sm:text-9xl font-black mb-4'>Works</h1>
+          <h1 className='text-5xl sm:text-9xl font-black mb-4'>Works</h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
               Responsive Web Design &amp; Development

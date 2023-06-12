@@ -34,7 +34,7 @@ export default function About() {
       <GridContainer>
         <main className='py-20 md:py-40 lg:py-60 flex-col lg:flex lg:flex-row mt-24'>
           <div className='lg:w-1/2 px-5'>
-            <h1 className='text-7xl sm:text-9xl font-black mb-4'>About</h1>
+            <h1 className='text-5xl sm:text-9xl font-black mb-4'>About</h1>
             <BorderLeft>
               <h2 className='text-2xl sm:text-3xl mb-8 font-bold'>
                 Hi, my name is Mike 🤘🏻
