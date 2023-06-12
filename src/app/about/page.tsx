@@ -2,12 +2,31 @@ import GridContainer from '@/components/grid-container/';
 import BorderLeft from '@/components/border-left';
 import Pan from '@/components/pan';
 import Link from 'next/link';
+import sealion from '@/public/images/a-sea-lion.jpg';
+import plants from '@/public/images/plants.jpg';
+import golf from '@/public/images/golf.jpg';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'About',
   description:
     'About Mike Gulline—Frontend Engineer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
+
+const images = [
+  {
+    src: sealion,
+    alt: 'A sea lion',
+  },
+  {
+    src: plants,
+    alt: 'Plants',
+  },
+  {
+    src: golf,
+    alt: 'Golf',
+  },
+];
 
 export default function About() {
   return (
@@ -39,11 +58,13 @@ export default function About() {
           <div className='w-1/2'>
             <div className='absolute h-full top-0 w-1/2 flex items-center overflow-hidden'>
               <div className='flex gap-10 px-5'>
-                {[1, 1, 1].map((_, i) => (
+                {images.map(({ src, alt }, i) => (
                   <div
                     key={`hero-${i}`}
-                    className='w-[472px] h-[472px] bg-white rounded shadow-[0_20px_40px_-60px_rgba(50,50,93,0.24),_0_10px_30px_-10px_rgba(0,0,0,0.3)]'
-                  />
+                    className='w-[472px] h-[472px] bg-white rounded-lg overflow-hidden'
+                  >
+                    <Image src={src} alt={alt} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -52,7 +73,6 @@ export default function About() {
       </GridContainer>
       <div className=' bg-slate-700 text-slate-400 overflow-hidden py-2'>
         <div className='flex whitespace-nowrap items-center text-xl font-medium'>
-          {/* animate-[pan_100s_infinite_linear] */}
           <Pan>
             <>
               {[
