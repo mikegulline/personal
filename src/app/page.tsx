@@ -7,7 +7,7 @@ export default function Home() {
     <GridContainer columns={3}>
       <main className='py-20 md:py-40 lg:py-60 flex-col mt-24'>
         <div className='w-full px-5 relative sm:pr-10 text-left sm:text-center'>
-          <h1 className='text-6xl sm:text-9xl font-black mb-4'>
+          <h1 className='text-5xl sm:text-9xl font-black mb-4'>
             Don&rsquo;t Look
           </h1>
           <BorderLeft>
