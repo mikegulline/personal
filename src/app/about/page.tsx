@@ -1,6 +1,7 @@
 import GridContainer from '@/components/grid-container/';
 import BorderLeft from '@/components/border-left';
 import Pan from '@/components/pan';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'About',
@@ -14,18 +15,23 @@ export default function About() {
       <GridContainer>
         <main className='py-60 flex mt-24'>
           <div className='w-1/2 px-5'>
-            <h1 className='text-9xl font-black mb-4 text-slate-800'>About</h1>
+            <h1 className='text-9xl font-black mb-4 text-slate-700'>About</h1>
             <BorderLeft>
-              <h2 className='text-3xl mb-8 font-medium'>
-                It&rsquo;s not about me…
-              </h2>
+              <h2 className='text-3xl mb-8 font-bold'>Hi, my name is Mike</h2>
             </BorderLeft>
             <p className='text-xl leading-8 text-slate-500'>
-              Forget what you think you know about Mike Gulline. Yes, all the
-              great things you heard about Mike are true.{' '}
-              <em>Mike is a hard worker.</em> <em>Mike gets the job done.</em>{' '}
-              <em>Mike is the best dad ever</em> ❤️. But did you know, Mike is
-              also an excellent golfer?
+              Thank you for taking the time to learn more about me. Aside from
+              the{' '}
+              <Link
+                href='/resume'
+                className='text-teal-400 underline hover:text-slate-800'
+              >
+                work stuff
+              </Link>
+              , I am a happily married father of three. I love plants, art,
+              food, golf, and crushing my kids at video games <em>(for now)</em>
+              . I almost got a kiss from a sea lion when I was seven. And my
+              favorite color is green.
             </p>
           </div>
           <div className='w-1/2'>
@@ -42,7 +48,7 @@ export default function About() {
           </div>
         </main>
       </GridContainer>
-      <div className=' bg-slate-800 text-slate-500 overflow-hidden py-2'>
+      <div className=' bg-slate-700 text-slate-400 overflow-hidden py-2'>
         <div className='flex whitespace-nowrap items-center text-xl font-medium'>
           {/* animate-[pan_100s_infinite_linear] */}
           <Pan>
@@ -76,7 +82,7 @@ export default function About() {
                 <span key={`strip${i}`}>
                   <span
                     key={`strip${i}`}
-                    className='inline-block px-4 py-2 mx-1 rounded-full hover:bg-teal-100 hover:text-teal-400 cursor-pointer'
+                    className='inline-block px-4 py-2 mx-1 rounded-full hover:bg-white hover:text-slate-700 cursor-pointer'
                   >
                     {item}
                   </span>
