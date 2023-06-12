@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 import {
   TfiArrowLeft,
   TfiArrowRight,
@@ -9,7 +9,7 @@ import {
 } from 'react-icons/tfi';
 
 export interface IBrowserWrapper {
-  children: ReactElement;
+  children: ReactNode;
   url: string;
   small?: boolean;
 }

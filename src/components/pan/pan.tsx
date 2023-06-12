@@ -1,8 +1,8 @@
 'use client';
-import { useRef, useEffect, useState, ReactElement, useCallback } from 'react';
+import { useRef, useEffect, useState, ReactNode, useCallback } from 'react';
 
 interface IPan {
-  children: ReactElement;
+  children: ReactNode;
 }
 export default function Pan({ children }: IPan) {
   const [hover, setHover] = useState(false);

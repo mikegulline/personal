@@ -1,7 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 interface IGridContainer {
-  children: ReactElement;
+  children: ReactNode;
   columns?: number;
 }
 

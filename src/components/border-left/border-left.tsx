@@ -1,7 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 interface IBorderLeft {
-  children: ReactElement;
+  children: ReactNode;
 }
 
 export default function BorderLeft({ children }: IBorderLeft) {
