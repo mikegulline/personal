@@ -8,7 +8,7 @@ export default function ContactModal() {
   const router = useRouter();
   return (
     <Modal>
-      <div className='flex items-center gap-2 text-4xl'>
+      <div className='flex items-center gap-2 text-2xl sm:text-4xl'>
         <span>Let&rsquo;s keep in touch </span>
         <Link
           href='https://www.linkedin.com/in/michael-gulline/'

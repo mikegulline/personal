@@ -16,7 +16,7 @@ export default function Modal({ children }: modalProps) {
 
   return (
     <div
-      className={`bg-teal-400 text-white fixed inset-5 rounded z-20 flex items-center justify-center ${
+      className={`bg-teal-400 text-white fixed inset sm:inset-5 sm:rounded z-20 flex items-center justify-center ${
         loading
           ? ' translate-y-1/2 scale-50'
           : ' transition-all duration-500 scale-100 translate-y-0 ease-out'
