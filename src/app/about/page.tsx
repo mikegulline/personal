@@ -50,9 +50,9 @@ export default function About() {
                 work stuff
               </Link>
               , I am a happily married father of three. I love plants, art,
-              food, golf, and crushing my kids at video games <em>(for now)</em>
-              . I almost got a kiss from a sea lion when I was seven. And my
-              favorite color is green.
+              food, golf, and crushing my kids at 🎮 video games{' '}
+              <em>(for now)</em>. I almost got a kiss from a sea lion when I was
+              seven. And my favorite color is green.
             </p>
           </div>
           <div className='lg:w-1/2 mt-12 lg:mt-0'>

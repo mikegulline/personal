@@ -29,9 +29,9 @@ export default function Work() {
               Responsive Web Design &amp; Development
             </h2>
           </BorderLeft>
-          <p className='text-xl leading-8 text-slate-500 max-w-2xl m-auto'>
-            From idea to completion, Mike Gulline has been providing full
-            service web design and responsive web development for over 24 years.
+          <p className='text-xl leading-8 max-w-2xl m-auto'>
+            From idea to completion, 😎 Mike Gulline has been providing full
+            service design and responsive web development for over 24 years.
           </p>
         </div>
         {/* Loyal to Few */}

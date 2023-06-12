@@ -15,7 +15,7 @@ export default function Home() {
               🛠️ I&rsquo;m working on my site rn!
             </h2>
           </BorderLeft>
-          <p className='text-xl leading-8 text-slate-500 max-w-2xl m-auto'>
+          <p className='text-xl leading-8 max-w-2xl m-auto'>
             Okay, take a 🫣 look around. My{' '}
             <Link
               href='/resume'

@@ -22,7 +22,7 @@ export default function BrowserWrapper({
   return (
     <div
       id='wrapper'
-      className=' shadow-2xl rounded-2xl select-none hover:scale-110 transition-transform duration-300 ease-in-out relative hover:z-10'
+      className=' shadow-2xl rounded-2xl select-none sm:hover:scale-110 transition-transform duration-300 ease-in-out relative sm:hover:z-10'
     >
       <div
         id='top-bar'
