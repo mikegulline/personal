@@ -15,7 +15,7 @@ export default function ContactModal() {
           target='blank'
           title='LinkedIn'
           onClick={() => router.back()}
-          className='flex w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-white hover:bg-teal-400 hover:text-white  bg-white text-teal-400 items-center justify-center cursor-pointer'
+          className='flex w-12 h-12 sm:w-20 sm:h-20 rounded-full border-2 border-white hover:bg-teal-400 hover:text-white  bg-white text-teal-400 items-center justify-center cursor-pointer'
         >
           <TfiLinkedin />
         </Link>
