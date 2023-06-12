@@ -11,7 +11,7 @@ export default function Home() {
             Don&rsquo;t Look
           </h1>
           <BorderLeft>
-            <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
+            <h2 className='text-1xl sm:text-3xl mb-8 font-bold '>
               🛠️ I&rsquo;m working on my site rn!
             </h2>
           </BorderLeft>
