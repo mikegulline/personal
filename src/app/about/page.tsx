@@ -49,8 +49,8 @@ export default function About() {
               >
                 work
               </Link>{' '}
-              stuff, I am a happily married father of three. I love plants, art,
-              food, golf, and crushing my kids at 🎮 video games{' '}
+              stuff, I am a happily married father of three. I love plants,
+              golf, food, and crushing my kids at 🎮 video games{' '}
               <em>(for now)</em>. I almost got a kiss from a sea lion when I was
               seven. And my favorite color is green.
             </p>
