@@ -17,7 +17,9 @@ export default function About() {
           <div className='w-1/2 px-5'>
             <h1 className='text-9xl font-black mb-4 text-slate-700'>About</h1>
             <BorderLeft>
-              <h2 className='text-3xl mb-8 font-bold'>Hi, my name is Mike</h2>
+              <h2 className='text-3xl mb-8 font-bold'>
+                Hi, my name is Mike 🤘🏻
+              </h2>
             </BorderLeft>
             <p className='text-xl leading-8 text-slate-500'>
               Thank you for taking the time to learn more about me. Aside from
