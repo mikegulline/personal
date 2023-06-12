@@ -3,6 +3,7 @@ import { ReactNode, useState, useRef, useEffect } from 'react';
 
 export default function Icon({ children }: { children: ReactNode }) {
   const [distance, setDistance] = useState<number>(0);
+
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -14,9 +15,12 @@ export default function Icon({ children }: { children: ReactNode }) {
         mY: number = mouseEvent.pageY,
         from = { x: mX, y: mY },
         off = element.getBoundingClientRect(),
-        ny1: number = off.top + document.body.scrollTop, //top
+        top: number = window.pageYOffset || document.documentElement.scrollTop,
+        left: number =
+          window.pageXOffset || document.documentElement.scrollLeft,
+        ny1: number = off.top + top, //top
         ny2: number = ny1 + element.offsetHeight, //bottom
-        nx1: number = off.left + document.body.scrollLeft, //left
+        nx1: number = off.left + left, //left
         nx2: number = nx1 + element.offsetWidth, //right
         maxX1: number = Math.max(mX, nx1),
         minX2: number = Math.min(mX, nx2),
