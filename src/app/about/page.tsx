@@ -32,15 +32,15 @@ export default function About() {
   return (
     <>
       <GridContainer>
-        <main className='py-60 flex mt-24'>
-          <div className='w-1/2 px-5'>
-            <h1 className='text-9xl font-black mb-4 text-slate-700'>About</h1>
+        <main className='py-20 md:py-40 lg:py-60 flex-col lg:flex lg:flex-row mt-24'>
+          <div className='lg:w-1/2 px-5'>
+            <h1 className='text-7xl sm:text-9xl font-black mb-4'>About</h1>
             <BorderLeft>
-              <h2 className='text-3xl mb-8 font-bold'>
+              <h2 className='text-2xl sm:text-3xl mb-8 font-bold'>
                 Hi, my name is Mike 🤘🏻
               </h2>
             </BorderLeft>
-            <p className='text-xl leading-8 text-slate-500'>
+            <p className='text-xl leading-8'>
               Thank you for taking the time to learn more about me. Aside from
               the{' '}
               <Link
@@ -55,13 +55,13 @@ export default function About() {
               favorite color is green.
             </p>
           </div>
-          <div className='w-1/2'>
-            <div className='absolute h-full top-0 w-1/2 flex items-center overflow-hidden'>
+          <div className='lg:w-1/2 mt-12 lg:mt-0'>
+            <div className='lg:absolute lg:h-full lg:top-0 lg:w-1/2 flex items-center lg:overflow-hidden'>
               <div className='flex gap-10 px-5'>
                 {images.map(({ src, alt }, i) => (
                   <div
                     key={`hero-${i}`}
-                    className='w-[472px] h-[472px] bg-white rounded-lg overflow-hidden'
+                    className='lg:w-[472px] lg:h-[472px] bg-white rounded-lg overflow-hidden'
                   >
                     <Image src={src} alt={alt} />
                   </div>

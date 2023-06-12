@@ -1,5 +1,21 @@
 import Modal from '@/components/modal';
+import Link from 'next/link';
+import { TfiLinkedin } from 'react-icons/tfi';
 
 export default function ContactModal() {
-  return <Modal>contact modal!</Modal>;
+  return (
+    <Modal>
+      <div className='flex items-center gap-2 text-4xl'>
+        <span>Let&rsquo;s keep in touch </span>
+        <Link
+          href='https://www.linkedin.com/in/michael-gulline/'
+          target='blank'
+          title='LinkedIn'
+          className='flex w-20 h-20 rounded-full border-2 border-white hover:bg-teal-400 hover:text-white  bg-white text-teal-400 items-center justify-center cursor-pointer'
+        >
+          <TfiLinkedin />
+        </Link>
+      </div>
+    </Modal>
+  );
 }
