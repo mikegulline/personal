@@ -1,4 +1,5 @@
 import GridContainer from '@/components/grid-container/';
+import Emoji from '@/components/emoji';
 import BorderLeft from '@/components/border-left';
 import Link from 'next/link';
 import sealion from '@/public/images/a-sea-lion.jpg';
@@ -35,7 +36,7 @@ export default function About() {
           <h1 className='text-5xl sm:text-9xl font-black mb-4'>About</h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold'>
-              Hi, my name is Mike 🤘🏻
+              Hi, my name is Mike <Emoji>🤘🏻</Emoji>
             </h2>
           </BorderLeft>
           <p className='text-xl leading-8'>
@@ -47,9 +48,9 @@ export default function About() {
               work
             </Link>{' '}
             stuff, I am a happily married father of three. I love plants, golf,
-            food, and crushing my kids at 🎮 video games <em>(for now)</em>. I
-            almost got a kiss from a sea lion when I was seven. And my favorite
-            color is green. Now you know everything.
+            food, and crushing my kids at <Emoji>🎮</Emoji>video games{' '}
+            <em>(for now)</em>. I almost got a kiss from a sea lion when I was
+            seven. And my favorite color is green. Now you know everything.
           </p>
         </div>
         <div className='lg:w-1/2 mt-12 lg:mt-0'>

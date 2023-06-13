@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Emoji from '@/components/emoji';
 import GridContainer from '@/components/grid-container';
 import BrowserWrapper from '@/components/browser-wrapper';
 import BorderLeft from '@/components/border-left';
@@ -30,8 +31,9 @@ export default function Work() {
             </h2>
           </BorderLeft>
           <p className='text-xl leading-8 max-w-2xl m-auto'>
-            From idea to completion, 😎 Mike Gulline has been providing full
-            service design and responsive web development for over 24 years.
+            From idea to completion, <Emoji>😎</Emoji>Mike Gulline has been
+            providing full service design and responsive web development for
+            over 24 years.
           </p>
         </div>
         {/* Loyal to Few */}

@@ -1,4 +1,5 @@
 import GridContainer from '@/components/grid-container/';
+import Emoji from '@/components/emoji';
 import BorderLeft from '@/components/border-left';
 import Link from 'next/link';
 
@@ -12,11 +13,11 @@ export default function Home() {
           </h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-              🛠️ I&rsquo;m working on my site right now!
+              <Emoji>🛠️</Emoji>I&rsquo;m working on my site right now!
             </h2>
           </BorderLeft>
           <p className='text-xl leading-8 max-w-2xl m-auto'>
-            Okay, take a 🫣 look around. My{' '}
+            Okay, take a <Emoji>🫣</Emoji>look around. My{' '}
             <Link
               href='/resume'
               className='text-teal-400 underline hover:text-slate-800'
