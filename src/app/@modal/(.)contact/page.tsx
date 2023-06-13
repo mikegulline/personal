@@ -13,7 +13,7 @@ export default function ContactModal() {
         <Link
           href='https://www.linkedin.com/in/michael-gulline/'
           target='blank'
-          title='LinkedIn'
+          title='Connect with me on LinkedIn'
           onClick={() => router.back()}
           className='flex w-12 h-12 sm:w-20 sm:h-20 rounded-full border-2 border-white hover:bg-teal-400 hover:text-white  bg-white text-teal-400 items-center justify-center cursor-pointer'
         >

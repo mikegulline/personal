@@ -91,7 +91,7 @@ function Contact() {
       </Link>
       <Link
         href='/contact'
-        className='inline-flex font-semibold px-6 py-2 rounded-full bg-slate-800 border-2 border-slate-800 hover:border-teal-400 hover:text-teal-400 hover:bg-white text-white items-center justify-center'
+        className='inline-flex font-semibold px-6 py-2 rounded-full bg-slate-700 border-2 border-slate-700 hover:border-teal-400 hover:text-teal-400 hover:bg-white text-white items-center justify-center'
       >
         <span>Contact</span>
       </Link>

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { TfiClose } from 'react-icons/tfi';
 
 export interface modalProps {
   children: React.ReactNode;
@@ -27,7 +28,7 @@ export default function Modal({ children }: modalProps) {
         onClick={() => router.back()}
         type='button'
       >
-        X
+        <TfiClose />
       </button>
       <div>
         <div>{children}</div>
