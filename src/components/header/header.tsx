@@ -55,7 +55,7 @@ function Logo() {
 
 function Navigation() {
   return (
-    <nav className='flex-grow items-center pt-2 px-5 sm:px-0 sm:pt-0'>
+    <nav className='flex-grow items-center pt-2 sm:pt-0'>
       <ul className='flex sm:gap-8 md:gap-10 justify-between sm:justify-end items-center'>
         {menu.map(({ title, link }) => (
           <li key={link}>
