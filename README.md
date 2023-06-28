@@ -1,3 +1,3 @@
 ## Mike Gulline—Front End Engineer
 
-TailwindCSS, TypeScript, React Js, Next JS
+JavaScript, TypeScript, ReactJS, NextJS, TailwindCSS, CSS, CSS Flexbox, CSS Animations, CSS Grid, Front End Ddevelopment, Responsive, Design, Resume, Portfolio
