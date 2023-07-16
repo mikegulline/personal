@@ -29,12 +29,11 @@ export const work: IJob[] = [
     end: 'Present',
     details: '',
     notes: [
-      'Communicate daily with the founder/CEO',
-      'Able to effectively collaborate, multitask, prioritize and deliver a broad range of tasks',
-      'Principal creative and technical lead in the start-up and growth of the ARO Company (2012) and HempLand® USA (2014)',
-      'Extended the product page to match the companies Good, Better, Best acquisition offers, increasing the average web order from $132 to $196',
-      'Initialized and grew the companies email newsletter lists to over 90,000 subscribers',
-      'Increased internet revenue 200% by sending customer retention and abandoned cart emails',
+      'Hired as a designer and Flash developer, I quickly evolved into a senior front end engineer.',
+      'Design, develop and maintain responsive e-commerce websites for multiple companies using Adobe Suite, Figma, HTML, CSS3, SCSS, React.js, TypeScript, JavaScript, jQuery, Ajax, PHP, MySQL, Shopify, WordPress, WooCommerce, MailChimp, Klaviyo.',
+      'Collaborate closely with a remote copywriting team and the owner/CEO to effectively translate their vision into reality.',
+      'Developed a custom discount plug-in for the company’s unique online pricing options. ',
+      'Fully integrated online newsletters using the MailChimp API, with custom sign-up forms, campaign automation and tracking.',
     ],
 
     properties: [
@@ -57,13 +56,9 @@ export const work: IJob[] = [
     end: '2023-04',
     details: '',
     notes: [
-      'Built using React 18, NextJS 13 (pages directory) and deployed on Vercel via GitHub',
-      'Added and customized SnipCart headless e-commerce solution ',
-      'Consume SnipCart webhooks with NextJS API endpoints to retrieve shipping options from Easypost',
-      'Consume EasyPost webhooks to provide customer with order tracking updates',
-      'Created a custom shipping admin to unify and streamline the order packing and shipping process',
-      'Created a custom returns admin to unify and streamline the returns process',
-      'Added SendGrid for email communication',
+      'Built with React 18 and Next.js 13, deployed on Vercel via GitHub.',
+      'Integrated and customized SnipCart headless e-commerce solution.',
+      'Utilized Next.js API endpoints to consume SnipCart webhooks for retrieving EasyPost shipping options and to consume EasyPost webhooks for providing order tracking updates. Also created custom shipping and returns admins to streamline the corresponding processes. Additionally, integrated SendGrid for email communication.',
     ],
   },
   {
@@ -80,10 +75,10 @@ export const work: IJob[] = [
     end: '2011-04',
     details: '',
     notes: [
-      'Developed live single and double elimination tournament brackets with drag and drop advancement',
-      'Custom chat for one-to-one, one-to-many and group chats, increasing user engagement over 10x',
-      "Extended Justin.tv's API (Twitch.tv) allowing users to broadcast, edit and save video to their profile",
-      'Sponsored professional gamers and hosted the first live Beat-a-Pro competitions',
+      'Created live tournament brackets featuring single and double elimination formats with intuitive drag and drop functionality for seamless advancement.',
+      'Engineered a custom chat system that significantly enhanced user engagement, enabling one-to-one, one-to-many, and group conversations within the platform.',
+      "Extended the functionality of Justin.tv's API (Twitch.tv), empowering users to live stream, edit, and save their gameplay videos directly to their profiles.",
+      'Sponsored professional gamers, organized and hosted the first live Beat-a-Pro competitions, where users could pay to play their favorite professional gamer.',
     ],
   },
   {
@@ -98,9 +93,9 @@ export const work: IJob[] = [
     start: '2006-08',
     end: '2008-02',
     notes: [
-      "Designed and implemented the company's real estate template website",
-      'Developed custom HTML websites for real estate professionals',
-      'Directed and created print campaigns, direct mail, trade show displays and signage',
+      "Spearheaded the design and development of the company's real estate template website, resulting in an impactful online presence and improved user experience.",
+      'Crafted custom HTML websites tailored specifically for real estate professionals, aligning with their unique branding and business requirements.',
+      'Demonstrated expertise in building reusable template components, optimizing development efficiency and ensuring consistency across multiple projects.',
     ],
   },
   {
@@ -115,9 +110,9 @@ export const work: IJob[] = [
     start: '2004-04',
     end: '2006-06',
     notes: [
-      "Designed and hand coded the company's minority law firm website",
-      'Created a custom newsletter solution with backend manager and builder',
-      'Directed all print campaigns, direct mail, trade show displays and signage',
+      "Designed and developed the company's minority owned law firm website highlighting each lawyer and their unique skills and achievements.",
+      "Developed a custom CMS solution to effectively manage the company's blog, news, and awards sections, enabling seamless content updates and up-to-date information.",
+      'Created a tailored newsletter solution with a backend manager and email builder, empowering the company to easily create and distribute professional newsletters, enhancing communication with clients and stakeholders.',
     ],
   },
   {
@@ -133,9 +128,9 @@ export const work: IJob[] = [
     start: '1999-05',
     end: '2000-07',
     notes: [
-      'Instituted process standards for product and apparel masking in PhotoShop',
-      'Animated website intros and business presentations using Flash',
-      'Web design, logo design and print design for various television shows',
+      'Established process standards for product and apparel masking in Photoshop, streamlining workflows and ensuring consistent and high-quality results in image editing.',
+      'Produced engaging website intros and captivating business presentations by leveraging Flash, effectively capturing audience attention and enhancing brand messaging.',
+      "Demonstrated versatility in web design, logo design, and print design for a diverse range of television shows, translating concepts into visually compelling assets that effectively represented each program's unique identity.",
     ],
   },
   {
@@ -150,9 +145,9 @@ export const work: IJob[] = [
     start: '1999-01',
     end: '1999-04',
     notes: [
-      'Product and apparel masking in PhotoShop for 3D spins in Flash',
-      'Advanced photo manipulation and recreation in PhotoShop',
-      'Wrote custom PhotoShop actions and batch processes for optimal output',
+      'Utilized Photoshop for product and apparel masking to create 3D spins in Flash.',
+      'Exhibited proficiency in advanced photo manipulation and recreation techniques in Photoshop, transform images with precision and creativity.',
+      'Developed custom Photoshop actions and implemented batch processes to automate repetitive tasks, optimizing workflow ensuring consistent and high-quality output.',
     ],
   },
 ];

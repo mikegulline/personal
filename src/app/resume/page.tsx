@@ -21,11 +21,17 @@ export default function Resume() {
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8  '>
-          Full Stack Web Developer with over 24 years of experience building
-          responsive web apps and e-commerce solutions from concept to
-          completion. Motivated mentor, student and team player, excited to
-          build scalable web apps with modern <em>JavaScript</em>,{' '}
-          <em>TypeScript</em>, <em>React</em> and <em>Next JS</em>.
+          <strong>
+            Highly skilled Front End Engineer specializing in <em>React.js</em>,{' '}
+            <em>Next.js</em>,<em>TypeScript</em>, and <em>TailwindCSS</em>.
+          </strong>{' '}
+          Experience creating responsive web applications with a focus on user
+          experience. Proficient in leveraging React.js to build blazing-fast,
+          component based user interfaces. Prefers Next.js for APIs, server-side
+          rendering, and efficient routing and TypeScript for type-safe
+          development. Enjoys implementing modern UI designs using TailwindCSS,
+          ensuring pixel-perfect layouts with a mobile-first approach. Forever
+          student, continuously exploring and open to new technologies.
         </p>
         <Icons />
       </div>

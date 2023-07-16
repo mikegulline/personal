@@ -72,23 +72,23 @@ export default function Work() {
       <div id='hl' className='mb-24'>
         <div className='px-5 mb-5 sm:mb-10'>
           <BrowserWrapper url='immunocorp.com/'>
-            <Image src={ssIMMHero} alt='Immunocorp® Product Screenshot' />
+            <Image src={ssIMMHero} alt='Immunocorp® Home' />
           </BrowserWrapper>
         </div>
         <div className='w-full sm:flex '>
           <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
             <BrowserWrapper url='immunocorp.com/' small>
-              <Image src={ssIMM1} alt='Immunocorp® Home Screenshot' />
+              <Image src={ssIMM1} alt='Immunocorp® Landing Page' />
             </BrowserWrapper>
           </div>
           <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
             <BrowserWrapper url='immunocorp.com/' small>
-              <Image src={ssIMM2} alt='Immunocorp® Footer Screenshot' />
+              <Image src={ssIMM2} alt='Immunocorp® Blog' />
             </BrowserWrapper>
           </div>
           <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='immunocorp.com/cart' small>
-              <Image src={ssIMM3} alt='Immunocorp® Cart Screenshot' />
+            <BrowserWrapper url='immunocorp.com/' small>
+              <Image src={ssIMM3} alt='Immunocorp® Immutol' />
             </BrowserWrapper>
           </div>
         </div>

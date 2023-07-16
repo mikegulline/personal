@@ -31,7 +31,7 @@ export default function Job({
       <p className='mb-4 text-slate-500'>
         {city}, {state} &middot; {onsite}
       </p>
-      <p className='mb-4'>{description}</p>
+      {/* <p className='mb-4'>{description}</p> */}
       <ul className='list-disc list-outside'>
         {notes.map((info, i) => {
           return (
