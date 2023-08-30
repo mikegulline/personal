@@ -21,7 +21,7 @@ import ssHL3 from '@/public/images/hempland-usa-cart-screenshot.jpg';
 export const metadata = {
   title: 'Work',
   description:
-    'Works Mike Gulline—Front End Engineer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Works Mike Gulline—Full Stack Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 export default function Work() {
@@ -31,13 +31,13 @@ export default function Work() {
         <h1 className='text-5xl sm:text-9xl font-black mb-4'>Works</h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Responsive Web Design &amp; Development
+            Responsive Web Design &amp; Full Stack Web Developement
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8 max-w-2xl m-auto'>
           From idea to completion, <Emoji>😎</Emoji>Mike Gulline has been
-          providing full service design and responsive web development for over
-          24 years.
+          providing full service design and responsive full stack web
+          development for over 25 years.
         </p>
       </div>
       {/* Loyal to Few */}

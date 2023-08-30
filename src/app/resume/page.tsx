@@ -5,9 +5,9 @@ import Skills from './components/skills';
 import Work from './components/work';
 
 export const metadata = {
-  title: 'Front End Engineer Resume (Mike Gulline)',
+  title: 'Full Stack Web Developer Resume (Mike Gulline)',
   description:
-    'Front End Engineer Resume of Mike Gulline (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Full Stack Web Developer Resume of Mike Gulline (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 export default function Resume() {
@@ -17,13 +17,14 @@ export default function Resume() {
         <h1 className='text-5xl sm:text-9xl font-black mb-4'>Resume</h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Mike Gulline—<em>Front End Engineer</em>
+            Mike Gulline—<em>Full Stack Web Developer</em>
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8  '>
           <strong>
-            Highly skilled Front End Engineer specializing in <em>React.js</em>,{' '}
-            <em>Next.js</em>,<em>TypeScript</em>, and <em>TailwindCSS</em>.
+            Highly skilled Full Stack Web Developer specializing in{' '}
+            <em>React.js</em>, <em>Next.js</em>,<em>TypeScript</em>, and{' '}
+            <em>TailwindCSS</em>.
           </strong>{' '}
           Experience creating responsive web applications with a focus on user
           experience. Proficient in leveraging React.js to build blazing-fast,

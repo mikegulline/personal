@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 export const metadata = {
   title: 'Works',
   description:
-    'Works Mike Gulline—Front End Engineer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Works Mike Gulline—Full Stack Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 type Props = {
