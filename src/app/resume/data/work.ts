@@ -37,10 +37,10 @@ export const work: IJob[] = [
     ],
 
     properties: [
-      ['immunocorp.com', 'https://immunocorp.com/'],
+      ['iwantmycbd.org', 'https://iwantmycbd.org/'],
+      ['ijat.org', 'https://ijat.org/'],
       ['arcticrubyoil.com', 'https://arcticrubyoil.com/'],
       ['hemplandusa.com', 'https://hemplandusa.com/'],
-      ['ijat.org', 'https://ijat.org/'],
     ],
   },
   {

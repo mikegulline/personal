@@ -21,18 +21,10 @@ export default function Resume() {
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8  '>
-          <strong>
-            Highly skilled Full Stack Web Developer specializing in{' '}
-            <em>React.js</em>, <em>Next.js</em>,<em>TypeScript</em>, and{' '}
-            <em>TailwindCSS</em>.
-          </strong>{' '}
-          Experience creating responsive web applications with a focus on user
-          experience. Proficient in leveraging React.js to build blazing-fast,
-          component based user interfaces. Prefers Next.js for APIs, server-side
-          rendering, and efficient routing and TypeScript for type-safe
-          development. Enjoys implementing modern UI designs using TailwindCSS,
-          ensuring pixel-perfect layouts with a mobile-first approach. Forever
-          student, continuously exploring and open to new technologies.
+          Creative professional with 25 years of design and full-stack web
+          development experience. Proficient in taking projects from idea to
+          completion with minimal over-site. Looking to apply my full-stack
+          skills in a team environment building modern, scalable web apps.
         </p>
         <Icons />
       </div>
