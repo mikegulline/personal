@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Emoji from '@/components/emoji';
 import GridContainer from '@/components/grid-container';
 import BrowserWrapper from '@/components/browser-wrapper';
@@ -18,11 +19,149 @@ import ssHL1 from '@/public/images/hempland-usa-home-screenshot.jpg';
 import ssHL2 from '@/public/images/hempland-usa-footer-screenshot.jpg';
 import ssHL3 from '@/public/images/hempland-usa-cart-screenshot.jpg';
 
+import ssCBDHero from '@/public/images/iwantmycbd-home-page.jpg';
+import ssCBD1 from '@/public/images/iwantmycbd-gallery.jpg';
+import ssCBD2 from '@/public/images/iwantmycbd-product.jpg';
+import ssCBD3 from '@/public/images/iwantmycbd-conditions.jpg';
+
 export const metadata = {
   title: 'Work',
   description:
     'Works Mike Gulline—Full Stack Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
+
+const portfolio = [
+  {
+    title: 'Immunocorp®',
+    link: 'https://www.immunocorp.com',
+    description: '',
+    gallery: [
+      {
+        title: 'Immunocorp® Home Page',
+        link: 'https://www.immunocorp.com',
+        image: ssIMMHero,
+      },
+      {
+        title: '7-Step Guide to Immunity for Life',
+        link: 'https://www.immunocorp.com/7-step-guide-to-immunity-for-life/',
+        image: ssIMM1,
+      },
+      {
+        title: 'Blog Article',
+        link: 'https://www.immunocorp.com/7-step-guide-to-immunity-for-life/',
+        image: ssIMM2,
+      },
+      {
+        title: 'Immunocorp® Home Page Hero',
+        link: 'https://www.immunocorp.com',
+        image: ssIMM3,
+      },
+    ],
+  },
+  {
+    title: 'I wand my CBD',
+    link: 'https://iwantmycbd.org/',
+    description: '',
+    gallery: [
+      {
+        title: 'I want my CBD Home Page',
+        link: 'https://iwantmycbd.org/',
+        image: ssCBDHero,
+      },
+      {
+        title: 'Gallery Page',
+        link: 'https://iwantmycbd.org/cbd-product-reviews-2019/',
+        image: ssCBD1,
+      },
+      {
+        title: 'Product Page',
+        link: 'https://iwantmycbd.org/cbd-product-review/cannabitol-750-thc-free-cbd-hemp-oil-soft-gels/',
+        image: ssCBD2,
+      },
+      {
+        title: 'Conditions Page',
+        link: 'https://iwantmycbd.org/cannabidiol/conditions/',
+        image: ssCBD3,
+      },
+    ],
+  },
+  {
+    title: 'Loyal to Few®',
+    link: 'https://www.loyaltofew.com/',
+    description: '',
+    gallery: [
+      {
+        title: 'Loyal to Few Product Page',
+        link: 'https://www.loyaltofew.com/store/mens/tee/stamp/black',
+        image: ssLTFHero,
+      },
+      {
+        title: 'Home Page',
+        link: 'https://www.loyaltofew.com/',
+        image: ssLTF1,
+      },
+      {
+        title: 'Category Page',
+        link: 'https://www.loyaltofew.com/store/mens',
+        image: ssLTF2,
+      },
+      {
+        title: 'Shopping Cart Drawr',
+        link: 'https://www.loyaltofew.com/store/womens/tank/arch/maroon',
+        image: ssLTF3,
+      },
+    ],
+  },
+];
+
+type ProtfolioType = typeof portfolio;
+
+type PortfolioPropsType = {
+  items: ProtfolioType;
+};
+
+const Portfolio = ({ items }: PortfolioPropsType) => (
+  <div>
+    {items.map(({ title, link, description, gallery }): React.ReactNode => {
+      const showGallery = [...gallery];
+      const showHero = showGallery.shift();
+      if (!showHero?.link) return;
+      return (
+        <div key={title} className='mb-24'>
+          <div className='px-5 mb-5 sm:mb-10'>
+            <Link href={showHero.link} title={showHero.title} target='_blank'>
+              <BrowserWrapper url={showHero.link}>
+                <Image
+                  src={showHero.image}
+                  alt={showHero.title}
+                  width={982}
+                  height={492}
+                />
+              </BrowserWrapper>
+            </Link>
+          </div>
+
+          <div className='w-full sm:flex'>
+            {showGallery.map((item) => (
+              <div key={item.title} className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
+                <Link href={item.link} title={item.title} target='_blank'>
+                  <BrowserWrapper url={item.link} small>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={300}
+                      height={150}
+                    />
+                  </BrowserWrapper>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+);
 
 export default function Work() {
   return (
@@ -40,84 +179,7 @@ export default function Work() {
           development for over 25 years.
         </p>
       </div>
-      {/* Loyal to Few */}
-      <div id='ltf' className='mb-24'>
-        <div className='px-5 mb-5 sm:mb-10'>
-          <BrowserWrapper url='loyaltofew.com/store/mens/tee/stamp/black'>
-            <Image src={ssLTFHero} alt='Loyal to Few Screenshot' />
-          </BrowserWrapper>
-        </div>
-        <div className='w-full sm:flex'>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='loyaltofew.com/' small>
-              <Image src={ssLTF1} alt='Loyal to Few Screenshot' />
-            </BrowserWrapper>
-          </div>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='loyaltofew.com/store/mens' small>
-              <Image src={ssLTF2} alt='Loyal to Few Screenshot' />
-            </BrowserWrapper>
-          </div>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper
-              url='loyaltofew.com/store/womens/tank/arch/maroon'
-              small
-            >
-              <Image src={ssLTF3} alt='Loyal to Few Screenshot' />
-            </BrowserWrapper>
-          </div>
-        </div>
-      </div>
-      {/* Immunocorp® */}
-      <div id='hl' className='mb-24'>
-        <div className='px-5 mb-5 sm:mb-10'>
-          <BrowserWrapper url='immunocorp.com/'>
-            <Image src={ssIMMHero} alt='Immunocorp® Home' />
-          </BrowserWrapper>
-        </div>
-        <div className='w-full sm:flex '>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='immunocorp.com/' small>
-              <Image src={ssIMM1} alt='Immunocorp® Landing Page' />
-            </BrowserWrapper>
-          </div>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='immunocorp.com/' small>
-              <Image src={ssIMM2} alt='Immunocorp® Blog' />
-            </BrowserWrapper>
-          </div>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='immunocorp.com/' small>
-              <Image src={ssIMM3} alt='Immunocorp® Immutol' />
-            </BrowserWrapper>
-          </div>
-        </div>
-      </div>
-      {/* HempLand USA */}
-      <div id='hl' className='mb-24'>
-        <div className='px-5 mb-5 sm:mb-10'>
-          <BrowserWrapper url='hemplandusa.com/products/restorative-cbd-cream'>
-            <Image src={ssHLHero} alt='HempLand USA Product Screenshot' />
-          </BrowserWrapper>
-        </div>
-        <div className='w-full sm:flex '>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='hemplandusa.com/' small>
-              <Image src={ssHL1} alt='HempLand USA Home Screenshot' />
-            </BrowserWrapper>
-          </div>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='hemplandusa.com/' small>
-              <Image src={ssHL2} alt='HempLand USA Footer Screenshot' />
-            </BrowserWrapper>
-          </div>
-          <div className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-            <BrowserWrapper url='hemplandusa.com/cart' small>
-              <Image src={ssHL3} alt='HempLand USA Cart Screenshot' />
-            </BrowserWrapper>
-          </div>
-        </div>
-      </div>
+      <Portfolio items={portfolio} />
     </GridContainer>
   );
 }
