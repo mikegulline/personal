@@ -149,8 +149,8 @@ const Portfolio = ({ items }: PortfolioPropsType) => (
                     <Image
                       src={item.image}
                       alt={item.title}
-                      width={300}
-                      height={150}
+                      width={560}
+                      height={280}
                     />
                   </BrowserWrapper>
                 </Link>
