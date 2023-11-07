@@ -25,9 +25,9 @@ import ssCBD2 from '@/public/images/iwantmycbd-product.jpg';
 import ssCBD3 from '@/public/images/iwantmycbd-conditions.jpg';
 
 export const metadata = {
-  title: 'Work',
+  title: 'Front-End Web Development by Mike Gulline',
   description:
-    'Works Mike Gulline—Full Stack Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Works Mike Gulline—Front-End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 const portfolio = [
@@ -170,13 +170,13 @@ export default function Work() {
         <h1 className='text-5xl sm:text-9xl font-black mb-4'>Works</h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Responsive Web Design &amp; Full Stack Web Developement
+            Responsive Front End Web Developement
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8 max-w-2xl m-auto'>
           From idea to completion, <Emoji>😎</Emoji>Mike Gulline has been
-          providing full service design and responsive full stack web
-          development for over 25 years.
+          providing custom design and responsive web development for over 25
+          years.
         </p>
       </div>
       <Portfolio items={portfolio} />

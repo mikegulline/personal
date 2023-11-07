@@ -1,13 +1,14 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import LenisWrapper from '@/components/lenis-wrapper/lenis-wrapper';
+import LenisWrapper from '@/components/lenis-wrapper/';
 import './globals.css';
 import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Mike Gulline—Front End Engineer',
-  description: 'TailwindCSS, TypeScript, React Js, Next JS',
+  title: 'Mike Gulline—Front End Web Developer',
+  description:
+    'Custom CMS WordPress development with jQuery, Javascript, TypeScript, React Js, Next JS, TailwindCSS',
 };
 
 export default function RootLayout({

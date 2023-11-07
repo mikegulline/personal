@@ -5,9 +5,9 @@ import Skills from './components/skills';
 import Work from './components/work';
 
 export const metadata = {
-  title: 'Full Stack Web Developer Resume (Mike Gulline)',
+  title: 'Front End Web Developer Resume (Mike Gulline)',
   description:
-    'Full Stack Web Developer Resume of Mike Gulline (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Front End Web Developer Resume of Mike Gulline (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 export default function Resume() {
@@ -17,16 +17,16 @@ export default function Resume() {
         <h1 className='text-5xl sm:text-9xl font-black mb-4'>Resume</h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Mike Gulline—<em>Full Stack Web Developer</em>
+            Mike Gulline—<em>Front End Web Developer</em>
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8  '>
-          Results-driven engineer specializing in responsive web app development
-          with a focus on human centered design. Experience leading projects and
+          Results-driven front end developer specializing in responsive
+          WordPress CMS development. Analytical problem solver with a strong
+          understanding of SEO principles. Experience leading projects and
           features, including gathering requirements, brainstorming, creating
-          mockups, producing code, testing, debugging and enhancing user
-          experience. Technically proficient, creative problem solver with calm
-          and focused demeanor.
+          mockups, producing code, debugging and enhancing user experience.
+          Ability to work autonomously and navigate through ambiguity.
         </p>
         <Icons />
       </div>

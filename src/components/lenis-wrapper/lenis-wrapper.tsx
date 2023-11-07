@@ -21,7 +21,7 @@ export default function LenisWrapper({
     setScroll(scroll);
   });
   return (
-    <ReactLenis root options={{ lerp: 0.05 }}>
+    <ReactLenis root options={{ lerp: 0.075 }}>
       {children}
     </ReactLenis>
   );

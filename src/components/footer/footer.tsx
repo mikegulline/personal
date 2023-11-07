@@ -54,7 +54,7 @@ export default function Footer() {
           <p>&copy; Gulline.com</p>
           <div className='flex items-center gap-6'>
             <Link
-              href='https://www.linkedin.com/in/michael-gulline/'
+              href='https://www.linkedin.com/in/mikegulline/'
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >
