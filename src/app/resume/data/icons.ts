@@ -1,4 +1,5 @@
 import {
+  SiWordpress,
   SiReact,
   SiHtml5,
   SiCss3,
@@ -38,6 +39,10 @@ interface IIcon {
 }
 
 export const stackIcons: IIcon[] = [
+  {
+    icon: SiWordpress,
+    name: 'WordPress',
+  },
   {
     icon: SiJavascript,
     name: 'JavaScript',

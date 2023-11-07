@@ -1,5 +1,6 @@
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import LenisWrapper from '@/components/lenis-wrapper/lenis-wrapper';
 import './globals.css';
 import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
@@ -21,10 +22,12 @@ export default function RootLayout({
       <body
         className={` antialiased text-slate-700 relative ${inter.className}`}
       >
-        <Header />
-        {children}
-        {modal}
-        <Footer />
+        <LenisWrapper>
+          <Header />
+          {children}
+          {modal}
+          <Footer />
+        </LenisWrapper>
       </body>
     </html>
   );

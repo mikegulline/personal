@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import LogoSVG from '@/public/mikegulline.svg';
 
-import { GoMarkGithub } from 'react-icons/go';
+import { SiGithub } from 'react-icons/si';
 import { TfiLinkedin } from 'react-icons/tfi';
 
 interface ILink {
@@ -87,7 +87,7 @@ function Contact() {
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
-        <GoMarkGithub />
+        <SiGithub />
       </Link>
       <Link
         href='/contact'

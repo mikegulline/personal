@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Pan from '@/components/pan';
-import { GoMarkGithub } from 'react-icons/go';
+import { SiGithub } from 'react-icons/si';
 import { TfiLinkedin } from 'react-icons/tfi';
 
 export default function Footer() {
@@ -19,6 +19,8 @@ export default function Footer() {
                 'TailWindCSS',
                 'Node',
                 'UI',
+                'CMS',
+                'WordPress',
                 'CSS3',
                 'VS Code',
                 'HTML5',
@@ -63,7 +65,7 @@ export default function Footer() {
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >
-              <GoMarkGithub />
+              <SiGithub />
             </Link>
             <Link
               href='/contact'

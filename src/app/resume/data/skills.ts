@@ -1,4 +1,6 @@
 export const skills: string[] = [
+  'WordPress',
+  'CMS',
   'JavaScript',
   'ECMA6',
   'JSX',

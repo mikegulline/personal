@@ -21,10 +21,12 @@ export default function Resume() {
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8  '>
-          Creative professional with 25 years of design and full-stack web
-          development experience. Proficient in taking projects from idea to
-          completion with minimal over-site. Looking to apply my full-stack
-          skills in a team environment building modern, scalable web apps.
+          Results-driven engineer specializing in responsive web app development
+          with a focus on human centered design. Experience leading projects and
+          features, including gathering requirements, brainstorming, creating
+          mockups, producing code, testing, debugging and enhancing user
+          experience. Technically proficient, creative problem solver with calm
+          and focused demeanor.
         </p>
         <Icons />
       </div>

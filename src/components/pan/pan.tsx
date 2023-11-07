@@ -10,30 +10,30 @@ export default function Pan({ children }: IPan) {
   const widthRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>(0);
 
-  const animation = useCallback(() => {
-    const x = ref.current?.getBoundingClientRect().left;
-    const width = widthRef.current?.offsetWidth;
+  // const animation = useCallback(() => {
+  //   const x = ref.current?.getBoundingClientRect().left;
+  //   const width = widthRef.current?.offsetWidth;
 
-    if (typeof x === 'number' && ref.current && width && !hover) {
-      if (-x >= width) {
-        ref.current.style.left = '0px';
-      } else {
-        ref.current.style.left = x - 0.2 + 'px';
-      }
-    }
+  //   if (typeof x === 'number' && ref.current && width && !hover) {
+  //     if (-x >= width) {
+  //       ref.current.style.left = '0px';
+  //     } else {
+  //       ref.current.style.left = x - 0.2 + 'px';
+  //     }
+  //   }
 
-    animationRef.current = requestAnimationFrame(animation);
-  }, [hover]);
+  //   animationRef.current = requestAnimationFrame(animation);
+  // }, [hover]);
 
-  useEffect(() => {
-    animationRef.current = requestAnimationFrame(animation);
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [animation]);
+  // useEffect(() => {
+  //   animationRef.current = requestAnimationFrame(animation);
+  //   return () => cancelAnimationFrame(animationRef.current);
+  // }, [animation]);
 
   return (
     <div
       ref={ref}
-      className='relative select-none'
+      className='relative select-none pan'
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
     >
