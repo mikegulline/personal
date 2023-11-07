@@ -10,7 +10,7 @@ import Image from 'next/image';
 export const metadata = {
   title: 'About',
   description:
-    'About Mike Gulline—Full Stack Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'About Mike Gulline, Front End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 const images = [

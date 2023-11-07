@@ -27,7 +27,7 @@ import ssCBD3 from '@/public/images/iwantmycbd-conditions.jpg';
 export const metadata = {
   title: 'Front-End Web Development by Mike Gulline',
   description:
-    'Works Mike Gulline—Front-End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Works Mike Gulline—Front End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 const portfolio = [
@@ -59,33 +59,6 @@ const portfolio = [
     ],
   },
   {
-    title: 'I wand my CBD',
-    link: 'https://iwantmycbd.org/',
-    description: '',
-    gallery: [
-      {
-        title: 'I want my CBD Home Page',
-        link: 'https://iwantmycbd.org/',
-        image: ssCBDHero,
-      },
-      {
-        title: 'Gallery Page',
-        link: 'https://iwantmycbd.org/cbd-product-reviews-2019/',
-        image: ssCBD1,
-      },
-      {
-        title: 'Product Page',
-        link: 'https://iwantmycbd.org/cbd-product-review/cannabitol-750-thc-free-cbd-hemp-oil-soft-gels/',
-        image: ssCBD2,
-      },
-      {
-        title: 'Conditions Page',
-        link: 'https://iwantmycbd.org/cannabidiol/conditions/',
-        image: ssCBD3,
-      },
-    ],
-  },
-  {
     title: 'Loyal to Few®',
     link: 'https://www.loyaltofew.com/',
     description: '',
@@ -109,6 +82,33 @@ const portfolio = [
         title: 'Shopping Cart Drawr',
         link: 'https://www.loyaltofew.com/store/womens/tank/arch/maroon',
         image: ssLTF3,
+      },
+    ],
+  },
+  {
+    title: 'I wand my CBD',
+    link: 'https://iwantmycbd.org/',
+    description: '',
+    gallery: [
+      {
+        title: 'I want my CBD Home Page',
+        link: 'https://iwantmycbd.org/',
+        image: ssCBDHero,
+      },
+      {
+        title: 'Gallery Page',
+        link: 'https://iwantmycbd.org/cbd-product-reviews-2019/',
+        image: ssCBD1,
+      },
+      {
+        title: 'Product Page',
+        link: 'https://iwantmycbd.org/cbd-product-review/cannabitol-750-thc-free-cbd-hemp-oil-soft-gels/',
+        image: ssCBD2,
+      },
+      {
+        title: 'Conditions Page',
+        link: 'https://iwantmycbd.org/cannabidiol/conditions/',
+        image: ssCBD3,
       },
     ],
   },

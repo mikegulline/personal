@@ -4,9 +4,9 @@ import BorderLeft from '@/components/border-left';
 import { TfiLinkedin } from 'react-icons/tfi';
 
 export const metadata = {
-  title: 'Contact',
+  title: 'Contact Mike Gulline',
   description:
-    'Contact Mike Gulline—Full Stack Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Contact Mike Gulline—Front End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
 };
 
 export default function Contact() {
