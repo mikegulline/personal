@@ -23,7 +23,7 @@ html.lenis {
 }
 
 .pan {
-  animation: marquee 100s linear infinite;
+  animation: marquee 150s linear infinite;
 }
 /* Transition */
 @keyframes marquee {

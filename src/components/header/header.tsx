@@ -76,7 +76,7 @@ function Contact() {
   return (
     <div className='hidden lg:flex items-center gap-6 border-l border-dashed border-slate-300 pl-6'>
       <Link
-        href='https://www.linkedin.com/in/michael-gulline/'
+        href='https://www.linkedin.com/in/mikegulline/'
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
