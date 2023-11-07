@@ -22,11 +22,11 @@ export default function BrowserWrapper({
   return (
     <div
       id='wrapper'
-      className=' shadow-2xl rounded-2xl select-none sm:hover:scale-105 transition-transform duration-300 ease-in-out relative sm:hover:z-10'
+      className='  select-none  transition-transform duration-300 ease-in-out relative'
     >
       <div
         id='top-bar'
-        className='bg-[#f0f0f4] rounded-t-2xl h-9 flex justify-between items-stretch border border-b-0 border-[#e8e8e8] shadow-[inset_0_1px_3px_rgba(255,255,255,.75)]'
+        className='bg-[#f0f0f4] rounded-t-xl h-9 flex justify-between items-stretch border border-b-0 border-[#e8e8e8] shadow-[inset_0_1px_3px_rgba(255,255,255,.75)]'
       >
         <div
           id='top-bar-left-icons'
@@ -86,7 +86,7 @@ export default function BrowserWrapper({
           </div>
         </div>
       )}
-      <div className='bg-[#f0f0f4] border border-t-0 rounded-b-2xl overflow-hidden'>
+      <div className='bg-[#f0f0f4] border border-t-0 rounded-b-xl overflow-hidden'>
         {children}
       </div>
     </div>

@@ -14,10 +14,10 @@ import ssIMM1 from '@/public/images/immunocorp-screenshot-landing.jpg';
 import ssIMM2 from '@/public/images/immunocorp-screenshot-blog.jpg';
 import ssIMM3 from '@/public/images/immunocorp-screenshot-home.jpg';
 
-import ssHLHero from '@/public/images/hempland-usa-product-2-screenshot.jpg';
-import ssHL1 from '@/public/images/hempland-usa-home-screenshot.jpg';
-import ssHL2 from '@/public/images/hempland-usa-footer-screenshot.jpg';
-import ssHL3 from '@/public/images/hempland-usa-cart-screenshot.jpg';
+import ssHLHero from '@/public/images/hempland-usa-home-screenshot.jpg';
+import ssHL1 from '@/public/images/hempland-usa-product-2-screenshot.jpg';
+import ssHL2 from '@/public/images/hempland-usa-cart-screenshot.jpg';
+import ssHL3 from '@/public/images/hempland-usa-faq-screenshot.jpg';
 
 import ssCBDHero from '@/public/images/iwantmycbd-home-page.jpg';
 import ssCBD1 from '@/public/images/iwantmycbd-gallery.jpg';
@@ -55,6 +55,33 @@ const portfolio = [
         title: 'Immunocorp® Home Page Hero',
         link: 'https://www.immunocorp.com',
         image: ssIMM3,
+      },
+    ],
+  },
+  {
+    title: 'HempLand® USA',
+    link: 'https://www.hemplandusa.com/',
+    description: '',
+    gallery: [
+      {
+        title: 'HempLand USA Home Page',
+        link: 'https://www.hemplandusa.com/',
+        image: ssHLHero,
+      },
+      {
+        title: 'HempLand USA Product',
+        link: 'https://www.hemplandusa.com/products/cannabitol-full-spectrum-hemp-cbd-oil-5000/',
+        image: ssHL1,
+      },
+      {
+        title: 'HempLand Cart',
+        link: 'https://www.hemplandusa.com/cart/',
+        image: ssHL2,
+      },
+      {
+        title: 'HempLand FAQs',
+        link: 'https://www.hemplandusa.com/faqs/',
+        image: ssHL3,
       },
     ],
   },

@@ -31,7 +31,7 @@ const menu: ILink[] = [
 
 function Wrapper({ children }: { children: ReactNode }) {
   return (
-    <header className='backdrop-blur-md bg-white/30 fixed top-0 w-full z-10 border-b  border-slate-200 px-5'>
+    <header className=' bg-white fixed top-0 w-full z-10 border-b  border-slate-200 px-5'>
       <div className='py-3 sm:py-0 mx-auto container xl:max-w-5xl sm:flex gap-6 items-center sm:h-24'>
         {children}
       </div>
