@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import LenisWrapper from '@/components/lenis-wrapper/';
@@ -18,6 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  const portfolio = cookieStore.get('portfolio');
+  let track = '';
+  if (portfolio) {
+    track = `<script type="text/javascript">
+    var clicky_custom = {
+      title: '${portfolio}',
+    };
+  </script>`;
+  }
   return (
     <html lang='en'>
       <body
@@ -30,6 +41,7 @@ export default function RootLayout({
           <Footer />
         </LenisWrapper>
       </body>
+      {track}
       <script
         async
         data-id='101450064'
