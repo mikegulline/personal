@@ -30,6 +30,11 @@ export default function RootLayout({
           <Footer />
         </LenisWrapper>
       </body>
+      <script
+        async
+        data-id='101450064'
+        src='//static.getclicky.com/js'
+      ></script>
     </html>
   );
 }
