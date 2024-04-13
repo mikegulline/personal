@@ -26,7 +26,12 @@ export default function RootLayout({
   if (portfolio) {
     track = `
     var clicky_custom = {
-      title: '${portfolio.value}',
+      href: '/portfolio/${portfolio.value}',
+      title: 'Track',
+      session: {
+        username: '${portfolio.value}',
+
+      }
     };`;
   }
   return (
