@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import { cookies } from 'next/headers';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -23,11 +24,10 @@ export default function RootLayout({
   const portfolio = cookieStore.get('portfolio');
   let track = '';
   if (portfolio) {
-    track = `<script type="text/javascript">
+    track = `
     var clicky_custom = {
-      title: '${portfolio}',
-    };
-  </script>`;
+      title: '${portfolio.value}',
+    };`;
   }
   return (
     <html lang='en'>
@@ -41,12 +41,16 @@ export default function RootLayout({
           <Footer />
         </LenisWrapper>
       </body>
-      {track}
-      <script
+      <Script
+        dangerouslySetInnerHTML={{
+          __html: track,
+        }}
+      ></Script>
+      <Script
         async
         data-id='101450064'
         src='//static.getclicky.com/js'
-      ></script>
+      ></Script>
     </html>
   );
 }
