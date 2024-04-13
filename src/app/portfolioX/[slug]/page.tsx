@@ -12,6 +12,6 @@ export default function PortfolioTracker() {
 
   useEffect(() => {
     push('/resume');
-  }, []);
+  }, [push]);
   return <div>tracking</div>;
 }

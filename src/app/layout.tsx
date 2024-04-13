@@ -42,11 +42,13 @@ export default function RootLayout({
         </LenisWrapper>
       </body>
       <Script
+        id='track'
         dangerouslySetInnerHTML={{
           __html: track,
         }}
       ></Script>
       <Script
+        id='clicky'
         async
         data-id='101450064'
         src='//static.getclicky.com/js'
