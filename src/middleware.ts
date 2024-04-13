@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const [_, name, value] = pathname.split('/');
 
-  const response = NextResponse.redirect(new URL('/works', request.url));
+  const response = NextResponse.redirect(new URL('/resume', request.url));
 
   response.cookies.set({
     name,
@@ -17,5 +17,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/portfolio/:path*',
+  matcher: '/t/:path*',
 };
