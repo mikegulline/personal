@@ -3,9 +3,10 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const [none, name, value] = pathname.split('/');
+  const [_, name, value] = pathname.split('/');
 
-  const response = NextResponse.next();
+  const response = NextResponse.redirect(new URL('/works', request.url));
+
   response.cookies.set({
     name,
     value,
@@ -13,7 +14,6 @@ export function middleware(request: NextRequest) {
   });
 
   return response;
-  // return NextResponse.redirect(new URL('/works', request.url));
 }
 
 export const config = {
