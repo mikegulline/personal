@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Pan from '@/components/pan';
+import CTA from '@/components/cta';
 import { SiGithub } from 'react-icons/si';
 import { TfiLinkedin } from 'react-icons/tfi';
 
@@ -67,12 +68,7 @@ export default function Footer() {
             >
               <SiGithub />
             </Link>
-            <Link
-              href='/contact'
-              className='inline-flex font-semibold px-6 py-2 rounded-full bg-slate-700 border-2 border-slate-700 hover:border-teal-400 hover:text-teal-400 hover:bg-white text-white items-center justify-center'
-            >
-              <span>Contact</span>
-            </Link>
+            <CTA />
           </div>
         </div>
       </footer>

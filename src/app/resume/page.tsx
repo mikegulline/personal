@@ -17,15 +17,15 @@ export default function Resume() {
         <h1 className='text-5xl sm:text-9xl font-black mb-4'>Resume</h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Mike Gulline—<em>Frontend Engineer</em>
+            Frontend Engineer
           </h2>
         </BorderLeft>
-        <p className='text-xl leading-8  '>
-          Senior frontend engineer with a strong full-stack background and a
+        <p className='text-xl leading-8'>
+          Creative frontend developer with a strong full-stack background and a
           passion for creating scalable, user-centric web applications.
-          Expertise in leading front-end development efforts, optimizing web
-          performance, and enhancing user experience through modern design
-          patterns and principles.
+          Expertise in leading engineering efforts, optimizing performance, and
+          enhancing user experience through modern design patterns and
+          principles. Up-to-date knowledge of industry trends and technologies.
         </p>
       </div>
 

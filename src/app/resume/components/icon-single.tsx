@@ -15,13 +15,13 @@ export default function Icon({ children }: { children: ReactNode }) {
     [distance]
   );
 
-  scale(ref, 0.2);
-  scale(refInner, 0.75);
+  // scale(ref, 0.2);
+  scale(refInner, 0.9);
 
   return (
     <div
       ref={ref}
-      className='w-12 h-12 sm:w-20 sm:h-20 rounded-md  bg-white flex items-center justify-center text-2xl sm: text-slate-500 border  border-slate-300'
+      className='transition-transform duration-500 ease-out w-12 h-12 sm:w-20 sm:h-20 rounded-md  bg-white flex items-center justify-center text-2xl sm: text-slate-500 border  border-slate-300'
     >
       <div ref={refInner}>{children}</div>
     </div>

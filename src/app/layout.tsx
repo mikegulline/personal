@@ -21,15 +21,15 @@ export default function RootLayout({
   modal: React.ReactNode;
 }) {
   const cookieStore = cookies();
-  const portfolio = cookieStore.get('portfolio');
+  const cookie = cookieStore.get('track');
   let track = '';
-  if (portfolio) {
+  if (cookie) {
     track = `
     var clicky_custom = {
-      href: '/t/${portfolio.value}',
+      href: '/t/${cookie.value}',
       title: 'Tracking',
       session: {
-        username: '${portfolio.value}',
+        username: '${cookie.value}',
       }
     };`;
   }

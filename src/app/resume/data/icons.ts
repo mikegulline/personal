@@ -39,10 +39,10 @@ interface IIcon {
 }
 
 export const stackIcons: IIcon[] = [
-  {
-    icon: SiWordpress,
-    name: 'WordPress',
-  },
+  // {
+  //   icon: SiWordpress,
+  //   name: 'WordPress',
+  // },
   {
     icon: SiJavascript,
     name: 'JavaScript',

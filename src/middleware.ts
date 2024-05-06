@@ -3,16 +3,10 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const [_, name, value] = pathname.split('/');
+  const [, , value] = pathname.split('/');
 
   const response = NextResponse.redirect(new URL('/resume', request.url));
-
-  response.cookies.set({
-    name,
-    value,
-    path: '/',
-  });
-
+  response.cookies.set('track', value);
   return response;
 }
 

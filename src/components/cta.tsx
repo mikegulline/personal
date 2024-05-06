@@ -11,7 +11,7 @@ export default function CTA() {
 
   return (
     <Link
-      href='/contact'
+      href='/resume'
       ref={outer}
       className='transition-transform duration-500 ease-out inline-flex font-semibold px-6 py-2 rounded-full bg-slate-700 border-2 border-slate-700 text-white items-center justify-center'
     >
@@ -19,7 +19,7 @@ export default function CTA() {
         ref={inner}
         className='block transition-transform duration-100 ease-out'
       >
-        Contact
+        Resume
       </span>
     </Link>
   );
