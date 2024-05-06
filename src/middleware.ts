@@ -3,10 +3,21 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const [, , value] = pathname.split('/');
+  const cookieName = 'track';
+  const redirectURL = '/resume';
+  let response = NextResponse.next();
 
-  const response = NextResponse.redirect(new URL('/resume', request.url));
-  response.cookies.set('track', value);
+  const isTracking = request.cookies.get(cookieName);
+
+  if (isTracking) {
+    response.cookies.delete(cookieName);
+  } else {
+    const [, , value] = pathname.split('/');
+    if (value) {
+      response = NextResponse.redirect(new URL(redirectURL, request.url));
+      response.cookies.set(cookieName, value);
+    }
+  }
   return response;
 }
 
