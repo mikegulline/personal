@@ -5,20 +5,13 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieName = 'track';
   const redirectURL = '/resume';
-  let response = NextResponse.next();
+  const [, , value] = pathname.split('/');
 
-  const isTracking = request.cookies.get(cookieName);
-
-  if (isTracking) {
-    response.cookies.delete(cookieName);
-  } else {
-    const [, , value] = pathname.split('/');
-    if (value) {
-      response = NextResponse.redirect(new URL(redirectURL, request.url));
-      response.cookies.set(cookieName, value);
-    }
+  if (value) {
+    const response = NextResponse.redirect(new URL(redirectURL, request.url));
+    response.cookies.set(cookieName, value);
+    return response;
   }
-  return response;
 }
 
 export const config = {

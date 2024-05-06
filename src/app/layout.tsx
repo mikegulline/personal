@@ -26,8 +26,6 @@ export default function RootLayout({
   if (cookie) {
     track = `
     var clicky_custom = {
-      href: '/t/${cookie.value}',
-      title: 'Tracking',
       session: {
         username: '${cookie.value}',
       }
