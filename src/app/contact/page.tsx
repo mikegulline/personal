@@ -6,7 +6,7 @@ import { TfiLinkedin } from 'react-icons/tfi';
 export const metadata = {
   title: 'Contact Mike Gulline',
   description:
-    'Contact Mike Gulline—Front End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Frontend Developer/Engineer (JavaScript/TypeScript, React, NextJS, TailwindCSS)',
 };
 
 export default function Contact() {

@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Mike Gulline—Front End Web Developer',
+  title: 'Frontend Developer/Engineer Mike Gulline',
   description:
     'Custom CMS WordPress development with jQuery, Javascript, TypeScript, React Js, Next JS, TailwindCSS',
 };

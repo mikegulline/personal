@@ -50,7 +50,8 @@ export const work: IJob[] = [
     details: '',
     notes: [
       'Created a social media and tournament gaming platform for the PlayStation, Xbox, and Nintendo systems.',
-      'Developed a single and double elimination tournament bracketing system for up to 128 players and or teams.',
+      'Developed single and double elimination tournament bracketing systems for up to 128 players and or teams.',
+      'Implemented role based accounts and administration for users, teams, admins, monitors and event promoters.',
       'Created a custom chat system for one to one, one to many and group chats, increasing user engagement 10 times.',
       'Integrated Justin.tv API (Twitch.tv) allowing users to stream, edit, and archive gameplay on tournament pages.',
       'Creator of the Beat-A-Pro web application, allowing users to pay to play pro gamers in a weekly live stream.',
@@ -77,9 +78,8 @@ export const work: IJob[] = [
     ],
 
     properties: [
+      ['cho-wa.com', 'https://www.cho-wa.com/'],
       ['arcticrubyoil.com', 'https://arcticrubyoil.com/'],
-      ['kumatolabs.com', 'https://www.cho-wa.com/product/cho-wa/'],
-      ['iwantmycbd.org', 'https://iwantmycbd.org/'],
       ['ijat.org', 'https://ijat.org/'],
     ],
   },

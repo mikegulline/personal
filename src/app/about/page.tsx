@@ -8,9 +8,9 @@ import golf from '@/public/images/golf.jpg';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'About',
+  title: 'About Mike Gulline',
   description:
-    'About Mike Gulline, Front End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Frontend Developer/Engineer (JavaScript/TypeScript, React, NextJS, TailwindCSS)',
 };
 
 const images = [

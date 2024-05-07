@@ -37,7 +37,7 @@ export default function GridContainer({
       </div>
       <div className='relative px-0 sm:px-5'>
         <div className='container xl:max-w-5xl mx-auto text-left'>
-          <main className='py-20 md:py-40 lg:py-60 flex-col'>{children}</main>
+          <main className='py-20 md:py-40 flex-col'>{children}</main>
         </div>
       </div>
     </div>

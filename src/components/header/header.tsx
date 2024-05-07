@@ -48,7 +48,7 @@ function Logo() {
         className='mx-auto w-60 sm:w-auto pt-1 sm:pt-0'
       />
       <h1 className='sr-only'>Mike Gulline</h1>
-      <p className='sr-only'>Front End Engineer</p>
+      <p className='sr-only'>Front Endengineer</p>
     </Link>
   );
 }
@@ -74,7 +74,7 @@ function Navigation() {
 
 function Contact() {
   return (
-    <div className='hidden lg:flex items-center gap-6 border-l border-dashed border-slate-300 pl-6'>
+    <div className='hidden md:flex items-center gap-6 border-l border-dashed border-slate-300 pl-6'>
       <Link
         href='https://www.linkedin.com/in/mikegulline/'
         target='blank'

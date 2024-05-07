@@ -14,23 +14,50 @@ import ssIMM1 from '@/public/images/immunocorp-screenshot-landing.jpg';
 import ssIMM2 from '@/public/images/immunocorp-screenshot-blog.jpg';
 import ssIMM3 from '@/public/images/immunocorp-screenshot-home.jpg';
 
+import klIMMHero from '@/public/images/kumato-homepage.jpg';
+import klIMM1 from '@/public/images/kumato-story.jpg';
+import klIMM2 from '@/public/images/kumato-offers.jpg';
+import klIMM3 from '@/public/images/kumato-product-page.jpg';
+
 import ssHLHero from '@/public/images/hempland-usa-home-screenshot.jpg';
 import ssHL1 from '@/public/images/hempland-usa-product-2-screenshot.jpg';
 import ssHL2 from '@/public/images/hempland-usa-cart-screenshot.jpg';
 import ssHL3 from '@/public/images/hempland-usa-faq-screenshot.jpg';
 
-import ssCBDHero from '@/public/images/iwantmycbd-home-page.jpg';
-import ssCBD1 from '@/public/images/iwantmycbd-gallery.jpg';
-import ssCBD2 from '@/public/images/iwantmycbd-product.jpg';
-import ssCBD3 from '@/public/images/iwantmycbd-conditions.jpg';
-
 export const metadata = {
-  title: 'Front-End Web Development by Mike Gulline',
+  title: 'Frontend Development Portfolio',
   description:
-    'Works Mike Gulline—Front End Web Developer (TailwindCSS, TypeScript, React Js, Next JS)',
+    'Frontend Developer (JavaScript/TypeScript, React, NextJS, TailwindCSS)',
 };
 
 const portfolio = [
+  {
+    title: 'Kumato®',
+    link: 'https://www.cho-wa.com',
+    description: '',
+    gallery: [
+      {
+        title: 'Kumato® Home Page',
+        link: 'https://www.cho-wa.com',
+        image: klIMMHero,
+      },
+      {
+        title: 'The story of Cho-Wa™',
+        link: 'https://www.cho-wa.com/cho-wa-story/',
+        image: klIMM1,
+      },
+      {
+        title: 'Special Offers',
+        link: 'https://www.cho-wa.com/product/cho-wa/',
+        image: klIMM2,
+      },
+      {
+        title: 'Cho-Wa™ Discount Offers ',
+        link: 'https://www.cho-wa.com/product/cho-wa/',
+        image: klIMM3,
+      },
+    ],
+  },
   {
     title: 'Immunocorp®',
     link: 'https://www.immunocorp.com',
@@ -112,33 +139,6 @@ const portfolio = [
       },
     ],
   },
-  {
-    title: 'I wand my CBD',
-    link: 'https://iwantmycbd.org/',
-    description: '',
-    gallery: [
-      {
-        title: 'I want my CBD Home Page',
-        link: 'https://iwantmycbd.org/',
-        image: ssCBDHero,
-      },
-      {
-        title: 'Gallery Page',
-        link: 'https://iwantmycbd.org/cbd-product-reviews-2019/',
-        image: ssCBD1,
-      },
-      {
-        title: 'Product Page',
-        link: 'https://iwantmycbd.org/cbd-product-review/cannabitol-750-thc-free-cbd-hemp-oil-soft-gels/',
-        image: ssCBD2,
-      },
-      {
-        title: 'Conditions Page',
-        link: 'https://iwantmycbd.org/cannabidiol/conditions/',
-        image: ssCBD3,
-      },
-    ],
-  },
 ];
 
 type ProtfolioType = typeof portfolio;
@@ -197,13 +197,13 @@ export default function Work() {
         <h1 className='text-5xl sm:text-9xl font-black mb-4'>Works</h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Responsive Front End Web Developement
+            Responsive Frontend Developement/Engineering
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8 max-w-2xl m-auto'>
-          From idea to completion, <Emoji>😎</Emoji>Mike Gulline has been
-          providing custom design and responsive web development for over 25
-          years.
+          From idea to completion, <Emoji>😎</Emoji>Mike Gulline provides
+          full-stack design, responsive web development and software
+          engineering.
         </p>
       </div>
       <Portfolio items={portfolio} />

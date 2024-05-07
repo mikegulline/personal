@@ -21,11 +21,13 @@ export default function Resume() {
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8'>
-          Creative frontend developer with a strong full-stack background and a
-          passion for creating scalable, user-centric web applications.
-          Expertise in leading engineering efforts, optimizing performance, and
-          enhancing user experience through modern design patterns and
-          principles. Up-to-date knowledge of industry trends and technologies.
+          Creative frontend engineer with a strong full-stack background and a
+          passion for building responsive, user-centric applications. Expertise
+          in leading design and development efforts, performance optimization
+          and enhancing UX/UI through modern design patterns and principles.
+          Looking for a cross functional team to learn with, mentor and build
+          scaleable, future proof software that meets and exceeds all
+          expectations.
         </p>
       </div>
 
