@@ -161,6 +161,7 @@ const Portfolio = ({ items }: PortfolioPropsType) => (
                 <Image
                   src={showHero.image}
                   alt={showHero.title}
+                  placeholder='blur'
                   width={982}
                   height={492}
                 />
@@ -176,6 +177,7 @@ const Portfolio = ({ items }: PortfolioPropsType) => (
                     <Image
                       src={item.image}
                       alt={item.title}
+                      placeholder='blur'
                       width={560}
                       height={280}
                     />
