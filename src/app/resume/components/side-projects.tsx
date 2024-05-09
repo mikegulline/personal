@@ -1,11 +1,11 @@
-import { work } from '../data/work';
+import { sideProjects } from '../data/side-projects';
 import { type IJob } from '../data/types';
 import Job from './job';
 
-export default function Work() {
+export default function SideProjects() {
   return (
     <>
-      {work.map((job: IJob, i) => (
+      {sideProjects.map((job: IJob, i) => (
         <Job key={`job${i}`} {...job} />
       ))}
     </>

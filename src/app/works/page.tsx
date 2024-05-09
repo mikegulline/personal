@@ -150,17 +150,16 @@ type PortfolioPropsType = {
 const Portfolio = ({ items }: PortfolioPropsType) => (
   <div>
     {items.map(({ title, link, description, gallery }): React.ReactNode => {
-      const showGallery = [...gallery];
-      const showHero = showGallery.shift();
-      if (!showHero?.link) return;
+      const [hero, ...thumbs] = gallery;
+      if (!hero?.link) return;
       return (
         <div key={title} className='mb-24'>
           <div className='px-5 mb-5 sm:mb-10'>
-            <Link href={showHero.link} title={showHero.title} target='_blank'>
-              <BrowserWrapper url={showHero.link}>
+            <Link href={hero.link} title={hero.title} target='_blank'>
+              <BrowserWrapper url={hero.link}>
                 <Image
-                  src={showHero.image}
-                  alt={showHero.title}
+                  src={hero.image}
+                  alt={hero.title}
                   placeholder='blur'
                   width={982}
                   height={492}
@@ -170,7 +169,7 @@ const Portfolio = ({ items }: PortfolioPropsType) => (
           </div>
 
           <div className='w-full sm:flex'>
-            {showGallery.map((item) => (
+            {thumbs.map((item) => (
               <div key={item.title} className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
                 <Link href={item.link} title={item.title} target='_blank'>
                   <BrowserWrapper url={item.link} small>

@@ -1,4 +1,4 @@
-import { IJob } from '../data/work';
+import { type IJob } from '../data/types';
 import BorderLeft from '@/components/border-left';
 import FromTo from './from-to';
 import Link from 'next/link';
@@ -75,7 +75,7 @@ export default function Job({
       </p>
       {/* <p className='mb-4'>{description}</p> */}
       <ul className='list-disc list-outside'>
-        {notes.map((info, i) => {
+        {notes?.map((info, i) => {
           return (
             <li key={`${company}${i}`} className='ml-5'>
               {info}
