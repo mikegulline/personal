@@ -19,7 +19,7 @@ export default function Resume() {
           <h1 className='text-5xl sm:text-9xl font-black mb-4'>Resume</h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-              Creative Frontend Engineer
+              Software Engineer (Frontend/Full-Stack)
             </h2>
           </BorderLeft>
         </div>

@@ -24,6 +24,11 @@ import ssHL1 from '@/public/images/hempland-usa-product-2-screenshot.jpg';
 import ssHL2 from '@/public/images/hempland-usa-cart-screenshot.jpg';
 import ssHL3 from '@/public/images/hempland-usa-faq-screenshot.jpg';
 
+import ssAROHero from '@/public/images/ARO-home-page.jpg';
+import ssARO1 from '@/public/images/ARO-buy-now.jpg';
+import ssARO2 from '@/public/images/ARO-checkout.jpg';
+import ssARO3 from '@/public/images/ARO-returns.jpg';
+
 export const metadata = {
   title: 'Frontend Development Portfolio',
   description:
@@ -79,8 +84,8 @@ const portfolio = [
         image: ssIMM2,
       },
       {
-        title: 'Immunocorp® Home Page Hero',
-        link: 'https://www.immunocorp.com',
+        title: 'Shopping Cart',
+        link: 'https://www.immunocorp.com/cart/?fill_cart=3x65',
         image: ssIMM3,
       },
     ],
@@ -97,7 +102,7 @@ const portfolio = [
       },
       {
         title: 'HempLand USA Product',
-        link: 'https://www.hemplandusa.com/products/cannabitol-full-spectrum-hemp-cbd-oil-5000/',
+        link: 'https://www.hemplandusa.com/products/cannabitol-thc-free-hemp-cbd-oil-soft-gels-1500/',
         image: ssHL1,
       },
       {
@@ -133,9 +138,36 @@ const portfolio = [
         image: ssLTF2,
       },
       {
-        title: 'Shopping Cart Drawr',
+        title: 'Shopping Cart Drawer',
         link: 'https://www.loyaltofew.com/store/womens/tank/arch/maroon',
         image: ssLTF3,
+      },
+    ],
+  },
+  {
+    title: 'Arctic Ruby® Oil Company',
+    link: 'https://arcticrubyoil.com/',
+    description: '',
+    gallery: [
+      {
+        title: 'Arctic Ruby Oil Home Page',
+        link: 'https://arcticrubyoil.com/',
+        image: ssAROHero,
+      },
+      {
+        title: 'Buy Now',
+        link: 'https://arcticrubyoil.com/pages/special-offers',
+        image: ssARO1,
+      },
+      {
+        title: 'Shopping Cart',
+        link: 'https://arcticrubyoil.com/cart',
+        image: ssARO2,
+      },
+      {
+        title: 'Returns Page',
+        link: 'https://arcticrubyoil.com/pages/returns',
+        image: ssARO3,
       },
     ],
   },

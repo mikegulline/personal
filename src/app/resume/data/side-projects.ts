@@ -9,7 +9,7 @@ export const sideProjects: IJob[] = [
     state: 'CA',
     onsite: 'Remote',
     website: '',
-    title: 'Founding Full-Stack Engineer',
+    title: 'CTO/Founding Software Engineer',
     type: 'Contract',
     start: '2008-07',
     end: '2011-04',
