@@ -227,7 +227,23 @@ export default function Work() {
   return (
     <GridContainer columns={3}>
       <div className='w-full px-5 relative mb-12 sm:mb-24 text-left sm:text-center'>
-        <h1 className='text-5xl sm:text-9xl font-black mb-4'>Works</h1>
+        <h1 className='text-5xl sm:text-9xl font-black mb-10'>
+          <span className='with-underline'>
+            Work
+            <svg
+              version='1.1'
+              id='Layer_1'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 400 30'
+              className='svg'
+            >
+              <path
+                className='path'
+                d='M5,25C181.1,25,212.26-5.47,264.71,8.81C307.67,20.51,360.1,21.6,395,6.39'
+              />
+            </svg>
+          </span>
+        </h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
             Responsive Frontend Developement/Engineering

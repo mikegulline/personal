@@ -34,3 +34,46 @@ html.lenis {
     transform: translateX(-50%);
   }
 }
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 400; /* Adjust this to your path length */
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes undraw {
+  from {
+    stroke-dashoffset: 0; /* Adjust this to your path length */
+  }
+  to {
+    stroke-dashoffset: 400;
+  }
+}
+
+.with-underline {
+  position: relative;
+  padding-bottom: 2%;
+  cursor: pointer;
+}
+.svg {
+  position: absolute;
+  bottom: 2%;
+  right: -10%;
+  left: -10%;
+}
+.path {
+  fill: transparent;
+  stroke: #51c1b5;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 0;
+  stroke-dasharray: 400; /* Adjust this to your path length */
+  stroke-dashoffset: 400; /* Adjust this to your path length */
+  animation: draw 2s 0.2s forwards;
+}
+.path.hide-path {
+  animation: undraw 2s backwards;
+}

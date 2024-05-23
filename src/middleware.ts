@@ -4,22 +4,23 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieName = 'track';
-  const redirectURL = '/resume';
-  const [, , value] = pathname.split('/');
+  let redirectURL = '/works';
+  const [, , company, link] = pathname.split('/');
 
-  if (value) {
+  if (company) {
     // try {
     //   const res = await fetch('http://localhost:3000/api/tracking', {
     //     method: 'POST',
-    //     body: JSON.stringify({ value }),
+    //     body: JSON.stringify({ company }),
     //   });
     //   const data = await res.json();
     //   console.log({ fromMiddleware: 'true', data });
     // } catch (error) {
     //   console.log({ error });
     // }
+    if (link) redirectURL += `?utm_custom[clicklink]=${link}`;
     const response = NextResponse.redirect(new URL(redirectURL, request.url));
-    response.cookies.set(cookieName, value);
+    response.cookies.set(cookieName, company);
     return response;
   }
 }
