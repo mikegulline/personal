@@ -22,12 +22,23 @@ export default function RootLayout({
 }) {
   const cookieStore = cookies();
   const cookie = cookieStore.get('track');
+  const link = cookieStore.get('click-link');
+
   let track = '';
-  if (cookie) {
+
+  if (cookie && link) {
     track = `
     var clicky_custom = {
       session: {
-        username: '${cookie.value}',
+        company: '${cookie.value}',
+        click-link: '${link.value}',
+      }
+    };`;
+  } else if (cookie) {
+    track = `
+    var clicky_custom = {
+      session: {
+        company: '${cookie.value}',
       }
     };`;
   }

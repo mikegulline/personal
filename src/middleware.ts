@@ -18,8 +18,11 @@ export async function middleware(request: NextRequest) {
     // } catch (error) {
     //   console.log({ error });
     // }
-    if (link) redirectURL += `?utm_custom[clicklink]=${link}`;
+    // if (link) redirectURL += `?utm_custom[clicklink]=${link}`;
     const response = NextResponse.redirect(new URL(redirectURL, request.url));
+    if (link) {
+      response.cookies.set('click-link', link);
+    }
     response.cookies.set(cookieName, company);
     return response;
   }
