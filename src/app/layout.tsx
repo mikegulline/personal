@@ -66,6 +66,16 @@ export default function RootLayout({
           data-id='101450064'
           src='//static.getclicky.com/js'
         ></Script>
+        <noscript>
+          <p>
+            <img
+              alt='Clicky'
+              width='1'
+              height='1'
+              src='//in.getclicky.com/101450064ns.gif'
+            />
+          </p>
+        </noscript>
       </body>
     </html>
   );
