@@ -6,7 +6,9 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'gulline.com',
+        hostname: '**',
+        port: '',
+        pathname: '**',
       },
     ],
   },

@@ -64,7 +64,7 @@ export default function RootLayout({
           id='clicky'
           async
           data-id='101450064'
-          src='//static.getclicky.com/js'
+          src='https://static.getclicky.com/js'
         ></Script>
         <noscript>
           <p>
