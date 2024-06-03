@@ -38,6 +38,7 @@ export const metadata = {
 const portfolio = [
   {
     title: 'Kumato®',
+    name: 'Kumato',
     link: 'https://www.cho-wa.com',
     description: '',
     gallery: [
@@ -65,6 +66,7 @@ const portfolio = [
   },
   {
     title: 'Immunocorp®',
+    name: 'Immunocorp',
     link: 'https://www.immunocorp.com',
     description: '',
     gallery: [
@@ -92,6 +94,7 @@ const portfolio = [
   },
   {
     title: 'HempLand® USA',
+    name: 'HempLandUSA',
     link: 'https://www.hemplandusa.com/',
     description: '',
     gallery: [
@@ -119,6 +122,7 @@ const portfolio = [
   },
   {
     title: 'Loyal to Few®',
+    name: 'LoyaltoFew',
     link: 'https://www.loyaltofew.com/',
     description: '',
     gallery: [
@@ -146,6 +150,7 @@ const portfolio = [
   },
   {
     title: 'Arctic Ruby® Oil Company',
+    name: 'ArcticRubyOil',
     link: 'https://arcticrubyoil.com/',
     description: '',
     gallery: [
@@ -181,45 +186,47 @@ type PortfolioPropsType = {
 
 const Portfolio = ({ items }: PortfolioPropsType) => (
   <div>
-    {items.map(({ title, link, description, gallery }): React.ReactNode => {
-      const [hero, ...thumbs] = gallery;
-      if (!hero?.link) return;
-      return (
-        <div key={title} className='mb-24'>
-          <div className='px-5 mb-5 sm:mb-10'>
-            <Link href={hero.link} title={hero.title} target='_blank'>
-              <BrowserWrapper url={hero.link}>
-                <Image
-                  src={hero.image}
-                  alt={hero.title}
-                  placeholder='blur'
-                  width={982}
-                  height={492}
-                />
-              </BrowserWrapper>
-            </Link>
-          </div>
+    {items.map(
+      ({ title, name, link, description, gallery }): React.ReactNode => {
+        const [hero, ...thumbs] = gallery;
+        if (!hero?.link) return;
+        return (
+          <div key={title} className='mb-24' id={name}>
+            <div className='px-5 mb-5 sm:mb-10'>
+              <Link href={hero.link} title={hero.title} target='_blank'>
+                <BrowserWrapper url={hero.link}>
+                  <Image
+                    src={hero.image}
+                    alt={hero.title}
+                    placeholder='blur'
+                    width={982}
+                    height={492}
+                  />
+                </BrowserWrapper>
+              </Link>
+            </div>
 
-          <div className='w-full sm:flex'>
-            {thumbs.map((item) => (
-              <div key={item.title} className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
-                <Link href={item.link} title={item.title} target='_blank'>
-                  <BrowserWrapper url={item.link} small>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      placeholder='blur'
-                      width={560}
-                      height={280}
-                    />
-                  </BrowserWrapper>
-                </Link>
-              </div>
-            ))}
+            <div className='w-full sm:flex'>
+              {thumbs.map((item) => (
+                <div key={item.title} className='sm:w-1/3 px-5 mb-5 sm:mb-0'>
+                  <Link href={item.link} title={item.title} target='_blank'>
+                    <BrowserWrapper url={item.link} small>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        placeholder='blur'
+                        width={560}
+                        height={280}
+                      />
+                    </BrowserWrapper>
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      );
-    })}
+        );
+      }
+    )}
   </div>
 );
 
