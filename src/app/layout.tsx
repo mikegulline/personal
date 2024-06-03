@@ -31,14 +31,14 @@ export default function RootLayout({
     var clicky_custom = {
       session: {
         company: '${cookie.value}',
-        click-link: '${link.value}',
+        click-link: '${link.value}'
       }
     }`;
   } else if (cookie?.value) {
     track = `
     var clicky_custom = {
       session: {
-        company: '${cookie.value}',
+        company: '${cookie.value}'
       }
     }`;
   }
