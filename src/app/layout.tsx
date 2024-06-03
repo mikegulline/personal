@@ -54,12 +54,13 @@ export default function RootLayout({
           <Footer />
         </LenisWrapper>
 
-        <Script
+        <Script id='track'>{track}</Script>
+        {/* <Script
           id='track'
           dangerouslySetInnerHTML={{
             __html: track,
           }}
-        ></Script>
+        ></Script> */}
         <Script
           id='clicky'
           async
