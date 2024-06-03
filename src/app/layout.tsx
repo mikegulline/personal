@@ -25,21 +25,21 @@ export default function RootLayout({
 
   let track = '';
 
-  if (cookie && link) {
+  if (cookie?.value && link?.value) {
     track = `
     var clicky_custom = {
       session: {
         company: '${cookie.value}',
-        click-link: '${link.value}'
+        click-link: '${link.value}',
       }
-    };`;
-  } else if (cookie) {
+    }`;
+  } else if (cookie?.value) {
     track = `
     var clicky_custom = {
       session: {
-        company: '${cookie.value}'
+        company: '${cookie.value}',
       }
-    };`;
+    }`;
   }
   return (
     <html lang='en'>
