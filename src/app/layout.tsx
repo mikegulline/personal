@@ -30,15 +30,15 @@ export default function RootLayout({
     track = `
     var clicky_custom = {
       session: {
-        company: '${cookie.value}',
-        click-link: '${link.value}'
+        "company": "${cookie.value}",
+        "click-link": "${link.value}"
       }
     }`;
   } else if (cookie?.value) {
     track = `
     var clicky_custom = {
       session: {
-        company: '${cookie.value}'
+        company: "${cookie.value}"
       }
     }`;
   }
@@ -55,12 +55,6 @@ export default function RootLayout({
         </LenisWrapper>
 
         <Script id='track'>{track}</Script>
-        {/* <Script
-          id='track'
-          dangerouslySetInnerHTML={{
-            __html: track,
-          }}
-        ></Script> */}
         <Script
           id='clicky'
           async
