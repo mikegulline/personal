@@ -54,13 +54,13 @@ html.lenis {
 
 .with-underline {
   position: relative;
-  padding-bottom: 2%;
+  padding-bottom: 4%;
   cursor: pointer;
 }
 .svg {
   position: absolute;
   width: 120%;
-  bottom: 2%;
+  bottom: 0;
   right: -10%;
   left: -10%;
 }
