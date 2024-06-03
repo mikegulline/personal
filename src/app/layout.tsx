@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import Image from 'next/image';
 import { cookies } from 'next/headers';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -67,7 +68,7 @@ export default function RootLayout({
         ></Script>
         <noscript>
           <p>
-            <img
+            <Image
               alt='Clicky'
               width='1'
               height='1'
