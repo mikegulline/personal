@@ -8,9 +8,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Frontend Developer/Engineer Mike Gulline',
-  description:
-    'Custom CMS WordPress development with jQuery, Javascript, TypeScript, React Js, Next JS, TailwindCSS',
+  title: 'Frontend Software Engineer Mike Gulline',
+  description: 'Javascript, TypeScript, React Js, Next JS, TailwindCSS',
 };
 
 export default function RootLayout({
@@ -31,14 +30,14 @@ export default function RootLayout({
     var clicky_custom = {
       session: {
         company: '${cookie.value}',
-        click-link: '${link.value}',
+        click-link: '${link.value}'
       }
     };`;
   } else if (cookie) {
     track = `
     var clicky_custom = {
       session: {
-        company: '${cookie.value}',
+        company: '${cookie.value}'
       }
     };`;
   }
