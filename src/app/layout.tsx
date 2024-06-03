@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Frontend Software Engineer Mike Gulline',
-  description: 'Javascript, TypeScript, React Js, Next JS, TailwindCSS',
+  description: 'Javascript, TypeScript, React JS, Next JS, TailwindCSS',
 };
 
 export default function RootLayout({

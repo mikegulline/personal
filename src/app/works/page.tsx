@@ -30,7 +30,7 @@ import ssARO2 from '@/public/images/ARO-checkout.jpg';
 import ssARO3 from '@/public/images/ARO-returns.jpg';
 
 export const metadata = {
-  title: 'Frontend Development Portfolio',
+  title: 'Frontend Software Engineer Portfolio',
   description:
     'Frontend Developer (JavaScript/TypeScript, React, NextJS, TailwindCSS)',
 };
@@ -228,8 +228,8 @@ export default function Work() {
     <GridContainer columns={3}>
       <div className='w-full px-5 relative mb-12 sm:mb-24 text-left sm:text-center'>
         <h1 className='text-5xl sm:text-9xl font-black mb-10'>
-          <span className='with-underline'>
-            Work
+          <span className='with-underline relative inline-block'>
+            Works
             <svg
               version='1.1'
               id='Layer_1'

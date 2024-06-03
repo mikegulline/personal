@@ -59,6 +59,7 @@ html.lenis {
 }
 .svg {
   position: absolute;
+  width: 120%;
   bottom: 2%;
   right: -10%;
   left: -10%;
