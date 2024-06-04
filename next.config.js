@@ -22,6 +22,10 @@ module.exports = {
             key: 'Referrer-Policy',
             value: 'no-referrer-when-downgrade',
           },
+          {
+            key: 'Content-Security-Policy',
+            value: "script-src 'self' *.getclicky.com clicky.com",
+          },
         ],
       },
     ];
