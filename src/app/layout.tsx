@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import LenisWrapper from '@/components/lenis-wrapper/';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import ConsoleLog from '@/components/console-log';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -71,6 +72,7 @@ export default function RootLayout({
             />
           </p>
         </noscript>
+        <ConsoleLog />
       </body>
     </html>
   );
