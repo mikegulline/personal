@@ -12,22 +12,22 @@ module.exports = {
       },
     ],
   },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Referrer-Policy',
-            value: 'no-referrer-when-downgrade',
-          },
-          {
-            key: 'Content-Security-Policy',
-            value:
-              "default-src 'self'; script-src 'self' *.getclicky.com clicky.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'",
-          },
-        ],
-      },
-    ];
-  },
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/(.*)',
+  //       headers: [
+  //         {
+  //           key: 'Referrer-Policy',
+  //           value: 'no-referrer-when-downgrade',
+  //         },
+  //         {
+  //           key: 'Content-Security-Policy',
+  //           value:
+  //             "default-src 'self'; script-src 'self' *.getclicky.com clicky.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'",
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 };
