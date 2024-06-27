@@ -86,6 +86,6 @@ async function processCompany(
 }
 
 async function getData() {
-  const data = JSON.parse(readFileSync('public/track/index.json', 'utf8'));
+  const data = JSON.parse(readFileSync('public/tracking/index.json', 'utf8'));
   return data;
 }
