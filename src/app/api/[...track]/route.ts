@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import path from 'path';
 import { readFileSync } from 'fs';
 
 export const dynamic = 'force-dynamic';
@@ -36,17 +37,14 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   const [companyId, redirectId] = track;
   const redirectIdNormalized = redirectId.toLowerCase();
 
-  // get company data from data source
   const data = await getData();
 
-  // check for known company
   if (!data[companyId]) {
     return NextResponse.json({
       error: "Nope, you won't find them here.",
     });
   }
 
-  // check for known redirect
   if (!redirectUrl[redirectIdNormalized]) {
     return NextResponse.json({
       error: 'Hmmm, not sure what you are looking for.',
@@ -75,10 +73,6 @@ async function processCompany(
         date: new Date(),
         link: redirectId,
         req,
-        cookies: req?.cookies?.getAll(),
-        url: req?.nextUrl?.pathname,
-        ip: req?.ip,
-        geo: req?.geo,
       },
     ];
   }
@@ -86,6 +80,7 @@ async function processCompany(
 }
 
 async function getData() {
-  const data = JSON.parse(readFileSync('public/tracking/index.json', 'utf8'));
+  const filePath = path.join(process.cwd(), 'public/track/index.json');
+  const data = JSON.parse(readFileSync(filePath, 'utf8'));
   return data;
 }
