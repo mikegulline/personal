@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import path from 'path';
 import { readFileSync } from 'fs';
-
 export const dynamic = 'force-dynamic';
+const nodemailer = require('nodemailer');
 
 type RedirectUrl = {
   [key: string]: string;
@@ -52,7 +52,19 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   }
 
   const redirect = redirectUrl[redirectIdNormalized];
-  const company = await processCompany(data[companyId], redirectId, req);
+  const company = await processCompany(
+    data[companyId],
+    redirectId,
+    redirect,
+    track,
+    req
+  );
+
+  await sendMail({
+    track,
+    company,
+    redirect,
+  });
 
   return NextResponse.json({
     track,
@@ -64,6 +76,8 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 async function processCompany(
   company: any,
   redirectId: string,
+  redirect: string,
+  track: {},
   req: NextRequest
 ) {
   const updatedCompany = { ...company };
@@ -85,11 +99,12 @@ async function processCompany(
 
   updatedCompany['actions'].push({
     date: new Date(),
+    track,
+    redirect,
     link: redirectId,
     ip,
     userAgent,
     geo,
-    req,
   });
 
   return updatedCompany;
@@ -99,4 +114,32 @@ async function getData() {
   const filePath = path.join(process.cwd(), 'public/tracking/index.json');
   const data = JSON.parse(readFileSync(filePath, 'utf8'));
   return data;
+}
+
+async function sendMail(payload: any) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_ADDRESS,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  });
+
+  // Define mail options
+  const mailOptions = {
+    from: process.env.EMAIL_ADDRESS,
+    to: process.env.EMAIL_ADDRESS,
+    subject: 'We Got One',
+    text: payload,
+    html: payload,
+  };
+
+  // Send email
+  transporter.sendMail(mailOptions, function (error: any, info: any) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
 }
