@@ -80,7 +80,7 @@ async function processCompany(
 }
 
 async function getData() {
-  const filePath = path.join(process.cwd(), 'public/track/index.json');
+  const filePath = path.join(process.cwd(), 'public/tracking/index.json');
   const data = JSON.parse(readFileSync(filePath, 'utf8'));
   return data;
 }
