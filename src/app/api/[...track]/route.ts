@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import type { NextApiRequest, NextApiResponse } from 'next';
 export const dynamic = 'force-dynamic';
 let fs = require('fs');
 
@@ -21,11 +21,15 @@ const redirectUrl: RedirectUrl = {
 interface Params {
   track: [string, string];
 }
-export async function GET(req: NextRequest, { params }: { params: Params }) {
+export async function GET(
+  req: NextApiRequest,
+  res: NextApiResponse,
+  { params }: { params: Params }
+) {
   const { track } = params;
 
   if (track.length !== 2) {
-    return Response.json({
+    return res.status(404).json({
       error: "Sorry, you won't find anything here.",
     });
   }
@@ -40,7 +44,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   // check for known company
   // return error if none found
   if (!data[companyId]) {
-    return Response.json({
+    return res.status(404).json({
       error: "Nope, you won't find them here.",
     });
   }
@@ -48,7 +52,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   // check for known redirect
   // return error if none found
   if (!redirectUrl[redirectIdNormalized]) {
-    return Response.json({
+    return res.status(404).json({
       error: 'Hmmm, not sure what you are looking for.',
     });
   }
@@ -56,7 +60,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   const redirect = redirectUrl[redirectIdNormalized];
   const company = await processCompany(data[companyId], redirectId, req);
 
-  return Response.json({
+  return res.status(200).json({
     track,
     company,
     redirect,
@@ -66,7 +70,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 async function processCompany(
   company: any,
   redirectId: string,
-  req: NextRequest
+  req: NextApiRequest
 ) {
   const updateCopmany = { ...company };
   if (!updateCopmany['actions']) {
@@ -74,10 +78,11 @@ async function processCompany(
       {
         date: new Date(),
         link: redirectId,
+        req,
         // cookies: req?.cookies?.getAll(),
-        url: req?.nextUrl?.pathname,
-        ip: req?.ip,
-        geo: req?.geo,
+        // url: req?.nextUrl?.pathname,
+        // ip: req?.ip,
+        // geo: req?.geo,
       },
     ];
   }
