@@ -60,11 +60,13 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     req
   );
 
-  await sendMail({
-    track,
-    company,
-    redirect,
-  });
+  await sendMail(
+    JSON.stringify({
+      track,
+      company,
+      redirect,
+    })
+  );
 
   return NextResponse.redirect(redirect);
 }
