@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+export const dynamic = 'force-dynamic';
 let fs = require('fs');
 
 type RedirectUrl = {
