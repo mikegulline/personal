@@ -25,7 +25,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   if (track.length !== 2) {
     return Response.json({
-      error: `Sorry, you won't find anything here.`,
+      error: "Sorry, you won't find anything here.",
     });
   }
 
@@ -40,7 +40,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   // return error if none found
   if (!data[companyId]) {
     return Response.json({
-      error: `Nope, you won't find them here.`,
+      error: "Nope, you won't find them here.",
     });
   }
 
@@ -48,7 +48,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   // return error if none found
   if (!redirectUrl[redirectIdNormalized]) {
     return Response.json({
-      error: `Hmmm, not sure what you are looking for.`,
+      error: 'Hmmm, not sure what you are looking for.',
     });
   }
 
