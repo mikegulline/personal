@@ -1,6 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
+import { readFileSync } from 'fs';
+
 export const dynamic = 'force-dynamic';
-let fs = require('fs');
 
 type RedirectUrl = {
   [key: string]: string;
@@ -18,41 +19,36 @@ const redirectUrl: RedirectUrl = {
   linkedin: 'https://www.linkedin.com/in/mikegulline/',
   github: 'https://github.com/mikegulline',
 };
+
 interface Params {
-  track: [string, string];
+  track: string[];
 }
-export async function GET(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  { params }: { params: Params }
-) {
+
+export async function GET(req: NextRequest, { params }: { params: Params }) {
   const { track } = params;
 
   if (track.length !== 2) {
-    return res.status(404).json({
+    return NextResponse.json({
       error: "Sorry, you won't find anything here.",
     });
   }
 
-  const [companyId, redirectId]: [string, string] = track;
+  const [companyId, redirectId] = track;
   const redirectIdNormalized = redirectId.toLowerCase();
 
   // get company data from data source
-  // update getData if sourse changes
   const data = await getData();
 
   // check for known company
-  // return error if none found
   if (!data[companyId]) {
-    return res.status(404).json({
+    return NextResponse.json({
       error: "Nope, you won't find them here.",
     });
   }
 
   // check for known redirect
-  // return error if none found
   if (!redirectUrl[redirectIdNormalized]) {
-    return res.status(404).json({
+    return NextResponse.json({
       error: 'Hmmm, not sure what you are looking for.',
     });
   }
@@ -60,7 +56,7 @@ export async function GET(
   const redirect = redirectUrl[redirectIdNormalized];
   const company = await processCompany(data[companyId], redirectId, req);
 
-  return res.status(200).json({
+  return NextResponse.json({
     track,
     company,
     redirect,
@@ -70,28 +66,26 @@ export async function GET(
 async function processCompany(
   company: any,
   redirectId: string,
-  req: NextApiRequest
+  req: NextRequest
 ) {
-  const updateCopmany = { ...company };
-  if (!updateCopmany['actions']) {
-    updateCopmany['actions'] = [
+  const updatedCompany = { ...company };
+  if (!updatedCompany['actions']) {
+    updatedCompany['actions'] = [
       {
         date: new Date(),
         link: redirectId,
         req,
-        // cookies: req?.cookies?.getAll(),
-        // url: req?.nextUrl?.pathname,
-        // ip: req?.ip,
-        // geo: req?.geo,
+        cookies: req?.cookies?.getAll(),
+        url: req?.nextUrl?.pathname,
+        ip: req?.ip,
+        geo: req?.geo,
       },
     ];
   }
-  return updateCopmany;
+  return updatedCompany;
 }
 
 async function getData() {
-  const data = await JSON.parse(
-    fs.readFileSync('public/track/index.json', 'utf8')
-  );
+  const data = JSON.parse(readFileSync('public/track/index.json', 'utf8'));
   return data;
 }
