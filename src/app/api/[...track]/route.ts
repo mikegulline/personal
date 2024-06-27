@@ -66,11 +66,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     redirect,
   });
 
-  return NextResponse.json({
-    track,
-    company,
-    redirect,
-  });
+  return NextResponse.redirect(redirect);
 }
 
 async function processCompany(
@@ -128,7 +124,7 @@ async function sendMail(payload: any) {
   // Define mail options
   const mailOptions = {
     from: process.env.EMAIL_ADDRESS,
-    to: process.env.EMAIL_ADDRESS,
+    to: process.env.PERSONAL_EMAIL,
     subject: 'We Got One',
     text: payload,
     html: payload,
