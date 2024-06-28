@@ -81,6 +81,9 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   await sendMail(subject, text, html);
 
+  if (redirectKey.toLowerCase() === 'mail') {
+    return NextResponse.redirect(redirectLink + name);
+  }
   return NextResponse.redirect(redirectLink);
 }
 
