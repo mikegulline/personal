@@ -54,14 +54,6 @@ VALUES (${companyId}, ${redirectKey}, ${redirectLink}, ${ip}, ${userAgent}, ${co
 }
 
 export async function sendMail(subject: string, text: string, html: string) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_ADDRESS,
-      pass: process.env.EMAIL_PASSWORD,
-    },
-  });
-
   // Define mail options
   const mailOptions = {
     from: process.env.EMAIL_ADDRESS,
@@ -71,12 +63,18 @@ export async function sendMail(subject: string, text: string, html: string) {
     html,
   };
 
-  // Send email
-  transporter.sendMail(mailOptions, function (error: any, info: any) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
+  try {
+    await nodemailer
+      .createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_ADDRESS,
+          pass: process.env.EMAIL_PASSWORD,
+        },
+      })
+      .sendMail(mailOptions);
+    console.log('Mail sent!');
+  } catch (error: any) {
+    console.log(error);
+  }
 }
