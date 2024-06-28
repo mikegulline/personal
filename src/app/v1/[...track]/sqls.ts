@@ -1,6 +1,6 @@
 /* 
 
-INSERT INTO company (name, key) VALUES ('XYZ Corporation', 'd7s3');
+INSERT INTO company (key, name, title) VALUES ('d7s3', 'some company', 'some title');
 
 SELECT * FROM company WHERE key = 'd7s3';
 
