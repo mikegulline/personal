@@ -53,7 +53,7 @@ export async function saveActionToDB(data: SaveAction) {
 VALUES (${companyId}, ${redirectKey}, ${redirectLink}, ${ip}, ${userAgent}, ${country}, ${region}, ${city});`;
 }
 
-export async function sendMail(subject: string, text: string, html: string) {
+export async function mySendMail(subject: string, text: string, html: string) {
   // Define mail options
   const mailOptions = {
     from: process.env.EMAIL_ADDRESS,

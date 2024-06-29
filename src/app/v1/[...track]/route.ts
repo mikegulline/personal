@@ -4,7 +4,7 @@ import { redirectUrl } from './redirect-url';
 import {
   getCompanyInfoFromKey,
   getBrowserInfo,
-  sendMail,
+  mySendMail,
   saveActionToDB,
 } from './utils';
 
@@ -78,7 +78,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   🤖 Tracker Bot</p>
   `;
 
-  await sendMail(subject, text, html);
+  await mySendMail(subject, text, html);
 
   if (redirectKey.toLowerCase() === 'mail') {
     return NextResponse.redirect(redirectLink + name);
