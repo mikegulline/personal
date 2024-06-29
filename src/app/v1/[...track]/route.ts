@@ -17,7 +17,6 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   const [companyKey, redirectKey] = track;
   const redirectLink = redirectUrl[redirectKey.toLowerCase()];
 
-  // check for edge case errors before connecting to db
   const errors = checkForErrors(track, redirectLink, companyKey);
   if (errors) return NextResponse.json(errors);
 
