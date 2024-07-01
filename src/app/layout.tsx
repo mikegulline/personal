@@ -1,6 +1,4 @@
-import Script from 'next/script';
-import Image from 'next/image';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import LenisWrapper from '@/components/lenis-wrapper/';
@@ -10,8 +8,9 @@ import ConsoleLog from '@/components/console-log';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Frontend Software Engineer Mike Gulline',
-  description: 'Javascript, TypeScript, React JS, Next JS, TailwindCSS',
+  title: 'Software Engineer (Frontend/Backend/Fullstack) Mike Gulline',
+  description:
+    'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
 
 export default function RootLayout({
@@ -21,28 +20,9 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }) {
-  const cookieStore = cookies();
-  const cookie = cookieStore.get('track');
-  const link = cookieStore.get('click-link');
-
-  let track = '';
-
-  if (cookie?.value && link?.value) {
-    track = `
-    var clicky_custom = {
-      session: {
-        "company": "${cookie.value}",
-        "click-link": "${link.value}"
-      }
-    }`;
-  } else if (cookie?.value) {
-    track = `
-    var clicky_custom = {
-      session: {
-        company: "${cookie.value}"
-      }
-    }`;
-  }
+  // const cookieStore = cookies();
+  // const cookie = cookieStore.get('track');
+  // const link = cookieStore.get('click-link');
   return (
     <html lang='en'>
       <body
@@ -54,24 +34,6 @@ export default function RootLayout({
           {modal}
           <Footer />
         </LenisWrapper>
-
-        <Script id='track'>{track}</Script>
-        <Script
-          id='clicky'
-          async
-          data-id='101450064'
-          src='https://static.getclicky.com/js'
-        ></Script>
-        <noscript>
-          <p>
-            <Image
-              alt='Clicky'
-              width='1'
-              height='1'
-              src='//in.getclicky.com/101450064ns.gif'
-            />
-          </p>
-        </noscript>
         <ConsoleLog />
       </body>
     </html>

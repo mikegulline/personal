@@ -13,12 +13,35 @@ interface Params {
 }
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
+  console.log('process route');
   const { track } = params as { track: [string, string] };
+  if (track.length !== 2) {
+    // wrong params found
+    return NextResponse.json({
+      error: "Sorry, you won't find anything here.",
+      code: 1,
+      message: 'Bad params.',
+    });
+  }
   const [companyKey, redirectKey] = track;
   const redirectLink = redirectUrl[redirectKey.toLowerCase()];
+  if (!redirectLink) {
+    // no redirect found
+    return NextResponse.json({
+      error: "Hmmm, that won't go anywhere.",
+      code: 2,
+      message: 'No redirect.',
+    });
+  }
 
-  const errors = checkForErrors(track, redirectLink, companyKey);
-  if (errors) return NextResponse.json(errors);
+  if (companyKey.length < 3 || companyKey.length > 5) {
+    // bad company key
+    return NextResponse.json({
+      error: 'Hey, quit messing around.',
+      code: 3,
+      message: 'No Company.',
+    });
+  }
 
   const company = await getCompanyInfoFromKey(companyKey);
   if (!company)
@@ -80,38 +103,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   await mySendMail(subject, text, html);
 
-  if (redirectKey.toLowerCase() === 'mail') {
-    return NextResponse.redirect(redirectLink + name);
-  }
-  return NextResponse.redirect(redirectLink);
-}
-
-function checkForErrors(
-  track: [string, string],
-  redirectLink: string | undefined,
-  companyKey: string
-) {
-  // checks for correctness
-  if (track.length !== 2) {
-    // wrong params found
-    return {
-      error: "Sorry, you won't find anything here.",
-      code: 1,
-    };
-  }
-  if (!redirectLink) {
-    // no redirect found
-    return {
-      error: "Hmmm, that won't go anywhere.",
-      code: 2,
-    };
-  }
-  if (companyKey.length < 3 || companyKey.length > 5) {
-    // bad company key
-    return {
-      error: 'Hey, quit messing around.',
-      code: 3,
-    };
-  }
-  return null;
+  return NextResponse.redirect(
+    redirectLink + (redirectKey.toLowerCase() === 'mail' ? name : '')
+  );
 }

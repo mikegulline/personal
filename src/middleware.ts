@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(request: NextRequest) {
+  console.log('process middleware');
   const { pathname } = request.nextUrl;
   const cookieName = 'track';
   let redirectURL = '/works';
   const [, , company, link] = pathname.split('/');
-
   if (company) {
     // try {
     //   const res = await fetch('http://localhost:3000/api/tracking', {
