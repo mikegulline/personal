@@ -9,7 +9,7 @@ import ConsoleLog from '@/components/console-log';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Software Engineer (Frontend/Backend/Fullstack) Mike Gulline',
+  title: 'Software Engineer Mike Gulline',
   description:
     'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={` antialiased text-slate-700 relative ${inter.className}`}
+        className={`antialiased text-slate-700 relative ${inter.className}`}
       >
         <LenisWrapper>
           <Header />

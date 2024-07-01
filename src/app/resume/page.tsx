@@ -6,8 +6,9 @@ import Work from './components/work';
 import SideProjects from './components/side-projects';
 
 export const metadata = {
-  title: 'Frontend Software Engineer Resume',
-  description: 'JavaScript, TypeScript, React JS, Next JS, TailwindCSS',
+  title: 'Michael Gulline Software Engineer Resume ',
+  description:
+    'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
 
 export default function Resume() {

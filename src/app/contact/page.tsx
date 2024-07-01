@@ -4,9 +4,9 @@ import BorderLeft from '@/components/border-left';
 import { TfiLinkedin } from 'react-icons/tfi';
 
 export const metadata = {
-  title: 'Contact Mike Gulline',
+  title: 'Contact Michael Gulline',
   description:
-    'Frontend Developer/Engineer (JavaScript/TypeScript, React, NextJS, TailwindCSS)',
+    'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
 
 export default function Contact() {
@@ -20,7 +20,7 @@ export default function Contact() {
           </h2>
         </BorderLeft>
         <Link
-          href='https://www.linkedin.com/in/michael-gulline/'
+          href='https://www.linkedin.com/in/mikegulline/'
           target='blank'
           title='Connect with me on LinkedIn'
           className='m-auto flex w-16 h-16 rounded-full border-2 border-slate-700 hover:bg-white hover:text-teal-400 hover:border-teal-400  bg-slate-700 text-white items-center justify-center cursor-pointer'

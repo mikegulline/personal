@@ -30,9 +30,9 @@ import ssARO2 from '@/public/images/ARO-checkout.jpg';
 import ssARO3 from '@/public/images/ARO-returns.jpg';
 
 export const metadata = {
-  title: 'Frontend Software Engineer Portfolio',
+  title: 'Software Engineer Portfolio Michael Gulline',
   description:
-    'Frontend Developer (JavaScript/TypeScript, React, NextJS, TailwindCSS)',
+    'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
 
 const portfolio = [
