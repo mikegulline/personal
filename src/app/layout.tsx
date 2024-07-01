@@ -1,6 +1,7 @@
 // import { cookies } from 'next/headers';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import LenisWrapper from '@/components/lenis-wrapper/';
 import './globals.css';
 import { Inter } from 'next/font/google';
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Footer />
         </LenisWrapper>
         <ConsoleLog />
+        <SpeedInsights />
       </body>
     </html>
   );
