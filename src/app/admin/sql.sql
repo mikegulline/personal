@@ -42,7 +42,7 @@ CREATE TABLE session (
 
 -- Create user
 INSERT INTO users (email, name, password, role)
-VALUES ('mike@mikegulline.com', 'Mike', '$2b$10$aIpB.RyuwtzrHXcT.yekJ.p.awAS5qhZnDu7xCbYWMkpGex9x2Pqe', 'admin')
+VALUES ('', '', '', '')
 
 
 -- add column to table
