@@ -29,16 +29,15 @@ export default function LoginForm({ handleHide }: { handleHide: () => void }) {
     }
     setDisabled(false);
   };
+
   return (
-    <div ref={ref}>
+    <div className='px-4 ' ref={ref}>
+      <h1 className='text-4xl text-gray-800 font-black mb-2'>Please Login</h1>
+      {message && <p className='my-4'>{message}</p>}
       <form
-        className={`flex flex-col px-4 gap-4 w-2/4 ${
-          disabled ? 'opacity-25' : ''
-        }`}
+        className={`flex flex-col gap-4 w-2/4 ${disabled ? 'opacity-25' : ''}`}
         onSubmit={handleSubmit}
       >
-        <h1 className='text-4xl text-gray-800 font-black mb-2'>Please Login</h1>
-        {message && <p className='my-4'>{message}</p>}
         <div>
           <label
             htmlFor='email'

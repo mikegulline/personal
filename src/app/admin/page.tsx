@@ -1,32 +1,8 @@
-import { sql } from '@vercel/postgres';
-
-type CompanyType = {
-  id: string;
-  key: string;
-  name: string;
-  title: string;
-  views: number;
-};
+import { getAllCompaniesWithActionCount } from './actions';
+import Link from 'next/link';
 
 export default async function AdminDashboard() {
-  const { rows } = await sql`SELECT
-  c.id,
-  c.name,
-  c.key,
-  c.title,
-  COUNT(a.id) AS views
-FROM
-  company c
-LEFT JOIN
-  actions a
-ON
-  c.id = a.companyId
-GROUP BY
-  c.id,
-  c.name
-ORDER BY
-  c.name;`;
-  const companies = rows as CompanyType[];
+  const companies = await getAllCompaniesWithActionCount();
   return (
     <div className='fade-in-up  mx-4'>
       <header className='flex justify-between items-center mb-6'>
@@ -60,7 +36,13 @@ ORDER BY
                   <strong>{name}</strong>
                 </td>
                 <td className='px-6 py-4'>{title}</td>
-                <td className='px-6 py-4 text-center'>view|edit|delete</td>
+                <td className='px-6 py-4 text-center'>
+                  <Link href={`/admin/company/${key.trim()}`}>view</Link>|
+                  <Link href={`/admin/company/${key.trim()}/edit`}>edit</Link>|
+                  <Link href={`/admin/company/${key.trim()}/delete`}>
+                    delete
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>
