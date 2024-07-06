@@ -1,6 +1,10 @@
 export type ShowFormErrorsProps = string[] | undefined;
 
-export const ShowFormErrors = ({ errors }: { errors: ShowFormErrorsProps }) => {
+export const ShowFormErrors = ({
+  errors,
+}: {
+  errors?: ShowFormErrorsProps;
+}) => {
   if (!errors) return null;
 
   return (
