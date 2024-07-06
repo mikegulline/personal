@@ -50,7 +50,7 @@ https://www.linkedin.com/in/mikegulline/
           <Footer />
         </LenisWrapper>
         <SpeedInsights />
-        <Script>console.log(`{log}`);</Script>
+        <Script id='console-log'>console.log(`{log}`);</Script>
       </body>
     </html>
   );
