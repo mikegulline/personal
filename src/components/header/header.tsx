@@ -46,6 +46,7 @@ function Logo() {
         src={LogoSVG}
         alt='Mike Gulline Logo'
         className='mx-auto w-60 sm:w-auto pt-1 sm:pt-0'
+        priority={true}
       />
       <h1 className='sr-only'>Mike Gulline</h1>
       <p className='sr-only'>Front Endengineer</p>

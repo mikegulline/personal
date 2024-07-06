@@ -25,6 +25,12 @@ html.lenis {
 .pan {
   animation: marquee 150s linear infinite;
 }
+.fade-in-up {
+  animation: fadeinup 1s forwards;
+}
+.fade-out-up {
+  animation: fadeoutup 0.5s forwards;
+}
 /* Transition */
 @keyframes marquee {
   0% {
@@ -49,6 +55,27 @@ html.lenis {
   }
   to {
     stroke-dashoffset: 400;
+  }
+}
+
+@keyframes fadeinup {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes fadeoutup {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10%);
   }
 }
 

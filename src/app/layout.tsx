@@ -5,7 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import LenisWrapper from '@/components/lenis-wrapper/';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import ConsoleLog from '@/components/console-log';
+import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -24,6 +24,20 @@ export default function RootLayout({
   // const cookieStore = cookies();
   // const cookie = cookieStore.get('track');
   // const link = cookieStore.get('click-link');
+  const log = `
+==========================================
+Thanks for checking me out…
+
+Yes, I am actively looking for a new team. 
+
+Since you found my secret message, I think 
+we might get along famously!
+
+Let's connect on LinkedIn…
+
+https://www.linkedin.com/in/mikegulline/
+==========================================
+`;
   return (
     <html lang='en'>
       <body
@@ -35,8 +49,8 @@ export default function RootLayout({
           {modal}
           <Footer />
         </LenisWrapper>
-        <ConsoleLog />
         <SpeedInsights />
+        <Script>console.log(`{log}`);</Script>
       </body>
     </html>
   );
