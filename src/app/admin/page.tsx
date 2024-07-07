@@ -1,8 +1,10 @@
 import { getAllCompaniesWithActionCount } from './actions';
-import Link from 'next/link';
+import ClickableTr from '@/components/table/clickable-tr';
+import StopPropagationLink from '@/components/stop-propagation-link';
 
 export default async function AdminDashboard() {
   const companies = await getAllCompaniesWithActionCount();
+  const SPLink = StopPropagationLink;
   return (
     <div className='fade-in-up  mx-4'>
       <header className='flex justify-between items-center mb-6'>
@@ -13,9 +15,9 @@ export default async function AdminDashboard() {
           </button>
         </div>
       </header>
-      <div className='border border-gray-200 overflow-hidden rounded'>
+      <div className='border border-gray-200 dark:border-gray-900 overflow-hidden rounded'>
         <table className='table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-          <thead className='text-xs text-gray-700 uppercase border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+          <thead className='text-xs text-gray-700 uppercase border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-500'>
             <tr>
               <th className='px-6 py-3'>Key</th>
               <th className='px-6 py-3 text-center'>Views</th>
@@ -26,9 +28,10 @@ export default async function AdminDashboard() {
           </thead>
           <tbody>
             {companies.map(({ id, key, name, title, views }) => (
-              <tr
+              <ClickableTr
                 key={id}
-                className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'
+                link={`/admin/company/${key}`}
+                className='bg-white hover:bg-gray-50 dark:hover:bg-gray-900 cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700'
               >
                 <td className='pl-6 py-4'>{key}</td>
                 <td className='px-6 py-4 text-center'>{views}</td>
@@ -37,13 +40,16 @@ export default async function AdminDashboard() {
                 </td>
                 <td className='px-6 py-4'>{title}</td>
                 <td className='px-6 py-4 text-center'>
-                  <Link href={`/admin/company/${key.trim()}`}>view</Link>|
-                  <Link href={`/admin/company/${key.trim()}/edit`}>edit</Link>|
-                  <Link href={`/admin/company/${key.trim()}/delete`}>
+                  <SPLink href={`/admin/company/${key.trim()}`}>view</SPLink>|
+                  <SPLink href={`/admin/company/${key.trim()}/edit`}>
+                    edit
+                  </SPLink>
+                  |
+                  <SPLink href={`/admin/company/${key.trim()}/delete`}>
                     delete
-                  </Link>
+                  </SPLink>
                 </td>
-              </tr>
+              </ClickableTr>
             ))}
           </tbody>
         </table>

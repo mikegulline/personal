@@ -32,9 +32,9 @@ export default async function CompanyByKey({
       {actions.length === 0 ? (
         <p className='mt-4'>No actions yet :(</p>
       ) : (
-        <div className='border border-gray-200 overflow-hidden rounded'>
+        <div className='border border-gray-200 dark:border-gray-900 overflow-hidden rounded'>
           <table className='table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-            <thead className='text-xs text-gray-700 uppercase border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+            <thead className='text-xs text-gray-700 uppercase border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-500'>
               <tr>
                 <th className='px-6 py-3'>Link</th>
                 <th className='px-6 py-3'>Date</th>
@@ -60,7 +60,7 @@ export default async function CompanyByKey({
                   return (
                     <tr
                       key={id}
-                      className='bg-white border-b dark:bg-gray-800 dark:border-gray-700'
+                      className='bg-white border-b dark:bg-gray-800 dark:hover:bg-gray-900 cursor-pointer dark:border-gray-700'
                     >
                       <td className='pl-6 py-4'>
                         <Link
