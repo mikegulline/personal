@@ -64,20 +64,20 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (pathname.startsWith('/api')) {
-    return apiMiddleware(request);
-  }
+  // if (pathname.startsWith('/api')) {
+  //   return apiMiddleware(request);
+  // }
 
   // check for logged in
-  if (pathname.startsWith('/admin')) {
-    return adminMiddleware(request);
-  }
+  // if (pathname.startsWith('/admin')) {
+  //   return adminMiddleware(request);
+  // }
 
   if (pathname.startsWith('/t/')) {
     return trackingMiddlewareV1(request);
   }
 
-  return defaultMiddleware(request);
+  // return defaultMiddleware(request);
 }
 
 // Specify the paths you want to match
