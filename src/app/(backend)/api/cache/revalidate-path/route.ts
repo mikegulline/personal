@@ -1,10 +1,14 @@
 export const dynamic = 'force-dynamic';
+
 import { NextResponse, type NextRequest } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
 export async function POST(request: NextRequest) {
+  console.log('Received a POST request');
+
   // Ensure the request method is POST
   if (request.method !== 'POST') {
+    console.log('Method not allowed');
     return NextResponse.json(
       { message: 'Method not allowed' },
       { status: 405 }
@@ -14,6 +18,7 @@ export async function POST(request: NextRequest) {
   // Ensure the content type is application/json
   const contentType = request.headers.get('content-type');
   if (contentType !== 'application/json') {
+    console.log('Unsupported Content-Type');
     return NextResponse.json(
       { message: 'Unsupported Content-Type' },
       { status: 415 }
@@ -25,13 +30,16 @@ export async function POST(request: NextRequest) {
 
     // Validate the path
     if (!path || typeof path !== 'string') {
+      console.log('Invalid or missing path');
       return NextResponse.json(
         { message: 'Invalid or missing path' },
         { status: 400 }
       );
     }
 
-    await revalidatePath(path);
+    console.log('Revalidating path:', path);
+    revalidatePath(path);
+    console.log('Path revalidated successfully');
 
     return NextResponse.json({ message: 'Path revalidated!' });
   } catch (error: any) {

@@ -32,7 +32,7 @@ function trackingMiddlewareV1(request: NextRequest) {
 // Default middleware
 function defaultMiddleware(request: NextRequest) {
   // Custom logic for other paths
-  console.log('Default middleware', request.nextUrl.pathname);
+  //console.log('Default middleware', request.nextUrl.pathname);
   return NextResponse.next();
 }
 
