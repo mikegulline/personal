@@ -16,7 +16,7 @@ function adminMiddleware(request: NextRequest) {
 }
 
 // my tracking cookies
-function trackingMiddlewareV1(request: NextRequest) {
+function trackingMiddlewareT(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const [, , company, link] = pathname.split('/');
   if (company) {
@@ -34,6 +34,16 @@ function defaultMiddleware(request: NextRequest) {
   // Custom logic for other paths
   //console.log('Default middleware', request.nextUrl.pathname);
   return NextResponse.next();
+}
+
+function trackingMiddlewareV1(request: NextRequest) {
+  const res = NextResponse.next();
+  // Apply Cache-Control headers
+  res.headers.set(
+    'Cache-Control',
+    'no-store, no-cache, must-revalidate, proxy-revalidate'
+  );
+  return res;
 }
 
 export function middleware(request: NextRequest) {
@@ -74,6 +84,9 @@ export function middleware(request: NextRequest) {
   // }
 
   if (pathname.startsWith('/t/')) {
+    return trackingMiddlewareT(request);
+  }
+  if (pathname.startsWith('/v1/')) {
     return trackingMiddlewareV1(request);
   }
 
