@@ -21,7 +21,7 @@ export default function LoginForm({ handleHide }: { handleHide: () => void }) {
       if (result.message === 'Logged in successfully') {
         if (ref.current) {
           ref.current.classList.add('fade-out-up');
-          setTimeout(() => handleHide(), 500);
+          setTimeout(handleHide, 500);
         }
       }
     } catch (error: any) {

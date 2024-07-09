@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from 'next/server';
 import { redirectUrl } from './redirect-url';
+import { revalidatePath } from 'next/cache';
 import {
   getCompanyInfoFromKey,
   getBrowserInfo,
@@ -58,6 +59,8 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     redirectLink,
     ...browserInfo,
   });
+  revalidatePath(`/admin/company/${companyKey}`);
+  revalidatePath(`/admin`);
 
   const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link`;
   const text = `

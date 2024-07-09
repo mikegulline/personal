@@ -27,7 +27,7 @@ export default async function CompanyByKey({
         </div>
       </header>
       <p className='mb-6'>
-        <strong>Job Title: {company.title}</strong>
+        <strong>Job Title: {company.position}</strong>
       </p>
       {actions.length === 0 ? (
         <p className='mt-4'>No actions yet :(</p>
