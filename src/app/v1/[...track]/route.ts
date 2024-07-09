@@ -22,10 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       error: "Sorry, you won't find anything here.",
       code: 1,
       message: 'Bad params.',
-    }).headers.set(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
-    );
+    });
   }
   const [companyKey, redirectKey] = track;
   const redirectLink = redirectUrl[redirectKey.toLowerCase()];
@@ -35,10 +32,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       error: "Hmmm, that won't go anywhere.",
       code: 2,
       message: 'No redirect.',
-    }).headers.set(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
-    );
+    });
   }
 
   if (companyKey.length < 3 || companyKey.length > 5) {
@@ -47,10 +41,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       error: 'Hey, quit messing around.',
       code: 3,
       message: 'No Company.',
-    }).headers.set(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
-    );
+    });
   }
 
   const company = await getCompanyInfoFromKey(companyKey);
@@ -58,10 +49,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     return NextResponse.json({
       error: "Nope, you won't find them here.",
       code: 4,
-    }).headers.set(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
-    );
+    });
 
   const [companyId, name, title] = company as [string, string, string];
   const browserInfo = getBrowserInfo(req);
@@ -120,8 +108,5 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   return NextResponse.redirect(
     redirectLink + (redirectKey.toLowerCase() === 'mail' ? name : '')
-  ).headers.set(
-    'Cache-Control',
-    'no-store, no-cache, must-revalidate, proxy-revalidate'
   );
 }
