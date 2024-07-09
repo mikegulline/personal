@@ -23,7 +23,7 @@ const DeleteCompanyLink: React.FC<DeleteCompanyLinkProps> = ({
 
     try {
       await deleteCompanyById(id);
-      await myRevalidatePath('/admin');
+      //await myRevalidatePath('/admin');
     } catch (error) {
       console.error('An error occurred while deleting the company:', error);
     }
@@ -36,7 +36,7 @@ const DeleteCompanyLink: React.FC<DeleteCompanyLinkProps> = ({
   );
 };
 
-const myRevalidatePath = async (path: string) => {
+async function myRevalidatePath(path: string) {
   try {
     const res = await fetch('/api/cache/revalidate-path', {
       method: 'POST',
@@ -57,6 +57,6 @@ const myRevalidatePath = async (path: string) => {
   } catch (error: any) {
     console.error('Error revalidating path:', error.message);
   }
-};
+}
 
 export default DeleteCompanyLink;

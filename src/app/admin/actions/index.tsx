@@ -99,7 +99,7 @@ export async function deleteCompanyById(id: string) {
     );
 
     // Revalidate path if the transaction was successful
-    // revalidatePath('/admin');
+    revalidatePath('/admin');
     // moved to (backend)/api/cache/revalidate-path
 
     return { success: true, actionCount, companyCount };
