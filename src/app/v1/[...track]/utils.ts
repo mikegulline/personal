@@ -23,8 +23,8 @@ export function getBrowserInfo(req: NextRequest) {
 export async function getCompanyInfoFromKey(companyKey: string) {
   const { rows } = await sql`SELECT * FROM company WHERE key = ${companyKey};`;
   if (!rows.length) return null;
-  const { id, name, title } = rows[0];
-  return [id, name, title];
+  const { id, name, position } = rows[0];
+  return [id, name, position];
 }
 
 interface SaveAction {

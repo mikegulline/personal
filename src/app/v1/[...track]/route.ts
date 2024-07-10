@@ -51,7 +51,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
       code: 4,
     });
 
-  const [companyId, name, title] = company as [string, string, string];
+  const [companyId, name, position] = company as [string, string, string];
   const browserInfo = getBrowserInfo(req);
   await saveActionToDB({
     companyId,
@@ -68,7 +68,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   ${name}, clicked on your ${redirectKey} link.
 
-  That ${title} position is as good as yours!
+  That ${position} position is as good as yours!
 
   Here is some super sweet infos about the user.
 
@@ -87,7 +87,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   <p><strong>${name}</strong>, clicked on your <strong>${redirectKey}</strong> link.</p>
 
-  <p>That <strong>${title}</strong> position is as good as yours!</p>
+  <p>That <strong>${position}</strong> position is as good as yours!</p>
 
   <p>Here is some super sweet infos about the user.</p>
 
