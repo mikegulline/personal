@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getCompanyByKey, getActionsByCompanyId } from '../../actions';
 import { format } from 'date-fns';
 import Link from 'next/link';
