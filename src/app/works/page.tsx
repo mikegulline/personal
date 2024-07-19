@@ -201,6 +201,7 @@ const Portfolio = ({ items }: PortfolioPropsType) => (
                     placeholder='blur'
                     width={982}
                     height={492}
+                    className='aspect-[1024/535]'
                   />
                 </BrowserWrapper>
               </Link>
@@ -217,6 +218,7 @@ const Portfolio = ({ items }: PortfolioPropsType) => (
                         placeholder='blur'
                         width={560}
                         height={280}
+                        className='aspect-[1024/535]'
                       />
                     </BrowserWrapper>
                   </Link>
