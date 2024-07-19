@@ -105,3 +105,26 @@ html.lenis {
 .path.hide-path {
   animation: undraw 2s backwards;
 }
+
+.egg-icon {
+  transform-origin: bottom center;
+  animation: rock 2s infinite ease-in-out;
+}
+
+@keyframes rock {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-15deg); /* tilt to the left */
+  }
+  50% {
+    transform: rotate(10deg); /* tilt to the right */
+  }
+  75% {
+    transform: rotate(-10deg); /* tilt back to the left */
+  }
+  100% {
+    transform: rotate(0deg); /* return to the starting position */
+  }
+}

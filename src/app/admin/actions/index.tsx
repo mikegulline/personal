@@ -6,36 +6,49 @@ export interface CompanyType {
   id: string;
   key: string;
   name: string;
+  date: string;
   position: string;
 }
 
 export interface CompanyTypeWithViews extends CompanyType {
   views: number;
+  total_matching: number;
 }
 
-export async function getAllCompaniesWithActionCount() {
+export async function getAllCompaniesWithActionCount(
+  limit: number,
+  page: number
+) {
   const { rows } = await sql`
+    WITH CompanyViews AS (
+      SELECT
+          c.id,
+          c.name,
+          c.key,
+          c.position,
+          COUNT(a.id) AS views,
+          c.date
+      FROM
+          company c
+      LEFT JOIN
+          actions a
+      ON
+          c.id = a.companyId
+      GROUP BY
+          c.id,
+          c.name,
+          c.key,
+          c.position,
+          c.date
+    )
     SELECT
-      c.id,
-      c.name,
-      c.key,
-      c.position,
-      COUNT(a.id) AS views,
-      c.date
+        *,
+        COUNT(*) OVER() AS total_matching
     FROM
-      company c
-    LEFT JOIN
-      actions a
-    ON
-      c.id = a.companyId
-    GROUP BY
-      c.id,
-      c.name,
-      c.key,
-      c.position,
-      c.date
+        CompanyViews
     ORDER BY
-      c.date DESC;
+        date DESC
+    LIMIT ${limit};
   `;
   return rows as CompanyTypeWithViews[];
 }
@@ -51,7 +64,7 @@ export async function getCompanyByKey(key: string) {
 export interface ActionsType {
   id: string;
   companyid: string;
-  date: Date;
+  date: string;
   redirectkey: string;
   redirectlink: string;
   ip: string;
@@ -64,7 +77,9 @@ export interface ActionsType {
 export async function getActionsByCompanyId(companyId: string) {
   const { rows } = await sql`SELECT * 
       FROM actions
-      WHERE companyId = ${companyId};`;
+      WHERE companyId = ${companyId}
+      ORDER BY
+        date DESC;`;
   return rows as ActionsType[];
 }
 

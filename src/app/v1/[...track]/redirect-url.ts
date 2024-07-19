@@ -5,8 +5,8 @@ type RedirectUrl = {
 export const redirectUrl: RedirectUrl = {
   portfolio: 'https://www.gulline.com/works',
   resume: 'https://www.gulline.com/resume',
-  lilink: 'https://www.gulline.com/works',
-  libutton: 'https://www.gulline.com/works',
+  link: 'https://www.gulline.com/works',
+  button: 'https://www.gulline.com/works',
   githublink: 'https://www.gulline.com/works',
   immunocorp: 'https://www.immunocorp.com/',
   kumato: 'https://www.cho-wa.com/',

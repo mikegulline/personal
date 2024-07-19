@@ -2,6 +2,8 @@ export const dynamic = 'force-dynamic';
 import { getCompanyByKey, getActionsByCompanyId } from '../../actions';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { PiEggCrackThin } from 'react-icons/pi';
+// http://ip-api.com/json/205.169.39.170
 
 export default async function CompanyByKey({
   params,
@@ -11,13 +13,30 @@ export default async function CompanyByKey({
   const { key } = params;
   const company = await getCompanyByKey(key);
   const actions = await getActionsByCompanyId(company.id);
+  const uniqueIPs = new Set([...actions.map(({ ip }) => ip)]).size;
+  const uniqueAndTotalViews = () => {
+    if (actions.length === 0)
+      return (
+        <div className='text-3xl egg-icon'>
+          <PiEggCrackThin />
+        </div>
+      );
+    return (
+      <div>
+        {uniqueIPs}/{actions.length}
+      </div>
+    );
+  };
 
   return (
     <div className='fade-in-up  mx-4'>
       <header className='flex justify-between items-center mb-2'>
-        <h1 className='text-4xl text-gray-800 font-black mb-2'>
-          {company.name} ({company.key.trim()})
-        </h1>
+        <div className='flex items-center justify-start gap-4'>
+          <h1 className='text-4xl text-gray-800 font-black mb-2'>
+            {company.name} ({company.key.trim()})
+          </h1>
+          {uniqueAndTotalViews()}
+        </div>
         <div>
           <Link
             href='/admin'
