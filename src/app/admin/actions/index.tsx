@@ -6,6 +6,7 @@ export interface CompanyType {
   id: string;
   key: string;
   name: string;
+  salary: string;
   date: string;
   position: string;
 }
@@ -15,7 +16,87 @@ export interface CompanyTypeWithViews extends CompanyType {
   total_matching: number;
 }
 
+export async function getAllViewedCompaniesWithActionCount(
+  limit: string,
+  page: number
+) {
+  const { rows } = await sql`
+  WITH CompanyViews AS (
+    SELECT
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        COUNT(a.id) AS views,
+        c.date
+    FROM
+        company c
+    LEFT JOIN
+        actions a
+    ON
+        c.id = a.companyId
+    GROUP BY
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        c.date
+    HAVING
+        COUNT(a.id) > 0
+  )
+  SELECT
+      *,
+      COUNT(*) OVER() AS total_matching
+  FROM
+      CompanyViews
+  ORDER BY
+      date DESC
+  LIMIT ${limit};
+`;
+
+  return rows as CompanyTypeWithViews[];
+}
+
 export async function getAllCompaniesWithActionCount(
+  limit: string,
+  page: number
+) {
+  const { rows } = await sql`
+  WITH CompanyViews AS (
+    SELECT
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        COUNT(a.id) AS views,
+        c.date
+    FROM
+        company c
+    LEFT JOIN
+        actions a
+    ON
+        c.id = a.companyId
+    GROUP BY
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        c.date
+  )
+  SELECT
+      *,
+      COUNT(*) OVER() AS total_matching
+  FROM
+      CompanyViews
+  ORDER BY
+      date DESC
+  LIMIT ${limit};
+`;
+
+  return rows as CompanyTypeWithViews[];
+}
+
+export async function getAllCompaniesWithActionCountx(
   limit: number,
   page: number
 ) {
@@ -50,6 +131,7 @@ export async function getAllCompaniesWithActionCount(
         date DESC
     LIMIT ${limit};
   `;
+
   return rows as CompanyTypeWithViews[];
 }
 
