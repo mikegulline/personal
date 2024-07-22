@@ -17,8 +17,8 @@ export interface CompanyTypeWithViews extends CompanyType {
 }
 
 export async function getAllViewedCompaniesWithActionCount(
-  limit: string,
-  page: number
+  limit: number,
+  offset: number
 ) {
   const { rows } = await sql`
   WITH CompanyViews AS (
@@ -26,6 +26,7 @@ export async function getAllViewedCompaniesWithActionCount(
         c.id,
         c.name,
         c.key,
+        c.salary,
         c.position,
         COUNT(a.id) AS views,
         c.date
@@ -51,15 +52,15 @@ export async function getAllViewedCompaniesWithActionCount(
       CompanyViews
   ORDER BY
       date DESC
-  LIMIT ${limit};
+  LIMIT ${limit} OFFSET ${(offset - 1) * limit};
 `;
 
   return rows as CompanyTypeWithViews[];
 }
 
 export async function getAllCompaniesWithActionCount(
-  limit: string,
-  page: number
+  limit: number,
+  offset: number
 ) {
   const { rows } = await sql`
   WITH CompanyViews AS (
@@ -67,6 +68,7 @@ export async function getAllCompaniesWithActionCount(
         c.id,
         c.name,
         c.key,
+        c.salary,
         c.position,
         COUNT(a.id) AS views,
         c.date
@@ -90,7 +92,7 @@ export async function getAllCompaniesWithActionCount(
       CompanyViews
   ORDER BY
       date DESC
-  LIMIT ${limit};
+  LIMIT ${limit} OFFSET ${(offset - 1) * limit};
 `;
 
   return rows as CompanyTypeWithViews[];

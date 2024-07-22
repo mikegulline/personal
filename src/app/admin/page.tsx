@@ -7,6 +7,7 @@ import ClickableTr from '@/components/table/clickable-tr';
 import { default as SPLink } from '@/components/stop-propagation-link';
 import { LiaEdit } from 'react-icons/lia';
 import { LiaEye } from 'react-icons/lia';
+import { FaBomb } from 'react-icons/fa';
 import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
 
@@ -18,13 +19,25 @@ export default async function AdminDashboard({
   searchParams,
 }: AdminDashbordProps) {
   const showViewed = searchParams?.views as string | undefined;
-  const perPage: string = searchParams?.show ?? '5';
+  const perPage: number = +(searchParams?.show ?? '5');
+  const currentPage: number = +(searchParams?.page ?? '1');
   const companies = showViewed
-    ? await getAllViewedCompaniesWithActionCount(perPage, 0)
-    : await getAllCompaniesWithActionCount(perPage, 0);
+    ? await getAllViewedCompaniesWithActionCount(perPage, currentPage)
+    : await getAllCompaniesWithActionCount(perPage, currentPage);
+  const pagination = getPagination(companies[0].total_matching, +perPage);
+
+  const viewCountArgs = {
+    searchParams: searchParams,
+    totalItems: companies[0].total_matching,
+    currentItemsToShow: +perPage,
+    offset: +currentPage,
+  };
 
   return (
-    <div className='fade-in-up  mx-4'>
+    <div
+      className='fade-in-up  mx-4'
+      key={`show-${showViewed}-per-${perPage}-cur-${currentPage}`}
+    >
       <header className='flex justify-between items-center mb-6'>
         <div className='flex items-baseline justify-start gap-4'>
           <h1 className='text-4xl text-gray-800 font-black mb-2'>Companies</h1>
@@ -35,7 +48,10 @@ export default async function AdminDashboard({
             <>|</>
             <div>
               <Link
-                href={`/admin?${getParams(searchParams, 'views', '')}`}
+                href={`/admin?${getParams(searchParams, {
+                  views: '',
+                  page: '1',
+                })}`}
                 className={`${
                   !showViewed ? 'underline text-teal-500' : 'hover:underline'
                 }`}
@@ -46,31 +62,22 @@ export default async function AdminDashboard({
 
             <div>
               <Link
-                href={`/admin?${getParams(searchParams, 'views', '1')}`}
+                href={`/admin?${getParams(searchParams, {
+                  views: '1',
+                  page: '1',
+                })}`}
                 className={`${
                   showViewed ? 'underline text-teal-500' : 'hover:underline'
                 }`}
               >
-                With Views
+                Viewed
               </Link>
             </div>
             <>|</>
-            <Link
-              href={`/admin?${getParams(searchParams, 'show', '5')}`}
-              className={`${
-                perPage === '5' ? 'underline text-teal-500' : 'hover:underline'
-              }`}
-            >
-              5
-            </Link>
-            <Link
-              href={`/admin?${getParams(searchParams, 'show', '10')}`}
-              className={`${
-                perPage === '10' ? 'underline text-teal-500' : 'hover:underline'
-              }`}
-            >
-              10
-            </Link>
+            <ViewCountLink {...viewCountArgs} itemsToShow={5} />
+            <ViewCountLink {...viewCountArgs} itemsToShow={10} />
+            <ViewCountLink {...viewCountArgs} itemsToShow={20} />
+            <ViewCountLink {...viewCountArgs} itemsToShow={50} />
           </div>
         </div>
         <div>
@@ -124,11 +131,11 @@ export default async function AdminDashboard({
                   <td className='px-6 py-4 text-center'>
                     <div className='flex justify-center items-center text-xl'>
                       <SPLink
-                        href={`/admin/company/${key.trim()}`}
+                        href={`/admin/company/${key.trim()}/rejected`}
                         className='p-2 rounded-full hover:text-white hover:bg-teal-500'
-                        title='View'
+                        title='Rejected'
                       >
-                        <LiaEye />
+                        <FaBomb />
                       </SPLink>
                       <SPLink
                         href={`/admin/company/${key.trim()}/edit`}
@@ -150,17 +157,89 @@ export default async function AdminDashboard({
             )}
           </tbody>
         </table>
+        <div className='flex gap-1 text-sm p-3'>
+          {pagination.map((page) => (
+            <Link
+              href={`/admin?${getParams(searchParams, {
+                page: page.toString(),
+              })}`}
+              title={`Page ${page}`}
+              key={`page-${page}`}
+              className={` w-8 h-8 flex items-center justify-center rounded border ${
+                page === currentPage
+                  ? 'border-teal-500 text-white bg-teal-500'
+                  : 'border-gray-200'
+              }`}
+            >
+              {page}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
+interface ViewCountLinkProps {
+  searchParams: {
+    [key: string]: string;
+  };
+  totalItems: number;
+  currentItemsToShow: number;
+  offset: number;
+  itemsToShow: number;
+}
+function ViewCountLink({
+  searchParams,
+  totalItems,
+  currentItemsToShow,
+  itemsToShow,
+  offset,
+}: ViewCountLinkProps) {
+  // default searchParams
+  // totalItems = all items
+  // itemsToShow = update "show"
+  // currentItemsToShow = "show"
+  // offset = current "page"
+  let newParams, page;
+  if (itemsToShow * offset > totalItems) {
+    page = Math.ceil(totalItems / itemsToShow);
+    newParams = getParams(searchParams, {
+      show: itemsToShow.toString(),
+      page: page.toString(),
+    });
+  } else {
+    newParams = getParams(searchParams, { show: itemsToShow.toString() });
+  }
+
+  return (
+    <Link
+      href={`/admin?${newParams}`}
+      className={`${
+        currentItemsToShow === itemsToShow
+          ? 'underline text-teal-500'
+          : 'hover:underline'
+      }`}
+    >
+      {itemsToShow}
+    </Link>
+  );
+}
+
+function getPagination(count: number, show: number) {
+  let build = [];
+  const pages = Math.ceil(count / show);
+  for (let i = 1; i <= pages; i++) {
+    build.push(i);
+  }
+  return build;
+}
+
 function getParams(
   searchParams: { [key: string]: string },
-  key: string,
-  value: string
+  update: { [key: string]: string }
 ) {
-  const newParams = { ...searchParams, [key]: value };
+  const newParams = { ...searchParams, ...update };
   return new URLSearchParams(newParams).toString();
 }
 

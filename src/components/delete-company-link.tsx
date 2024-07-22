@@ -36,27 +36,27 @@ const DeleteCompanyLink: React.FC<DeleteCompanyLinkProps> = ({
   );
 };
 
-async function myRevalidatePath(path: string) {
-  try {
-    const res = await fetch('/api/cache/revalidate-path', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ path }),
-    });
+// async function myRevalidatePath(path: string) {
+//   try {
+//     const res = await fetch('/api/cache/revalidate-path', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ path }),
+//     });
 
-    // Check if the response is OK (status code 200-299)
-    if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || 'Something went wrong');
-    }
+//     // Check if the response is OK (status code 200-299)
+//     if (!res.ok) {
+//       const errorData = await res.json();
+//       throw new Error(errorData.message || 'Something went wrong');
+//     }
 
-    const result = await res.json();
-    return result;
-  } catch (error: any) {
-    console.error('Error revalidating path:', error.message);
-  }
-}
+//     const result = await res.json();
+//     return result;
+//   } catch (error: any) {
+//     console.error('Error revalidating path:', error.message);
+//   }
+// }
 
 export default DeleteCompanyLink;
