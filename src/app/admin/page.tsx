@@ -1,13 +1,15 @@
 import {
   getAllCompaniesWithActionCount,
   getAllViewedCompaniesWithActionCount,
+  getAllRejectedCompaniesWithActionCount,
 } from './actions';
+import UpdateCompanyStatusLink from '@/components/update-company-status-link';
 import Link from 'next/link';
 import ClickableTr from '@/components/table/clickable-tr';
 import { default as SPLink } from '@/components/stop-propagation-link';
 import { LiaEdit } from 'react-icons/lia';
-import { LiaEye } from 'react-icons/lia';
 import { FaBomb } from 'react-icons/fa';
+import { HiOutlineFaceFrown } from 'react-icons/hi2';
 import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
 
@@ -18,45 +20,62 @@ interface AdminDashbordProps {
 export default async function AdminDashboard({
   searchParams,
 }: AdminDashbordProps) {
+  const showRejected = searchParams?.rejected as string | undefined;
   const showViewed = searchParams?.views as string | undefined;
-  const perPage: number = +(searchParams?.show ?? '5');
-  const currentPage: number = +(searchParams?.page ?? '1');
-  const companies = showViewed
-    ? await getAllViewedCompaniesWithActionCount(perPage, currentPage)
-    : await getAllCompaniesWithActionCount(perPage, currentPage);
-  const pagination = getPagination(companies[0].total_matching, +perPage);
+  const showAll = !showViewed && !showRejected;
+  const itemsPerPage: number = +(searchParams?.show ?? '5');
+  const offset: number = +(searchParams?.page ?? '1');
+  let companies;
+  if (showViewed) {
+    companies = await getAllViewedCompaniesWithActionCount(
+      itemsPerPage,
+      offset
+    );
+  }
+  if (showRejected) {
+    companies = await getAllRejectedCompaniesWithActionCount(
+      itemsPerPage,
+      offset
+    );
+    console.log(companies, 'here');
+  }
+  if (!companies) {
+    companies = await getAllCompaniesWithActionCount(itemsPerPage, offset);
+  }
+
+  const totalItems = companies[0]?.total_matching;
+  const pagination = getPagination(totalItems, itemsPerPage);
 
   const viewCountArgs = {
-    searchParams: searchParams,
-    totalItems: companies[0].total_matching,
-    currentItemsToShow: +perPage,
-    offset: +currentPage,
+    searchParams,
+    totalItems,
+    itemsPerPage,
+    offset,
   };
 
   return (
     <div
       className='fade-in-up  mx-4'
-      key={`show-${showViewed}-per-${perPage}-cur-${currentPage}`}
+      key={`show-${showViewed}-per-${itemsPerPage}-cur-${offset}`}
     >
       <header className='flex justify-between items-center mb-6'>
         <div className='flex items-baseline justify-start gap-4'>
           <h1 className='text-4xl text-gray-800 font-black mb-2'>Companies</h1>
           <div className='flex justify-start items-center text-sm gap-2'>
-            <div className='font-bold'>
-              {companies[0].total_matching || 0} total
-            </div>
+            <div className='font-bold'>{totalItems || 0} total</div>
             <>|</>
             <div>
               <Link
                 href={`/admin?${getParams(searchParams, {
                   views: '',
                   page: '1',
+                  rejected: '',
                 })}`}
                 className={`${
-                  !showViewed ? 'underline text-teal-500' : 'hover:underline'
+                  showAll ? 'underline text-teal-500' : 'hover:underline'
                 }`}
               >
-                Show All
+                All
               </Link>
             </div>
 
@@ -65,12 +84,27 @@ export default async function AdminDashboard({
                 href={`/admin?${getParams(searchParams, {
                   views: '1',
                   page: '1',
+                  rejected: '',
                 })}`}
                 className={`${
                   showViewed ? 'underline text-teal-500' : 'hover:underline'
                 }`}
               >
                 Viewed
+              </Link>
+            </div>
+            <div>
+              <Link
+                href={`/admin?${getParams(searchParams, {
+                  views: '',
+                  rejected: '1',
+                  page: '1',
+                })}`}
+                className={`${
+                  showRejected ? 'underline text-teal-500' : 'hover:underline'
+                }`}
+              >
+                Rejected
               </Link>
             </div>
             <>|</>
@@ -104,56 +138,76 @@ export default async function AdminDashboard({
           </thead>
           <tbody>
             {companies.map(
-              ({ id, key, name, date, salary, position, views }) => (
-                <ClickableTr
-                  key={id}
-                  link={`/admin/company/${key}`}
-                  className={`${
-                    views == 0
-                      ? 'bg-white/20 hover:bg-gray-200/20 dark:hover:bg-gray-900'
-                      : 'bg-teal-100/20 hover:bg-teal-200/20 dark:hover:bg-teal-950'
-                  }cursor-pointer border-b dark:bg-gray-800 dark:border-gray-700`}
-                >
-                  <td className='pl-6 py-4'>{key}</td>
-                  <td className='px-6 py-4 text-center'>{daysFromNow(date)}</td>
-                  <td className='px-6 py-4 text-center'>{views}</td>
-                  <td className='px-6 py-4'>
-                    <div className='truncate block line-clamp-1 font-bold w-48'>
-                      {name}
-                    </div>
-                    <div className='truncate block line-clamp-1 w-48'>
-                      {position}
-                    </div>
-                  </td>
-                  <td className='px-6 py-4'>
-                    <div className='line-clamp-1'>{salary && salary}</div>
-                  </td>
-                  <td className='px-6 py-4 text-center'>
-                    <div className='flex justify-center items-center text-xl'>
-                      <SPLink
-                        href={`/admin/company/${key.trim()}/rejected`}
-                        className='p-2 rounded-full hover:text-white hover:bg-teal-500'
-                        title='Rejected'
+              ({ id, key, name, date, salary, position, status, views }) => {
+                let classes =
+                  'bg-white/20 hover:bg-gray-200/20 border-gray-200';
+                if (+views) {
+                  classes =
+                    'bg-teal-100/20 hover:bg-teal-200/20 border-teal-600/20';
+                }
+                if (status === 'rejected') {
+                  classes =
+                    'bg-red-100/20 hover:bg-red-200/20 border-red-700/10';
+                }
+                return (
+                  <ClickableTr
+                    key={id}
+                    link={`/admin/company/${key}`}
+                    className={`${classes} cursor-pointer border-b`}
+                  >
+                    <td className='pl-6 py-4'>{key}</td>
+                    <td className='px-6 py-4 text-center'>
+                      {daysFromNow(date)}
+                    </td>
+                    <td className='px-6 py-4 text-center'>{views}</td>
+                    <td className='px-6 py-4'>
+                      <div className='truncate block line-clamp-1 font-bold w-48'>
+                        {name}
+                      </div>
+                      <div className='truncate block line-clamp-1 w-48'>
+                        {position}
+                      </div>
+                      <div
+                        className={`text-[0.6rem] leading-[0.95rem] uppercase font-medium ${
+                          status === 'rejected' && 'text-red-600'
+                        }`}
                       >
-                        <FaBomb />
-                      </SPLink>
-                      <SPLink
-                        href={`/admin/company/${key.trim()}/edit`}
-                        className='p-2 rounded-full hover:text-white hover:bg-teal-500'
-                        title='Edit'
-                      >
-                        <LiaEdit />
-                      </SPLink>
-                      <DeleteCompanyLink
-                        className='p-2 rounded-full hover:text-white hover:bg-teal-500'
-                        id={id}
-                      >
-                        <LiaTrashAlt />
-                      </DeleteCompanyLink>
-                    </div>
-                  </td>
-                </ClickableTr>
-              )
+                        {status}
+                      </div>
+                    </td>
+                    <td className='px-6 py-4'>
+                      <div className='line-clamp-1'>{salary && salary}</div>
+                    </td>
+                    <td className='px-6 py-4 text-center'>
+                      <div className='flex justify-center items-center text-xl'>
+                        <UpdateCompanyStatusLink
+                          companyKey={key}
+                          status={status === 'applied' ? 'rejected' : 'applied'}
+                        >
+                          {status === 'applied' ? (
+                            <FaBomb />
+                          ) : (
+                            <HiOutlineFaceFrown />
+                          )}
+                        </UpdateCompanyStatusLink>
+                        <SPLink
+                          href={`/admin/company/${key.trim()}/edit`}
+                          className='p-2 rounded-full hover:text-white hover:bg-teal-500'
+                          title='Edit'
+                        >
+                          <LiaEdit />
+                        </SPLink>
+                        <DeleteCompanyLink
+                          className='p-2 rounded-full hover:text-white hover:bg-teal-500'
+                          id={id}
+                        >
+                          <LiaTrashAlt />
+                        </DeleteCompanyLink>
+                      </div>
+                    </td>
+                  </ClickableTr>
+                );
+              }
             )}
           </tbody>
         </table>
@@ -166,7 +220,7 @@ export default async function AdminDashboard({
               title={`Page ${page}`}
               key={`page-${page}`}
               className={` w-8 h-8 flex items-center justify-center rounded border ${
-                page === currentPage
+                page === offset
                   ? 'border-teal-500 text-white bg-teal-500'
                   : 'border-gray-200'
               }`}
@@ -185,21 +239,21 @@ interface ViewCountLinkProps {
     [key: string]: string;
   };
   totalItems: number;
-  currentItemsToShow: number;
+  itemsPerPage: number;
   offset: number;
   itemsToShow: number;
 }
 function ViewCountLink({
   searchParams,
   totalItems,
-  currentItemsToShow,
+  itemsPerPage,
   itemsToShow,
   offset,
 }: ViewCountLinkProps) {
   // default searchParams
   // totalItems = all items
   // itemsToShow = update "show"
-  // currentItemsToShow = "show"
+  // itemsPerPage = "show"
   // offset = current "page"
   let newParams, page;
   if (itemsToShow * offset > totalItems) {
@@ -216,7 +270,7 @@ function ViewCountLink({
     <Link
       href={`/admin?${newParams}`}
       className={`${
-        currentItemsToShow === itemsToShow
+        itemsPerPage === itemsToShow
           ? 'underline text-teal-500'
           : 'hover:underline'
       }`}
@@ -239,8 +293,19 @@ function getParams(
   searchParams: { [key: string]: string },
   update: { [key: string]: string }
 ) {
-  const newParams = { ...searchParams, ...update };
+  const newParams = removeEmptyProperties({ ...searchParams, ...update });
   return new URLSearchParams(newParams).toString();
+}
+
+function removeEmptyProperties(obj: { [key: string]: any }) {
+  // Iterate over each property in the object
+  for (const key in obj) {
+    // Check if the property value is null, undefined, or an empty string
+    if (obj[key] === null || obj[key] === undefined || obj[key] === '') {
+      delete obj[key]; // Remove the property from the object
+    }
+  }
+  return obj; // Return the modified object
 }
 
 function daysFromNow(dateString: string) {

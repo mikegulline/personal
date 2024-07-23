@@ -9,11 +9,58 @@ export interface CompanyType {
   salary: string;
   date: string;
   position: string;
+  status: string;
 }
 
 export interface CompanyTypeWithViews extends CompanyType {
   views: number;
   total_matching: number;
+}
+
+export async function getAllRejectedCompaniesWithActionCount(
+  limit: number,
+  offset: number
+) {
+  const { rows } = await sql`
+  WITH CompanyViews AS (
+    SELECT
+        c.id,
+        c.name,
+        c.key,
+        c.salary,
+        c.position,
+        c.status,
+        COUNT(a.id) AS views,
+        c.date
+    FROM
+        company c
+    LEFT JOIN
+        actions a
+    ON
+        c.id = a.companyId
+    WHERE
+        c.status = 'rejected'
+    GROUP BY
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        c.status,
+        c.salary,
+        c.date
+  )
+  SELECT
+      *,
+      COUNT(*) OVER() AS total_matching
+  FROM
+      CompanyViews
+  ORDER BY
+      date DESC
+  LIMIT ${limit} OFFSET ${(offset - 1) * limit};
+`;
+
+  console.log(rows, 'this');
+  return rows as CompanyTypeWithViews[];
 }
 
 export async function getAllViewedCompaniesWithActionCount(
@@ -28,6 +75,7 @@ export async function getAllViewedCompaniesWithActionCount(
         c.key,
         c.salary,
         c.position,
+        c.status,
         COUNT(a.id) AS views,
         c.date
     FROM
@@ -41,6 +89,8 @@ export async function getAllViewedCompaniesWithActionCount(
         c.name,
         c.key,
         c.position,
+        c.status,
+        c.salary,
         c.date
     HAVING
         COUNT(a.id) > 0
@@ -70,6 +120,7 @@ export async function getAllCompaniesWithActionCount(
         c.key,
         c.salary,
         c.position,
+        c.status,
         COUNT(a.id) AS views,
         c.date
     FROM
@@ -82,7 +133,9 @@ export async function getAllCompaniesWithActionCount(
         c.id,
         c.name,
         c.key,
+        c.salary,
         c.position,
+        c.status,
         c.date
   )
   SELECT
@@ -94,45 +147,6 @@ export async function getAllCompaniesWithActionCount(
       date DESC
   LIMIT ${limit} OFFSET ${(offset - 1) * limit};
 `;
-
-  return rows as CompanyTypeWithViews[];
-}
-
-export async function getAllCompaniesWithActionCountx(
-  limit: number,
-  page: number
-) {
-  const { rows } = await sql`
-    WITH CompanyViews AS (
-      SELECT
-          c.id,
-          c.name,
-          c.key,
-          c.position,
-          COUNT(a.id) AS views,
-          c.date
-      FROM
-          company c
-      LEFT JOIN
-          actions a
-      ON
-          c.id = a.companyId
-      GROUP BY
-          c.id,
-          c.name,
-          c.key,
-          c.position,
-          c.date
-    )
-    SELECT
-        *,
-        COUNT(*) OVER() AS total_matching
-    FROM
-        CompanyViews
-    ORDER BY
-        date DESC
-    LIMIT ${limit};
-  `;
 
   return rows as CompanyTypeWithViews[];
 }
@@ -211,4 +225,17 @@ export async function deleteCompanyById(id: string) {
     // Release the client back to the pool
     client.release();
   }
+}
+
+export async function updateStatus(companyKey: string, status: string) {
+  const { rowCount } = await sql`
+  UPDATE company 
+  SET status = ${status}
+  WHERE key = ${companyKey}
+`;
+  revalidatePath('/admin');
+  revalidatePath(`/admin/company/${companyKey}`);
+
+  console.log(rowCount);
+  return rowCount;
 }
