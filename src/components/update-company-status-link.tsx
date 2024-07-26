@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { updateStatus } from '@/app/admin/actions';
-type Status = 'applied' | 'viewed' | 'rejected';
+type Status = 'applied' | 'viewed' | 'rejected' | 'interviewing';
 
 interface UpdateStatusLinkProps {
   children?: React.ReactNode;

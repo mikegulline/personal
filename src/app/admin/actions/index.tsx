@@ -59,7 +59,6 @@ export async function getAllRejectedCompaniesWithActionCount(
   LIMIT ${limit} OFFSET ${(offset - 1) * limit};
 `;
 
-  console.log(rows, 'this');
   return rows as CompanyTypeWithViews[];
 }
 
@@ -236,6 +235,5 @@ export async function updateStatus(companyKey: string, status: string) {
   revalidatePath('/admin');
   revalidatePath(`/admin/company/${companyKey}`);
 
-  console.log(rowCount);
   return rowCount;
 }

@@ -9,6 +9,7 @@ import ClickableTr from '@/components/table/clickable-tr';
 import { default as SPLink } from '@/components/stop-propagation-link';
 import { LiaEdit } from 'react-icons/lia';
 import { FaBomb } from 'react-icons/fa';
+import { GoThumbsup } from 'react-icons/go';
 import { HiOutlineFaceFrown } from 'react-icons/hi2';
 import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
@@ -20,8 +21,9 @@ interface AdminDashbordProps {
 export default async function AdminDashboard({
   searchParams,
 }: AdminDashbordProps) {
-  const showRejected = searchParams?.rejected as string | undefined;
-  const showViewed = searchParams?.views as string | undefined;
+  const showInterviewing = searchParams?.rejected as string | '';
+  const showRejected = searchParams?.rejected as string | '';
+  const showViewed = searchParams?.views as string | '';
   const showAll = !showViewed && !showRejected;
   const itemsPerPage: number = +(searchParams?.show ?? '5');
   const offset: number = +(searchParams?.page ?? '1');
@@ -180,14 +182,24 @@ export default async function AdminDashboard({
                     </td>
                     <td className='px-6 py-4 text-center'>
                       <div className='flex justify-center items-center text-xl'>
+                        {status !== 'interviewing' && (
+                          <UpdateCompanyStatusLink
+                            companyKey={key}
+                            status='interviewing'
+                          >
+                            <GoThumbsup />
+                          </UpdateCompanyStatusLink>
+                        )}
                         <UpdateCompanyStatusLink
                           companyKey={key}
-                          status={status === 'applied' ? 'rejected' : 'applied'}
+                          status={
+                            status === 'rejected' ? 'applied' : 'rejected'
+                          }
                         >
-                          {status === 'applied' ? (
-                            <FaBomb />
-                          ) : (
+                          {status === 'rejected' ? (
                             <HiOutlineFaceFrown />
+                          ) : (
+                            <FaBomb />
                           )}
                         </UpdateCompanyStatusLink>
                         <SPLink
