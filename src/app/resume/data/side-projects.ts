@@ -2,6 +2,24 @@ import { type IJob } from './types';
 
 export const sideProjects: IJob[] = [
   {
+    company: 'Loyal to Few',
+    description: '',
+    city: 'Oceanside',
+    state: 'CA',
+    onsite: 'Remote',
+    website: 'https://www.loyaltofew.com/',
+    title: 'Principal Software Engineer',
+    type: 'Contract',
+    start: '2022-12',
+    end: '2023-03',
+    details: '',
+    notes: [
+      'Designed and developed a headless e-commerce website using React 18, NextJS 13, and TailwindCSS, with NextAuth for authentication, focusing on modular architecture and usability.',
+      'Built a backend admin system integrating third-party order and shipping APIs, improving operational efficiency and reducing processing times by streamlining labeling, packing, shipping, and returns.',
+      'Optimized site performance with a responsive, mobile-first design, asynchronous image rendering, and CSV product export in Node.js, leading to a 25% increase in sales conversions and improved SEO.',
+    ],
+  },
+  {
     company: 'Galaxy4Gamers',
     description:
       'Social/gaming platform, hosting skill based competitions for cash and prizes',
@@ -10,7 +28,7 @@ export const sideProjects: IJob[] = [
     onsite: 'Remote',
     website: '',
     title: 'CTO/Founding Software Engineer',
-    type: 'Contract',
+    type: 'Founder',
     start: '2008-07',
     end: '2011-04',
     details: '',
