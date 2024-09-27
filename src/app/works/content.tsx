@@ -282,12 +282,13 @@ export default function Work() {
         </h1>
         <BorderLeft>
           <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-            Responsive Frontend Developement/Engineering
+            Design &amp; Full-Stack Development
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8 max-w-2xl m-auto'>
-          From idea to completion, Mike Gulline provides full-stack design,
-          responsive web development and software engineering.
+          Transforming concepts and ideas into seamless, responsive user
+          experiences through expert software engineering, delivering brands and
+          products that engage users and drive conversions.
         </p>
       </div>
       <Portfolio items={portfolio} />

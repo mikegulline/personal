@@ -52,7 +52,7 @@ export default function Footer() {
       </div>
       <footer className='bg-white w-full px-5'>
         <div className='mx-auto container xl:max-w-5xl  justify-between flex gap-6 items-center h-24'>
-          <p>&copy; Gulline.com</p>
+          <p>&copy; {new Date().getFullYear()} Gulline.com</p>
           <div className='flex items-center gap-6'>
             <Link
               href='https://www.linkedin.com/in/mikegulline/'
