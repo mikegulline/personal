@@ -61,13 +61,13 @@ export default function Footer() {
             >
               <TfiLinkedin />
             </Link>
-            <Link
+            {/* <Link
               href='https://github.com/mikegulline'
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >
               <SiGithub />
-            </Link>
+            </Link> */}
             <CTA />
           </div>
         </div>

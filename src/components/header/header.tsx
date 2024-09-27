@@ -68,6 +68,14 @@ function Navigation() {
             </Link>
           </li>
         ))}
+        <li className='sm:visible md:hidden'>
+          <Link
+            href='/resu,e'
+            className=' text-lg sm:text-base text-slate-800 hover:text-teal-400 font-semibold'
+          >
+            Resume
+          </Link>
+        </li>
       </ul>
     </nav>
   );
@@ -83,13 +91,13 @@ function Contact() {
       >
         <TfiLinkedin />
       </Link>
-      <Link
+      {/* <Link
         href='https://github.com/mikegulline'
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
         <SiGithub />
-      </Link>
+      </Link> */}
       <CTA />
     </div>
   );

@@ -10,6 +10,7 @@ export interface CompanyType {
   date: string;
   position: string;
   status: string;
+  description?: string | null;
 }
 
 export interface CompanyTypeWithViews extends CompanyType {
