@@ -20,7 +20,7 @@ export default function Contact() {
           </h2>
         </BorderLeft>
         <Link
-          href='https://www.linkedin.com/in/mikegulline/'
+          href='https://www.linkedin.com/in/Michaelgulline/'
           target='blank'
           title='Connect with me on LinkedIn'
           className='m-auto flex w-16 h-16 rounded-full border-2 border-slate-700 hover:bg-white hover:text-teal-400 hover:border-teal-400  bg-slate-700 text-white items-center justify-center cursor-pointer'

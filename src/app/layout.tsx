@@ -9,7 +9,7 @@ import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Software Engineer Mike Gulline',
+  title: 'Software Engineer Michael Gulline',
   description:
     'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
@@ -35,7 +35,7 @@ we might get along famously!
 
 Let's connect on LinkedIn…
 
-https://www.linkedin.com/in/mikegulline/
+https://www.linkedin.com/in/Michaelgulline/
 ==========================================
 `;
   return (

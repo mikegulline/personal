@@ -11,7 +11,7 @@ export default function ContactModal() {
       <div className='flex items-center gap-2 text-2xl sm:text-4xl'>
         <span>Let&rsquo;s keep in touch </span>
         <Link
-          href='https://www.linkedin.com/in/mikegulline/'
+          href='https://www.linkedin.com/in/Michaelgulline/'
           target='blank'
           title='Connect with me on LinkedIn'
           onClick={() => router.back()}

@@ -15,11 +15,13 @@ export default function Resume() {
   return (
     <GridContainer columns={3}>
       <div className=' lg:text-lg '>
-        <div className='w-full px-5 lg:pr-20 relative mb-16'>
-          <h1 className='text-5xl sm:text-9xl font-black mb-4'>Resume</h1>
+        <div className='w-full px-5 relative mb-16'>
+          <h1 className='text-5xl sm:text-9xl font-black mb-4'>
+            Michael Gulline
+          </h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold '>
-              Software Engineer <em>(Frontend-Focused)</em>
+              Software Engineer—<em>Full-Stack/Frontend-Focused</em>
             </h2>
           </BorderLeft>
         </div>
@@ -43,7 +45,7 @@ export default function Resume() {
         </div> */}
 
         <div className='  mb-16'>
-          <h3 className='text-5xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
+          <h3 className='text-5xl sm:text-6xl mb-8 font-bold px-5'>
             Work History
           </h3>
           <Work />

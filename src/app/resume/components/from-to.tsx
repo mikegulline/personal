@@ -24,7 +24,10 @@ export default function FromTo({ from, to }: IFromTo) {
   }
   return (
     <>
-      {fromShow} - {toShow} &middot; {diffShow}
+      {fromShow} to {toShow}
     </>
+    // <>
+    //   {fromShow} - {toShow} &middot; {diffShow}
+    // </>
   );
 }

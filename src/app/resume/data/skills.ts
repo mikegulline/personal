@@ -26,11 +26,11 @@ export const skills: string[] = [
   'Jest',
   'React Testing Library',
   'SEO',
-  'Web Performance Optimization',
   'UX/UI Design',
   'Figma',
   'Adobe Creative Suite',
   'Photoshop',
   'Illustrator',
   'InDesign',
+  'Web Performance Optimization',
 ];

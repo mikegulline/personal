@@ -286,9 +286,8 @@ export default function Work() {
           </h2>
         </BorderLeft>
         <p className='text-xl leading-8 max-w-2xl m-auto'>
-          Transforming concepts and ideas into seamless, responsive user
-          experiences through expert software engineering, delivering brands and
-          products that engage users and drive conversions.
+          Transforming concepts and ideas into responsive user experiences that
+          engage and drive long lasting conversions.
         </p>
       </div>
       <Portfolio items={portfolio} />

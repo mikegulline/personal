@@ -8,7 +8,7 @@ import golf from '@/public/images/golf.jpg';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'About Software Engineer Mike Gulline',
+  title: 'About Software Engineer Michael Gulline',
   description:
     'Javascript, TypeScript, ReactJS, NextJS, NodeJS, SQL, NoSQL, PostgreSQL, MySQL, MongoDB, TailwindCSS',
 };
@@ -36,7 +36,7 @@ export default function About() {
           <h1 className='text-5xl sm:text-9xl font-black mb-4'>About</h1>
           <BorderLeft>
             <h2 className='text-2xl sm:text-3xl mb-8 font-bold'>
-              Hi, my name is Mike <Emoji>🤘🏻</Emoji>
+              Hi, my name is Michael <Emoji>🤘🏻</Emoji>
             </h2>
           </BorderLeft>
           <p className='text-xl leading-8'>

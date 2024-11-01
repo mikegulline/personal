@@ -60,19 +60,24 @@ export default function Job({
     return null;
   };
   return (
-    <div className='mb-12 relative px-5 sm:pr-10'>
-      <BorderLeft>
-        <h4 className='text-2xl font-bold '>{title} </h4>
-      </BorderLeft>
-      <p>
-        <CompanyLink /> &middot; {type} &middot; {onsite}
-      </p>
-      <p className='text-slate-500'>
-        <FromTo from={start} to={end} />
-      </p>
-      <p className='mb-4 text-slate-500'>
-        {city}, {state}
-      </p>
+    <div className='mb-12 relative px-5'>
+      <div className='flex justify-between items-baseline'>
+        <BorderLeft>
+          <h4 className='text-2xl font-bold '>{title} </h4>
+        </BorderLeft>
+        <p className='text-slate-500'>
+          <FromTo from={start} to={end} />
+        </p>
+      </div>
+      <div className='flex justify-between items-baseline'>
+        <p>
+          <CompanyLink /> &middot; {city}, {state}
+        </p>
+        <p className='mb-4 text-slate-500'>
+          {type} &middot; {onsite}
+        </p>
+      </div>
+
       {/* <p className='mb-4'>{description}</p> */}
       <ul className='list-disc list-outside'>
         {notes?.map((info, i) => {

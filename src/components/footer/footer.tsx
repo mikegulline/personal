@@ -12,7 +12,7 @@ export default function Footer() {
           <Pan>
             <>
               {[
-                'Mike Gulline',
+                'Michael Gulline',
                 'JavaScript',
                 'TypeScript',
                 'React',
@@ -55,14 +55,14 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Gulline.com</p>
           <div className='flex items-center gap-6'>
             <Link
-              href='https://www.linkedin.com/in/mikegulline/'
+              href='https://www.linkedin.com/in/Michaelgulline/'
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >
               <TfiLinkedin />
             </Link>
             {/* <Link
-              href='https://github.com/mikegulline'
+              href='https://github.com/Michaelgulline'
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >

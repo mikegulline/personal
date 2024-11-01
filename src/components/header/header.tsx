@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import LogoSVG from '@/public/mikegulline.svg';
+import LogoSVG from '@/public/michaelgulline.svg';
 import CTA from '@/components/cta';
 import { SiGithub } from 'react-icons/si';
 import { TfiLinkedin } from 'react-icons/tfi';
@@ -41,14 +41,19 @@ function Wrapper({ children }: { children: ReactNode }) {
 
 function Logo() {
   return (
-    <Link href='/' className='block text-center sm:flex sm:text-left'>
+    <Link
+      href='/'
+      className='flex h-8 items-center justify-center gap-2 m-auto'
+    >
       <Image
         src={LogoSVG}
-        alt='Mike Gulline Logo'
-        className='mx-auto w-60 sm:w-auto pt-1 sm:pt-0'
+        alt='Michael Gulline Logo'
+        className='w-8 h-8'
+        width={32}
+        height={32}
         priority={true}
       />
-      <h1 className='sr-only'>Mike Gulline</h1>
+      <h1 className='font-bold whitespace-nowrap text-2xl'>Michael Gulline</h1>
       <p className='sr-only'>Front Endengineer</p>
     </Link>
   );
@@ -85,14 +90,14 @@ function Contact() {
   return (
     <div className='hidden md:flex items-center gap-6 border-l border-dashed border-slate-300 pl-6'>
       <Link
-        href='https://www.linkedin.com/in/mikegulline/'
+        href='https://www.linkedin.com/in/Michaelgulline/'
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
         <TfiLinkedin />
       </Link>
       {/* <Link
-        href='https://github.com/mikegulline'
+        href='https://github.com/Michaelgulline'
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
