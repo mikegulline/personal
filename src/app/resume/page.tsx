@@ -28,7 +28,7 @@ export default function Resume() {
           <h3 className='text-5xl sm:text-6xl mb-8 font-bold '>Skills</h3>
           <Skills />
         </div>
-        <div className='px-5  mb-16'>
+        {/* <div className='px-5  mb-16'>
           <h3 className='text-5xl sm:text-6xl mb-8 font-bold '>Summary</h3>
           <p className=''>
             Versatile software engineer with 25+ years of experience in frontend
@@ -40,7 +40,7 @@ export default function Resume() {
             technical solutions, with a dedicated focus on scalable and
             maintainable code.
           </p>
-        </div>
+        </div> */}
 
         <div className='  mb-16'>
           <h3 className='text-5xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
@@ -49,12 +49,12 @@ export default function Resume() {
           <Work />
         </div>
 
-        <div className=' '>
+        {/* <div className=' '>
           <h3 className='text-5xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
             Side Projects
           </h3>
           <SideProjects />
-        </div>
+        </div> */}
       </div>
     </GridContainer>
   );

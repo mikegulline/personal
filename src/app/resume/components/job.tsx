@@ -62,16 +62,16 @@ export default function Job({
   return (
     <div className='mb-12 relative px-5 sm:pr-10'>
       <BorderLeft>
-        <h4 className='text-2xl font-bold '>{title}</h4>
+        <h4 className='text-2xl font-bold '>{title} </h4>
       </BorderLeft>
       <p>
-        <CompanyLink /> &middot; {type}
+        <CompanyLink /> &middot; {type} &middot; {onsite}
       </p>
       <p className='text-slate-500'>
         <FromTo from={start} to={end} />
       </p>
       <p className='mb-4 text-slate-500'>
-        {city}, {state} &middot; {onsite}
+        {city}, {state}
       </p>
       {/* <p className='mb-4'>{description}</p> */}
       <ul className='list-disc list-outside'>

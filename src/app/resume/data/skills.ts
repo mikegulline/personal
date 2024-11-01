@@ -17,6 +17,7 @@ export const skills: string[] = [
   'NodeJS',
   'Express',
   'PHP',
+  'Python',
   'MySQL',
   'PostgreSQL',
   'MongoDB',

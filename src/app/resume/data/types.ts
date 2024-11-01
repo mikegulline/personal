@@ -3,7 +3,7 @@ export interface IJob {
   description: string;
   city: string;
   state: string;
-  onsite: 'Onsite' | 'Remote' | 'Hybrid';
+  onsite: 'On-Site' | 'Remote' | 'Hybrid';
   website: string;
   title: string;
   type: string;
