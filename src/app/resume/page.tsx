@@ -16,7 +16,7 @@ export default function Resume() {
     <GridContainer columns={3}>
       <div className=' lg:text-lg '>
         <div className='w-full px-5 relative mb-16'>
-          <h1 className='text-5xl sm:text-9xl font-black mb-4'>
+          <h1 className='text-5xl sm:text-8xl font-black mb-4'>
             Michael Gulline
           </h1>
           <BorderLeft>
