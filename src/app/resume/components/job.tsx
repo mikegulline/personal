@@ -64,16 +64,16 @@ export default function Job({
           <BorderLeft>
             <h4 className='text-2xl font-bold md:leading-8'>{title} </h4>
           </BorderLeft>
-          <p>
+          <p className=' md:leading-6'>
             <CompanyLink /> &middot; {city}, {state}
           </p>
         </div>
-        <div className='flex justify-start gap-2 md:block mt-0.5'>
+        <div className='flex justify-start gap-2 md:block mt-0.5 md:mt-0 md:text-right'>
           <p className='md:leading-8'>
             <FromTo from={start} to={end} />
           </p>
           <p className='md:hidden'>&middot;</p>
-          <p className='mb-4'>
+          <p className='mb-4 md:leading-6'>
             {type} &middot; {onsite}
           </p>
         </div>
