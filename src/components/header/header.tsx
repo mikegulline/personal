@@ -75,7 +75,7 @@ function Navigation() {
         ))}
         <li className='sm:visible md:hidden'>
           <Link
-            href='/resu,e'
+            href='/resume'
             className=' text-lg sm:text-base text-slate-800 hover:text-teal-400 font-semibold'
           >
             Resume
