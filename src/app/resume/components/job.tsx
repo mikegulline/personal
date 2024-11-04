@@ -21,16 +21,14 @@ export default function Job({
   const CompanyLink = () => {
     if (website) {
       return (
-        <strong>
-          <Link
-            href={website}
-            target='_blank'
-            className='text-teal-500 underline hover:text-black'
-            title={`Visit ${company} website`}
-          >
-            {company}
-          </Link>
-        </strong>
+        <Link
+          href={website}
+          target='_blank'
+          className='text-teal-500 font-bold underline hover:text-black'
+          title={`Visit ${company} website`}
+        >
+          {company}
+        </Link>
       );
     }
     return <strong>{company}</strong>;
@@ -61,21 +59,24 @@ export default function Job({
   };
   return (
     <div className='mb-12 relative px-5'>
-      <div className='flex justify-between items-baseline'>
-        <BorderLeft>
-          <h4 className='text-2xl font-bold '>{title} </h4>
-        </BorderLeft>
-        <p className='text-slate-500'>
-          <FromTo from={start} to={end} />
-        </p>
-      </div>
-      <div className='flex justify-between items-baseline'>
-        <p>
-          <CompanyLink /> &middot; {city}, {state}
-        </p>
-        <p className='mb-4 text-slate-500'>
-          {type} &middot; {onsite}
-        </p>
+      <div className='md:flex justify-between '>
+        <div>
+          <BorderLeft>
+            <h4 className='text-2xl font-bold md:leading-8'>{title} </h4>
+          </BorderLeft>
+          <p>
+            <CompanyLink /> &middot; {city}, {state}
+          </p>
+        </div>
+        <div className='flex justify-start gap-2 md:block mt-0.5'>
+          <p className='md:leading-8'>
+            <FromTo from={start} to={end} />
+          </p>
+          <p className='md:hidden'>&middot;</p>
+          <p className='mb-4'>
+            {type} &middot; {onsite}
+          </p>
+        </div>
       </div>
 
       {/* <p className='mb-4'>{description}</p> */}
