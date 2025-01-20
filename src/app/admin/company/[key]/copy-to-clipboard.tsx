@@ -9,17 +9,23 @@ const handleCopyToClipboard = (text: string) =>
 
 const CopyButton = ({ link, k }: { link: string; k: string }) => {
   const [click, setClick] = useState(false);
+  const [count, setCount] = useState(0);
 
   return (
-    <span className='grid relative'>
+    <span className='grid relative group'>
       <button
-        className=' text-teal-600 underline hover:text-black col-start-1 row-start-1  flex items-center justify-center '
+        className='col-start-1 row-start-1  flex gap-1 items-center justify-center '
         onClick={() => {
           setClick(true);
+          setCount((c) => c + 1);
           handleCopyToClipboard(`https://www.gulline.com/v1/${k}/${link}`);
         }}
       >
-        {link}
+        <span className='text-teal-600 underline hover:text-black'>{link}</span>
+
+        <span className='w-5 h-5 flex no-underline justify-center items-center text-xs text-white bg-teal-500 group-hover:bg-black rounded-full'>
+          {count}
+        </span>
       </button>
       <span
         onAnimationEnd={() => {
