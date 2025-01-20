@@ -55,14 +55,14 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Gulline.com</p>
           <div className='flex items-center gap-6'>
             <Link
-              href='https://www.linkedin.com/in/Michaelgulline/'
+              href='https://www.linkedin.com/in/mikegulline/'
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >
               <TfiLinkedin />
             </Link>
             {/* <Link
-              href='https://github.com/Michaelgulline'
+              href='https://github.com/mikegulline'
               target='blank'
               className='text-slate-800 hover:text-teal-400 scale-125'
             >

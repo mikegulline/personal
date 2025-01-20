@@ -35,7 +35,7 @@ we might get along famously!
 
 Let's connect on LinkedIn…
 
-https://www.linkedin.com/in/Michaelgulline/
+https://www.linkedin.com/in/mikegulline/
 ==========================================
 `;
   return (

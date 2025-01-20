@@ -90,14 +90,14 @@ function Contact() {
   return (
     <div className='hidden md:flex items-center gap-6 border-l border-dashed border-slate-300 pl-6'>
       <Link
-        href='https://www.linkedin.com/in/Michaelgulline/'
+        href='https://www.linkedin.com/in/mikegulline/'
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >
         <TfiLinkedin />
       </Link>
       {/* <Link
-        href='https://github.com/Michaelgulline'
+        href='https://github.com/mikegulline'
         target='blank'
         className='text-slate-800 hover:text-teal-400 scale-125'
       >

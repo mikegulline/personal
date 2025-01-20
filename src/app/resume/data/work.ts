@@ -124,7 +124,7 @@ export const work: IJob[] = [
     details: '',
   },
   {
-    company: 'MichaelGulline',
+    company: 'Michael Gulline',
     description: '',
     city: 'Dana Point',
     state: 'CA',

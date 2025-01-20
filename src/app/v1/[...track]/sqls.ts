@@ -8,7 +8,7 @@ ALTER TABLE company ADD COLUMN title VARCHAR;
 
 
 INSERT INTO actions (companyId, redirectKey, redirectLink, ip, userAgent, country, region, city) 
-VALUES (1, 'linkedin', 'https://www.linkedin.com/in/Michaelgulline/', '::ffff:127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:127.0) Gecko/20100101 Firefox/127.0', 'Unknown', 'Unknown', 'Unknown');
+VALUES (1, 'linkedin', 'https://www.linkedin.com/in/mikegulline/', '::ffff:127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:127.0) Gecko/20100101 Firefox/127.0', 'Unknown', 'Unknown', 'Unknown');
 
 // will retun nothing if no actions
 SELECT c.name, a.* 
