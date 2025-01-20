@@ -1,9 +1,19 @@
 export const dynamic = 'force-dynamic';
 import { getCompanyByKey, getActionsByCompanyId } from '../../actions';
+import CopyToClipboard from './copy-to-clipboard';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { PiEggCrackThin } from 'react-icons/pi';
+
+const links = ['portfolio', 'linkedin', 'github'];
 // http://ip-api.com/json/205.169.39.170
+
+const copyToClipboard = (text: string) => {
+  navigator.clipboard
+    .writeText(text)
+    .then(() => console.log(`Text copied to clipboard`))
+    .catch((e) => console.error(`Error copying text!`, e));
+};
 
 export default async function CompanyByKey({
   params,
@@ -48,6 +58,9 @@ export default async function CompanyByKey({
       </header>
       <p className='mb-6'>
         <strong>Job Title: {company.position}</strong>
+      </p>
+      <p className='mb-6 p-4 bg-teal-100/20 border border-solid border-teal-600 rounded flex justify-start gap-2'>
+        <strong>Copy Links:</strong> <CopyToClipboard links={links} k={key} />
       </p>
       {actions.length === 0 ? (
         <p className='mt-4'>No actions yet :(</p>

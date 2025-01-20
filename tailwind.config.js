@@ -12,11 +12,24 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        popup: 'popup 0.152s ease-out forwards ',
+      },
     },
     keyframes: {
       pan: {
         '0%': { transform: 'translateX(0%)' },
         '100%': { transform: 'translateX(-50%)' },
+      },
+      popup: {
+        '0%': {
+          transform: 'translateY(-50%) translateX(-50%)',
+          opacity: '0.0',
+        },
+        '100%': {
+          transform: 'translateY(-175%) translateX(-50%)',
+          opacity: '1',
+        },
       },
     },
   },
