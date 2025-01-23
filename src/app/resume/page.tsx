@@ -1,9 +1,7 @@
 import GridContainer from '@/components/grid-container';
 import BorderLeft from '@/components/border-left';
-import Icons from './components/icons';
 import Skills from './components/skills';
 import Work from './components/work';
-import SideProjects from './components/side-projects';
 
 export const metadata = {
   title: 'Michael Gulline Software Engineer Resume ',

@@ -18,6 +18,48 @@ export interface CompanyTypeWithViews extends CompanyType {
   total_matching: number;
 }
 
+export async function getRecentWithActionCount(limit: number, offset: number) {
+  const { rows } = await sql`
+  WITH CompanyViews AS (
+    SELECT
+        c.id,
+        c.name,
+        c.key,
+        c.salary,
+        c.position,
+        c.status,
+        COUNT(a.id) AS views,
+        c.date
+    FROM
+        company c
+    LEFT JOIN
+        actions a
+    ON
+        c.id = a.companyId
+    WHERE
+        c.date >= NOW() - INTERVAL '30 days'
+    GROUP BY
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        c.status,
+        c.salary,
+        c.date
+  )
+  SELECT
+      *,
+      COUNT(*) OVER() AS total_matching
+  FROM
+      CompanyViews
+  ORDER BY
+      date DESC
+  LIMIT ${limit} OFFSET ${(offset - 1) * limit};
+`;
+
+  return rows as CompanyTypeWithViews[];
+}
+
 export async function getAllRejectedCompaniesWithActionCount(
   limit: number,
   offset: number
@@ -220,6 +262,40 @@ export async function deleteCompanyById(id: string) {
     // Rollback the transaction in case of error
     await client.query('ROLLBACK');
     console.error('Error deleting company and actions:', error);
+    return { success: false, error: error.message };
+  } finally {
+    // Release the client back to the pool
+    client.release();
+  }
+}
+
+export async function deleteActionsByCompanyId(id: string) {
+  const client = await sql.connect(); // Connect to the database
+
+  try {
+    // Start the transaction
+    await client.query('BEGIN');
+
+    // Delete related actions
+    const { rowCount: actionCount } = await client.query(
+      `
+      DELETE FROM actions
+      WHERE companyId = $1`,
+      [id]
+    );
+
+    // Commit the transaction
+    await client.query('COMMIT');
+
+    // Revalidate path if the transaction was successful
+    revalidatePath('/admin');
+    // moved to (backend)/api/cache/revalidate-path
+
+    return { success: true, actionCount };
+  } catch (error: any) {
+    // Rollback the transaction in case of error
+    await client.query('ROLLBACK');
+    console.error('Error deleting actions:', error);
     return { success: false, error: error.message };
   } finally {
     // Release the client back to the pool

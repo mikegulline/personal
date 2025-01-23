@@ -2,7 +2,9 @@ import {
   getAllCompaniesWithActionCount,
   getAllViewedCompaniesWithActionCount,
   getAllRejectedCompaniesWithActionCount,
+  getRecentWithActionCount,
 } from './actions';
+import DeleteActionsLink from '@/components/delete-actions-link';
 import UpdateCompanyStatusLink from '@/components/update-company-status-link';
 import Link from 'next/link';
 import ClickableTr from '@/components/table/clickable-tr';
@@ -22,19 +24,21 @@ export default async function AdminDashboard({
   searchParams,
 }: AdminDashbordProps) {
   const showInterviewing = searchParams?.rejected as string | '';
+  const showRecent = searchParams?.recent as string | '';
   const showRejected = searchParams?.rejected as string | '';
   const showViewed = searchParams?.views as string | '';
-  const showAll = !showViewed && !showRejected;
+  const showAll = !showViewed && !showRejected && !showRecent;
   const itemsPerPage: number = +(searchParams?.show ?? '5');
   const offset: number = +(searchParams?.page ?? '1');
   let companies;
-  if (showViewed) {
+  if (showRecent) {
+    companies = await getRecentWithActionCount(itemsPerPage, offset);
+  } else if (showViewed) {
     companies = await getAllViewedCompaniesWithActionCount(
       itemsPerPage,
       offset
     );
-  }
-  if (showRejected) {
+  } else if (showRejected) {
     companies = await getAllRejectedCompaniesWithActionCount(
       itemsPerPage,
       offset
@@ -46,7 +50,7 @@ export default async function AdminDashboard({
   }
 
   const totalItems = companies[0]?.total_matching;
-  const pagination = getPagination(totalItems, itemsPerPage);
+  const pagination = getPagination(totalItems, itemsPerPage, offset);
 
   const viewCountArgs = {
     searchParams,
@@ -72,6 +76,23 @@ export default async function AdminDashboard({
                   views: '',
                   page: '1',
                   rejected: '',
+                  recent: '1',
+                })}`}
+                className={`${
+                  showRecent ? 'underline text-teal-500' : 'hover:underline'
+                }`}
+              >
+                Recent
+              </Link>
+            </div>
+
+            <div>
+              <Link
+                href={`/admin?${getParams(searchParams, {
+                  views: '',
+                  page: '1',
+                  rejected: '',
+                  recent: '',
                 })}`}
                 className={`${
                   showAll ? 'underline text-teal-500' : 'hover:underline'
@@ -87,6 +108,7 @@ export default async function AdminDashboard({
                   views: '1',
                   page: '1',
                   rejected: '',
+                  recent: '',
                 })}`}
                 className={`${
                   showViewed ? 'underline text-teal-500' : 'hover:underline'
@@ -101,6 +123,7 @@ export default async function AdminDashboard({
                   views: '',
                   rejected: '1',
                   page: '1',
+                  recent: '',
                 })}`}
                 className={`${
                   showRejected ? 'underline text-teal-500' : 'hover:underline'
@@ -161,7 +184,11 @@ export default async function AdminDashboard({
                     <td className='px-6 py-4 text-center'>
                       {daysFromNow(date)}
                     </td>
-                    <td className='px-6 py-4 text-center'>{views}</td>
+                    <td className='px-6 py-4 text-center'>
+                      <DeleteActionsLink companyKey={id}>
+                        {views}
+                      </DeleteActionsLink>
+                    </td>
                     <td className='px-6 py-4'>
                       <div className='truncate block line-clamp-1 font-bold w-48'>
                         {name}
@@ -223,23 +250,27 @@ export default async function AdminDashboard({
             )}
           </tbody>
         </table>
-        <div className='flex gap-1 text-sm p-3'>
-          {pagination.map((page) => (
-            <Link
-              href={`/admin?${getParams(searchParams, {
-                page: page.toString(),
-              })}`}
-              title={`Page ${page}`}
-              key={`page-${page}`}
-              className={` w-8 h-8 flex items-center justify-center rounded border ${
-                page === offset
-                  ? 'border-teal-500 text-white bg-teal-500'
-                  : 'border-gray-200'
-              }`}
-            >
-              {page}
-            </Link>
-          ))}
+        <div className='flex gap-1 text-sm p-3 items-baseline'>
+          {pagination.map((page, i) => {
+            if (page < 0) return <span key={`...${i}`}>…</span>;
+
+            return (
+              <Link
+                href={`/admin?${getParams(searchParams, {
+                  page: page.toString(),
+                })}`}
+                title={`Page ${page}`}
+                key={`page-${page}`}
+                className={` w-8 h-8 flex items-center justify-center rounded border ${
+                  page === offset
+                    ? 'border-teal-500 text-white bg-teal-500'
+                    : 'border-gray-200'
+                }`}
+              >
+                {page}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -292,12 +323,16 @@ function ViewCountLink({
   );
 }
 
-function getPagination(count: number, show: number) {
+function getPagination(count: number, show: number, offset: number) {
   let build = [];
   const pages = Math.ceil(count / show);
   for (let i = 1; i <= pages; i++) {
-    build.push(i);
+    if (i === 1 || i === pages || Math.abs(offset - i) < 3) build.push(i);
   }
+  if (build[1] - build[0] > 1) build.splice(1, 0, -1);
+  if (build[build.length - 1] - build[build.length - 2] > 1)
+    build.splice(build.length - 1, 0, -1);
+
   return build;
 }
 

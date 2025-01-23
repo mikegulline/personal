@@ -7,7 +7,7 @@ const handleCopyToClipboard = (text: string) =>
     .then(() => console.log(`Text (${text}) copied to clipboard`))
     .catch((e) => console.error('Error copying text to clipboard', e));
 
-const CopyButton = ({ link, k }: { link: string; k: string }) => {
+const CopyButton = ({ name, value }: { name: string; value: string }) => {
   const [click, setClick] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -18,10 +18,10 @@ const CopyButton = ({ link, k }: { link: string; k: string }) => {
         onClick={() => {
           setClick(true);
           setCount((c) => c + 1);
-          handleCopyToClipboard(`https://www.gulline.com/v1/${k}/${link}`);
+          handleCopyToClipboard(value);
         }}
       >
-        <span className='text-teal-600 underline hover:text-black'>{link}</span>
+        <span className='text-teal-600 underline hover:text-black'>{name}</span>
 
         <span className='w-5 h-5 flex no-underline justify-center items-center text-xs text-white bg-teal-500 group-hover:bg-black rounded-full'>
           {count}
@@ -45,10 +45,24 @@ const CopyButton = ({ link, k }: { link: string; k: string }) => {
 
 const CopyToClipboard = ({ links, k }: { links: string[]; k: string }) => {
   return (
-    <span className='flex justify-start gap-2'>
-      {links.map((link: string) => (
-        <CopyButton key={link} link={link} k={k} />
-      ))}
+    <span className='flex justify-between flex-grow'>
+      <span className='flex gap-2'>
+        {links.map((link: string) => (
+          <CopyButton
+            key={`un-${link}`}
+            value={`https://www.gulline.com/v1/${k}/${link}`}
+            name={link}
+          />
+        ))}
+      </span>
+      <span className='flex gap-2'>
+        <CopyButton value={k} name='code' />
+        <CopyButton
+          value={'https://www.linkedin.com/in/mikegulline/'}
+          name='linkedin'
+        />
+        <CopyButton value={'https://github.com/mikegulline'} name='github' />
+      </span>
     </span>
   );
 };
