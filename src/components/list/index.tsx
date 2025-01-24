@@ -22,13 +22,13 @@ const ListTitle = ({ children }: ListTitleProps) => {
         <h1 className='text-4xl text-gray-800 font-black '>{children}</h1>
       </div>
       <div>
-        <a
+        <Link
           title='Add new company'
           className='text-white bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800'
           href='/admin/company'
         >
           + Add New
-        </a>
+        </Link>
       </div>
     </header>
   );
