@@ -20,7 +20,7 @@ export default async function CompanyByKey({
 }: {
   params: { key: string };
 }) {
-  const { key } = params;
+  const { key } = await params;
   const company = await getCompanyByKey(key);
   const actions = await getActionsByCompanyId(company.id);
   const uniqueIPs = new Set([...actions.map(({ ip }) => ip)]).size;

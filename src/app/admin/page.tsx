@@ -17,13 +17,12 @@ import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
 
 interface AdminDashbordProps {
-  searchParams: { [key: string]: string };
+  params: { [key: string]: string };
 }
 
-export default async function AdminDashboard({
-  searchParams,
-}: AdminDashbordProps) {
-  const showInterviewing = searchParams?.rejected as string | '';
+export default async function AdminDashboard({ params }: AdminDashbordProps) {
+  const searchParams = await params;
+  // const showInterviewing = await searchParams?.rejected as string | '';
   const showRecent = searchParams?.recent as string | '';
   const showRejected = searchParams?.rejected as string | '';
   const showViewed = searchParams?.views as string | '';

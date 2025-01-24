@@ -4,9 +4,7 @@ const nodemailer = require('nodemailer');
 
 export function getBrowserInfo(req: NextRequest) {
   const ip =
-    req.headers.get('x-forwarded-for') ||
-    req.headers.get('x-real-ip') ||
-    req.ip;
+    req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || null;
   const userAgent = req.headers.get('user-agent') || 'Unknown';
   const geo = {
     country: req.headers.get('x-vercel-ip-country') || 'Unknown',
@@ -31,7 +29,7 @@ interface SaveAction {
   companyId: string;
   redirectKey: string;
   redirectLink: string;
-  ip: string | undefined;
+  ip: string | null;
   userAgent: string;
   country: string;
   region: string;
