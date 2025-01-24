@@ -18,7 +18,7 @@ const copyToClipboard = (text: string) => {
 export default async function CompanyByKey({
   params,
 }: {
-  params: { key: string };
+  params: Promise<{ key: string }>;
 }) {
   const { key } = await params;
   const company = await getCompanyByKey(key);

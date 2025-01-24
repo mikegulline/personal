@@ -9,9 +9,9 @@ import {
   saveActionToDB,
 } from './utils';
 
-interface Params {
+type Params = Promise<{
   track: string[];
-}
+}>;
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   console.log('process route');

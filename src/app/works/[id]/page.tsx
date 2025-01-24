@@ -7,9 +7,9 @@ export const metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 type Work = {
@@ -25,7 +25,8 @@ type Work = {
   };
 };
 
-export default async function Works({ params: { id } }: Props) {
+export default async function Works({ params }: Props) {
+  const { id } = await params;
   try {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
     const work: Work = await res.json();

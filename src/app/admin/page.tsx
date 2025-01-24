@@ -17,7 +17,7 @@ import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
 
 interface AdminDashbordProps {
-  params: { [key: string]: string };
+  params: Promise<{ [key: string]: string }>;
 }
 
 export default async function AdminDashboard({ params }: AdminDashbordProps) {
