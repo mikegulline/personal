@@ -10,50 +10,81 @@ import {
 } from './utils';
 
 type Params = Promise<{
-  track: string[];
+  track: [string, string];
 }>;
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
   console.log('process route');
   const { track } = (await params) as { track: [string, string] };
-  if (track.length !== 2) {
-    // wrong params found
-    return NextResponse.json({
-      error: "Sorry, you won't find anything here.",
-      code: 1,
-      message: 'Bad params.',
-    });
-  }
   const [companyKey, redirectKey] = track;
   const redirectLink = redirectUrl[redirectKey.toLowerCase()];
-  if (!redirectLink) {
-    // no redirect found
-    return NextResponse.json({
-      error: "Hmmm, that won't go anywhere.",
-      code: 2,
-      message: 'No redirect.',
-    });
-  }
-
-  if (companyKey.length < 3 || companyKey.length > 5) {
-    // bad company key
-    return NextResponse.json({
-      error: 'Hey, quit messing around.',
-      code: 3,
-      message: 'No Company.',
-    });
-  }
-
-  const company = await getCompanyInfoFromKey(companyKey);
-  if (!company)
-    return NextResponse.json({
-      error: "Nope, you won't find them here.",
-      code: 4,
-    });
-
-  const [companyId, name, position] = company as [string, string, string];
   const browserInfo = getBrowserInfo(req);
+  let company;
 
+  try {
+    verifyParamsLength(track);
+    verifyKeyLength(companyKey);
+    verifyRedirectLink(redirectLink);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : 'An unexpected error occurred',
+      },
+      { status: 400 }
+    );
+  }
+
+  company = await getCompanyInfoFromKey(companyKey);
+  if (!company)
+    return NextResponse.json(
+      {
+        error: "Nope, you won't find them here.",
+      },
+      { status: 400 }
+    );
+
+  const { id, name, position } = company;
+
+  // send mail but don't wait
+  (async () => {
+    await sendNotification(name, position, redirectKey, browserInfo);
+  })();
+
+  //udate db and revalidate but don't wait
+  (async () => {
+    await saveActionToDB({
+      companyId: id,
+      redirectKey,
+      redirectLink,
+      ...browserInfo,
+    });
+    revalidatePath(`/admin/company/${companyKey}`);
+    revalidatePath(`/admin`);
+  })();
+
+  //prepare link
+  const redirect =
+    redirectLink +
+    (['we-submit', 'mail'].includes(redirectKey.toLowerCase()) ? name : '');
+
+  return NextResponse.redirect(redirect);
+}
+
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
+
+async function sendNotification(
+  name: string,
+  position: string,
+  redirectKey: string,
+  browserInfo: any
+) {
   const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link`;
   const text = `
   Great News…
@@ -96,17 +127,26 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   🤖 Tracker Bot</p>
   `;
 
-  await saveActionToDB({
-    companyId,
-    redirectKey,
-    redirectLink,
-    ...browserInfo,
-  });
-  revalidatePath(`/admin/company/${companyKey}`);
-  revalidatePath(`/admin`);
   await mySendMail(subject, text, html);
+}
 
-  return NextResponse.redirect(
-    redirectLink + (redirectKey.toLowerCase() === 'mail' ? name : '')
-  );
+function verifyParamsLength(param: [string, string]) {
+  // bad params
+  if (param.length !== 2) {
+    throw new Error(`Sorry, you won't find anything here.`);
+  }
+}
+
+function verifyRedirectLink(link: string | undefined | null) {
+  // no redirect link
+  if (!link) {
+    throw new Error(`Hmmm, that won't go anywhere.`);
+  }
+}
+
+function verifyKeyLength(key: string) {
+  // bad key, dont even try
+  if (key.length < 3 || key.length > 5) {
+    throw new Error(`Hey, quit messing around.`);
+  }
 }

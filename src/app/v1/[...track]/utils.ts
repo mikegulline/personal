@@ -22,7 +22,7 @@ export async function getCompanyInfoFromKey(companyKey: string) {
   const { rows } = await sql`SELECT * FROM company WHERE key = ${companyKey};`;
   if (!rows.length) return null;
   const { id, name, position } = rows[0];
-  return [id, name, position];
+  return { id, name, position };
 }
 
 interface SaveAction {
