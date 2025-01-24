@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import { after } from 'next/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { redirectUrl } from './redirect-url';
 import { revalidatePath } from 'next/cache';
@@ -48,28 +49,26 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
 
   const { id, name, position } = company;
 
-  try {
-    // Execute async operations in parallel
-    await Promise.all([
-      sendNotification(name, position, redirectKey, browserInfo),
-      saveActionToDB({
-        companyId: id,
-        redirectKey,
-        redirectLink,
-        ...browserInfo,
-      }),
-    ]);
+  after(async () => {
+    try {
+      // Execute async operations in parallel
+      await Promise.all([
+        sendNotification(name, position, redirectKey, browserInfo),
+        saveActionToDB({
+          companyId: id,
+          redirectKey,
+          redirectLink,
+          ...browserInfo,
+        }),
+      ]);
 
-    // Revalidate paths
-    revalidatePath(`/admin/company/${companyKey}`);
-    revalidatePath(`/admin`);
-  } catch (error) {
-    console.error('Failed to process async operations:', error);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
-  }
+      // Revalidate paths
+      revalidatePath(`/admin/company/${companyKey}`);
+      revalidatePath(`/admin`);
+    } catch (error) {
+      console.error('Failed to process async operations:', error);
+    }
+  });
 
   const redirect =
     redirectLink +
