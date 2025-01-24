@@ -14,12 +14,11 @@ type Params = Promise<{
 }>;
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
-  console.log('process route');
+  console.log('Processing route');
   const { track } = (await params) as { track: [string, string] };
   const [companyKey, redirectKey] = track;
   const redirectLink = redirectUrl[redirectKey.toLowerCase()];
   const browserInfo = getBrowserInfo(req);
-  let company;
 
   try {
     verifyParamsLength(track);
@@ -37,35 +36,41 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     );
   }
 
-  company = await getCompanyInfoFromKey(companyKey);
-  if (!company)
+  const company = await getCompanyInfoFromKey(companyKey);
+  if (!company) {
     return NextResponse.json(
       {
         error: "Nope, you won't find them here.",
       },
       { status: 400 }
     );
+  }
 
   const { id, name, position } = company;
 
-  // send mail but don't wait
-  (async () => {
-    await sendNotification(name, position, redirectKey, browserInfo);
-  })();
+  try {
+    // Execute async operations in parallel
+    await Promise.all([
+      sendNotification(name, position, redirectKey, browserInfo),
+      saveActionToDB({
+        companyId: id,
+        redirectKey,
+        redirectLink,
+        ...browserInfo,
+      }),
+    ]);
 
-  //udate db and revalidate but don't wait
-  (async () => {
-    await saveActionToDB({
-      companyId: id,
-      redirectKey,
-      redirectLink,
-      ...browserInfo,
-    });
+    // Revalidate paths
     revalidatePath(`/admin/company/${companyKey}`);
     revalidatePath(`/admin`);
-  })();
+  } catch (error) {
+    console.error('Failed to process async operations:', error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  }
 
-  //prepare link
   const redirect =
     redirectLink +
     (['we-submit', 'mail'].includes(redirectKey.toLowerCase()) ? name : '');
