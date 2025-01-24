@@ -44,19 +44,18 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     });
   }
 
-  (async () => {
-    const company = await getCompanyInfoFromKey(companyKey);
-    if (!company)
-      return NextResponse.json({
-        error: "Nope, you won't find them here.",
-        code: 4,
-      });
+  const company = await getCompanyInfoFromKey(companyKey);
+  if (!company)
+    return NextResponse.json({
+      error: "Nope, you won't find them here.",
+      code: 4,
+    });
 
-    const [companyId, name, position] = company as [string, string, string];
-    const browserInfo = getBrowserInfo(req);
+  const [companyId, name, position] = company as [string, string, string];
+  const browserInfo = getBrowserInfo(req);
 
-    const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link`;
-    const text = `
+  const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link`;
+  const text = `
   Great News…
 
   ${name}, clicked on your ${redirectKey} link.
@@ -75,7 +74,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   Friends forever,
   Tracker Bot
   `;
-    const html = `
+  const html = `
   <p>Great News…</p>
 
   <p><strong>${name}</strong>, clicked on your <strong>${redirectKey}</strong> link.</p>
@@ -97,16 +96,15 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
   🤖 Tracker Bot</p>
   `;
 
-    await saveActionToDB({
-      companyId,
-      redirectKey,
-      redirectLink,
-      ...browserInfo,
-    });
-    revalidatePath(`/admin/company/${companyKey}`);
-    revalidatePath(`/admin`);
-    await mySendMail(subject, text, html);
-  })();
+  await saveActionToDB({
+    companyId,
+    redirectKey,
+    redirectLink,
+    ...browserInfo,
+  });
+  revalidatePath(`/admin/company/${companyKey}`);
+  revalidatePath(`/admin`);
+  await mySendMail(subject, text, html);
 
   return NextResponse.redirect(
     redirectLink + (redirectKey.toLowerCase() === 'mail' ? name : '')
