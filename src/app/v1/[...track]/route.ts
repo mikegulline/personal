@@ -1,13 +1,13 @@
 export const dynamic = 'force-dynamic';
-import { after } from 'next/server';
-import { NextRequest, NextResponse } from 'next/server';
+import { after, NextRequest, NextResponse, userAgent } from 'next/server';
 import { redirectUrl } from './redirect-url';
 import { revalidatePath } from 'next/cache';
 import {
   getCompanyInfoFromKey,
   getBrowserInfo,
-  mySendMail,
+  checkAndThrow,
   saveActionToDB,
+  sendNotification,
 } from './utils';
 
 type Params = Promise<{
@@ -15,16 +15,20 @@ type Params = Promise<{
 }>;
 
 export async function GET(req: NextRequest, { params }: { params: Params }) {
-  console.log('Processing route');
   const { track } = (await params) as { track: [string, string] };
   const [companyKey, redirectKey] = track;
   const redirectLink = redirectUrl[redirectKey.toLowerCase()];
   const browserInfo = getBrowserInfo(req);
 
   try {
-    verifyParamsLength(track);
-    verifyKeyLength(companyKey);
-    verifyRedirectLink(redirectLink);
+    const isBot = userAgent(req).isBot;
+    const badKey = companyKey.length < 3 || companyKey.length > 5;
+    const badParams = track.length !== 2;
+    const badRedirect = !redirectLink;
+    checkAndThrow(isBot, `Get out of here, you stupid bot! (you're a bot)`);
+    checkAndThrow(badKey, `Hey, quit messing around. (bad key)`);
+    checkAndThrow(badParams, `You won't find anything here. (bad params)`);
+    checkAndThrow(badRedirect, `Hmmm, that won't go anywhere. (bad redirect)`);
   } catch (error) {
     return NextResponse.json(
       {
@@ -37,21 +41,13 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     );
   }
 
-  const company = await getCompanyInfoFromKey(companyKey);
-  if (!company) {
-    return NextResponse.json(
-      {
-        error: "Nope, you won't find them here.",
-      },
-      { status: 400 }
-    );
-  }
-
-  const { id, name, position } = company;
-
   after(async () => {
+    const company = await getCompanyInfoFromKey(companyKey);
+
+    if (!company) return;
+
+    const { id, name, position } = company;
     try {
-      // Execute async operations in parallel
       await Promise.all([
         sendNotification(name, position, redirectKey, browserInfo),
         saveActionToDB({
@@ -62,7 +58,6 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
         }),
       ]);
 
-      // Revalidate paths
       revalidatePath(`/admin/company/${companyKey}`);
       revalidatePath(`/admin`);
     } catch (error) {
@@ -70,87 +65,5 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     }
   });
 
-  const redirect =
-    redirectLink +
-    (['we-submit', 'mail'].includes(redirectKey.toLowerCase()) ? name : '');
-
-  return NextResponse.redirect(redirect);
-}
-
-/////////////////////
-/////////////////////
-/////////////////////
-/////////////////////
-/////////////////////
-
-async function sendNotification(
-  name: string,
-  position: string,
-  redirectKey: string,
-  browserInfo: any
-) {
-  const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link`;
-  const text = `
-  Great News…
-
-  ${name}, clicked on your ${redirectKey} link.
-
-  That ${position} position is as good as yours!
-
-  Here is some super sweet infos about the user.
-
-  System: ${browserInfo.userAgent}
-  Country: ${browserInfo.country}
-  Region: ${browserInfo.region}
-  City: ${browserInfo.city}
-
-  Go get em tiger.
-
-  Friends forever,
-  Tracker Bot
-  `;
-  const html = `
-  <p>Great News…</p>
-
-  <p><strong>${name}</strong>, clicked on your <strong>${redirectKey}</strong> link.</p>
-
-  <p>That <strong>${position}</strong> position is as good as yours!</p>
-
-  <p>Here is some super sweet infos about the user.</p>
-
-  <ul>
-  <li><strong>System:</strong> ${browserInfo.userAgent}</li>
-  <li><strong>Country:</strong> ${browserInfo.country}</li>
-  <li><strong>Region:</strong> ${browserInfo.region}</li>
-  <li><strong>City:</strong> ${browserInfo.city}</li>
-  </ul>
-
-  <p><em>Go get em tiger.</em></p>
-
-  <p>Friends forever,<br />
-  🤖 Tracker Bot</p>
-  `;
-
-  await mySendMail(subject, text, html);
-}
-
-function verifyParamsLength(param: [string, string]) {
-  // bad params
-  if (param.length !== 2) {
-    throw new Error(`Sorry, you won't find anything here.`);
-  }
-}
-
-function verifyRedirectLink(link: string | undefined | null) {
-  // no redirect link
-  if (!link) {
-    throw new Error(`Hmmm, that won't go anywhere.`);
-  }
-}
-
-function verifyKeyLength(key: string) {
-  // bad key, dont even try
-  if (key.length < 3 || key.length > 5) {
-    throw new Error(`Hey, quit messing around.`);
-  }
+  return NextResponse.redirect(redirectLink);
 }

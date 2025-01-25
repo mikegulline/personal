@@ -76,3 +76,58 @@ export async function mySendMail(subject: string, text: string, html: string) {
     console.log(error);
   }
 }
+
+export async function sendNotification(
+  name: string,
+  position: string,
+  redirectKey: string,
+  browserInfo: any
+) {
+  const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link`;
+  const text = `
+  Great News…
+
+  ${name}, clicked on your ${redirectKey} link.
+
+  That ${position} position is as good as yours!
+
+  Here is some super sweet infos about the user.
+
+  System: ${browserInfo.userAgent}
+  Country: ${browserInfo.country}
+  Region: ${browserInfo.region}
+  City: ${browserInfo.city}
+
+  Go get em tiger.
+
+  Friends forever,
+  Tracker Bot
+  `;
+  const html = `
+  <p>Great News…</p>
+
+  <p><strong>${name}</strong>, clicked on your <strong>${redirectKey}</strong> link.</p>
+
+  <p>That <strong>${position}</strong> position is as good as yours!</p>
+
+  <p>Here is some super sweet infos about the user.</p>
+
+  <ul>
+  <li><strong>System:</strong> ${browserInfo.userAgent}</li>
+  <li><strong>Country:</strong> ${browserInfo.country}</li>
+  <li><strong>Region:</strong> ${browserInfo.region}</li>
+  <li><strong>City:</strong> ${browserInfo.city}</li>
+  </ul>
+
+  <p><em>Go get em tiger.</em></p>
+
+  <p>Friends forever,<br />
+  🤖 Tracker Bot</p>
+  `;
+
+  await mySendMail(subject, text, html);
+}
+
+export function checkAndThrow(check: boolean, message: string) {
+  if (check) throw new Error(message);
+}
