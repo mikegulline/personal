@@ -16,19 +16,22 @@ import { HiOutlineFaceFrown } from 'react-icons/hi2';
 import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
 
-interface AdminDashbordProps {
-  params: Promise<{ [key: string]: string }>;
-}
-
-export default async function AdminDashboard({ params }: AdminDashbordProps) {
-  const searchParams = await params;
-  // const showInterviewing = await searchParams?.rejected as string | '';
-  const showRecent = searchParams?.recent as string | '';
-  const showRejected = searchParams?.rejected as string | '';
-  const showViewed = searchParams?.views as string | '';
+export default async function AdminDashboard({
+  searchParams,
+  ...others
+}: {
+  searchParams: Promise<{
+    [key: string]: string;
+  }>;
+}) {
+  const params = await searchParams;
+  const showRecent = params?.recent as string | '';
+  const showRejected = params?.rejected as string | '';
+  const showViewed = params?.views as string | '';
   const showAll = !showViewed && !showRejected && !showRecent;
-  const itemsPerPage: number = +(searchParams?.show ?? '5');
-  const offset: number = +(searchParams?.page ?? '1');
+  const itemsPerPage: number = +(params?.show ?? '5');
+  const offset: number = +(params?.page ?? '1');
+
   let companies;
   if (showRecent) {
     companies = await getRecentWithActionCount(itemsPerPage, offset);
@@ -52,7 +55,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
   const pagination = getPagination(totalItems, itemsPerPage, offset);
 
   const viewCountArgs = {
-    searchParams,
+    params,
     totalItems,
     itemsPerPage,
     offset,
@@ -71,7 +74,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
             <>|</>
             <div>
               <Link
-                href={`/admin?${getParams(searchParams, {
+                href={`/admin?${getParams(params, {
                   views: '',
                   page: '1',
                   rejected: '',
@@ -87,7 +90,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
 
             <div>
               <Link
-                href={`/admin?${getParams(searchParams, {
+                href={`/admin?${getParams(params, {
                   views: '',
                   page: '1',
                   rejected: '',
@@ -103,7 +106,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
 
             <div>
               <Link
-                href={`/admin?${getParams(searchParams, {
+                href={`/admin?${getParams(params, {
                   views: '1',
                   page: '1',
                   rejected: '',
@@ -118,7 +121,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
             </div>
             <div>
               <Link
-                href={`/admin?${getParams(searchParams, {
+                href={`/admin?${getParams(params, {
                   views: '',
                   rejected: '1',
                   page: '1',
@@ -255,7 +258,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
 
             return (
               <Link
-                href={`/admin?${getParams(searchParams, {
+                href={`/admin?${getParams(params, {
                   page: page.toString(),
                 })}`}
                 title={`Page ${page}`}
@@ -277,7 +280,7 @@ export default async function AdminDashboard({ params }: AdminDashbordProps) {
 }
 
 interface ViewCountLinkProps {
-  searchParams: {
+  params: {
     [key: string]: string;
   };
   totalItems: number;
@@ -286,13 +289,13 @@ interface ViewCountLinkProps {
   itemsToShow: number;
 }
 function ViewCountLink({
-  searchParams,
+  params,
   totalItems,
   itemsPerPage,
   itemsToShow,
   offset,
 }: ViewCountLinkProps) {
-  // default searchParams
+  // default params
   // totalItems = all items
   // itemsToShow = update "show"
   // itemsPerPage = "show"
@@ -300,12 +303,12 @@ function ViewCountLink({
   let newParams, page;
   if (itemsToShow * offset > totalItems) {
     page = Math.ceil(totalItems / itemsToShow);
-    newParams = getParams(searchParams, {
+    newParams = getParams(params, {
       show: itemsToShow.toString(),
       page: page.toString(),
     });
   } else {
-    newParams = getParams(searchParams, { show: itemsToShow.toString() });
+    newParams = getParams(params, { show: itemsToShow.toString() });
   }
 
   return (
@@ -336,10 +339,10 @@ function getPagination(count: number, show: number, offset: number) {
 }
 
 function getParams(
-  searchParams: { [key: string]: string },
+  params: { [key: string]: string },
   update: { [key: string]: string }
 ) {
-  const newParams = removeEmptyProperties({ ...searchParams, ...update });
+  const newParams = removeEmptyProperties({ ...params, ...update });
   return new URLSearchParams(newParams).toString();
 }
 
