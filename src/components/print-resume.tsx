@@ -115,7 +115,7 @@ const userData = {
   work: [
     {
       company: 'KumatoLabs',
-      title: (title: string) => `Lead ${title}`,
+      title: (title: string, titleOther: string) => `Senior ${title}`,
       city: 'Signal Hill',
       state: 'CA',
       start: 'Apr 2021',
@@ -131,7 +131,7 @@ const userData = {
     },
     {
       company: 'LoyalToFew',
-      title: (title: string) => `Senior ${title}`,
+      title: (title: string, titleOther: string) => `Senior ${title}`,
       city: 'Oceanside',
       state: 'CA',
       start: 'Dec 2020',
@@ -145,7 +145,7 @@ const userData = {
     },
     {
       company: 'HempLandUSA',
-      title: (title: string) => `Senior ${title}`,
+      title: (title: string, titleOther: string) => `Senior ${titleOther}`,
       city: 'Signal Hill',
       state: 'CA',
       start: 'Nov 2015',
@@ -158,7 +158,7 @@ const userData = {
     },
     {
       company: 'Immunocorp',
-      title: (title: string) => `${title}`,
+      title: (title: string, titleOther: string) => `${titleOther}`,
       city: 'Long Beach',
       state: 'CA',
       start: 'Mar 2011',
@@ -171,7 +171,7 @@ const userData = {
     },
     {
       company: 'Galaxy4Gamers',
-      title: (title: string) => `${title}`,
+      title: (title: string, titleOther: string) => `${titleOther}`,
       city: 'Huntington Beach',
       state: 'CA',
       start: 'Jun 2008',
@@ -211,13 +211,18 @@ type PrintResumeProps = {
 };
 
 export default function PrintResume({ title, companyKey }: PrintResumeProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
   const [jobTitle, setJobTitle] = useState(title);
+  const [jobTitleOther, setJobTitleOther] = useState(title);
+  const [isPrinting, setIsPrinting] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({
     contentRef,
     documentTitle:
-      'Michael-Gulline-' + jobTitle.replace(/ /gi, '-') + `-${companyKey}`,
+      'Michael-Gulline-' +
+      jobTitle.trim().replace(/ /gi, '-') +
+      `-${companyKey}`,
   });
+
   const contact = `${userData.header.contact.city}, ${userData.header.contact.state} •  ${userData.header.contact.phone}`;
   const links = () => (
     <>
@@ -242,113 +247,128 @@ export default function PrintResume({ title, companyKey }: PrintResumeProps) {
 
   return (
     <div className='flex justify-center items-center flex-col gap-4 mt-10'>
-      <div className='w-96 flex gap-2'>
+      <div className='flex gap-2'>
         <input
           type='text'
           value={jobTitle}
           onChange={(e) => setJobTitle(e.target.value)}
-          className='px-2 flex flex-grow h-10 border border-slate-400 border-solid rounded'
+          className='px-2 flex h-10 border border-slate-400 border-solid rounded'
+        />
+        <input
+          type='text'
+          value={jobTitleOther}
+          onChange={(e) => setJobTitleOther(e.target.value)}
+          className='px-2 flex h-10 border border-slate-400 border-solid rounded'
         />
         <button
-          onClick={() => reactToPrintFn()}
+          onClick={() => {
+            setIsPrinting(true);
+            setTimeout(() => {
+              reactToPrintFn();
+              setIsPrinting(false);
+            }, 10);
+          }}
           className='px-4 py-1 bg-teal-500 text-white rounded hover:bg-slate-700'
         >
           Print
         </button>
       </div>
-      <div
-        ref={contentRef}
-        className=' flex flex-col justify-between text-xs px-[0.5in] py-[0.25in]  w-[8.5in] h-[11in]  bg-white shadow-xl'
-      >
-        <div className='flex gap-4 -mx-4 bg-slate-700 items-center rounded '>
-          <header className=' flex flex-grow flex-col text-center pt-3 pb-4 text-white'>
-            <h1 className='text-4xl font-bold'>{userData.header.name}</h1>
-            <h2 className='font-medium text-lg text-teal-100'>
-              <strong>{jobTitle}</strong> • {contact}
-            </h2>
-            <p className='font-medium'>{links()}</p>
-          </header>
-        </div>
+      <div className='h-[13.2in]'>
+        <div
+          ref={contentRef}
+          style={{ transform: isPrinting ? '' : 'scale(1.2)' }}
+          className=' origin-top flex flex-col justify-between text-xs px-[0.5in] py-[0.25in]  w-[8.5in] h-[11in]  bg-white shadow-xl'
+        >
+          <div className='flex gap-4 -mx-4 bg-slate-700 items-center rounded '>
+            <header className=' flex flex-grow flex-col text-center pt-3 pb-4 text-white'>
+              <h1 className='text-4xl font-bold'>{userData.header.name}</h1>
+              <h2 className='font-medium text-lg text-teal-100'>
+                <strong>{jobTitle}</strong> • {contact}
+              </h2>
+              <p className='font-medium'>{links()}</p>
+            </header>
+          </div>
 
-        <section>
-          <h3 className='uppercase font-bold text-[18px] border-b border-slate-800 mb-2 pb-1'>
-            Skills
-          </h3>
-          <ul className='flex flex-col gap-1'>
-            {userData.skills.map(({ label, items }) => (
-              <li key={label}>
-                <strong>{label}:</strong> {items.join(', ')}
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section>
+            <h3 className='uppercase font-bold text-[18px] border-b border-slate-800 mb-2 pb-1'>
+              Skills
+            </h3>
+            <ul className='flex flex-col gap-1'>
+              {userData.skills.map(({ label, items }) => (
+                <li key={label}>
+                  <strong>{label}:</strong> {items.join(', ')}
+                </li>
+              ))}
+            </ul>
+          </section>
 
-        <section>
-          <h3 className='uppercase font-bold text-[18px] border-b border-slate-800 mb-2 pb-1'>
-            Work
-          </h3>
-          <ul className='flex flex-col gap-2'>
-            {userData.work.map((work) => (
-              <li key={work.company}>
-                <h4 className='flex justify-between mb-1'>
-                  <strong>
-                    {work.url ? (
-                      <Link
-                        href={work.url(companyKey)}
-                        target='_blank'
-                        className='text-teal-500 underline hover:text-black'
-                      >
-                        {work.company}
-                      </Link>
-                    ) : (
-                      work.company
-                    )}{' '}
-                    • {work.title(jobTitle)}
-                  </strong>
-                  <strong>
-                    {work.city}, {work.state} • {work.start} - {work.end}
-                  </strong>
-                </h4>
-                <ul className='list-disc list-outside marker:text-teal-500 ml-4'>
-                  {work.items.map((item, i) => (
-                    <li key={`${work.company}-${i}`}>{item}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h3 className='uppercase font-bold text-[18px] border-b border-slate-800 mb-2 pb-1'>
-            Education
-          </h3>
-          <ul className='flex flex-col'>
-            {userData.education.map((school) => (
-              <li key={school.school}>
-                <h4 className='flex justify-between'>
-                  <strong>
-                    {school.school} • {school.degree} • {school.study}
-                  </strong>
-                  <span>
+          <section>
+            <h3 className='uppercase font-bold text-[18px] border-b border-slate-800 mb-2 pb-1'>
+              Work
+            </h3>
+            <ul className='flex flex-col gap-2'>
+              {userData.work.map((work) => (
+                <li key={work.company}>
+                  <h4 className='flex justify-between mb-1'>
                     <strong>
-                      {school.city}, {school.state} • {school.start} -{' '}
-                      {school.end}
+                      {work.url ? (
+                        <Link
+                          href={work.url(companyKey)}
+                          target='_blank'
+                          className='text-teal-500 underline hover:text-black'
+                        >
+                          {work.company}
+                        </Link>
+                      ) : (
+                        work.company
+                      )}{' '}
+                      • {work.title(jobTitle, jobTitleOther)}
                     </strong>
-                  </span>
-                </h4>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <footer className='rounded bg-slate-700 text-white py-3 px-4 -mx-4 text-right flex justify-between'>
-          <span>
-            &copy; {new Date().getFullYear()} <strong>Michael Gulline</strong>,{' '}
-            {jobTitle}. All Rights Reserved.
-          </span>
-          <span className='text-teal-100'>
-            <strong>Resume ID:</strong> {companyKey}
-          </span>
-        </footer>
+                    <strong>
+                      {work.city}, {work.state} • {work.start} - {work.end}
+                    </strong>
+                  </h4>
+                  <ul className='list-disc list-outside marker:text-teal-500 ml-4'>
+                    {work.items.map((item, i) => (
+                      <li key={`${work.company}-${i}`}>{item}</li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section>
+            <h3 className='uppercase font-bold text-[18px] border-b border-slate-800 mb-2 pb-1'>
+              Education
+            </h3>
+            <ul className='flex flex-col'>
+              {userData.education.map((school) => (
+                <li key={school.school}>
+                  <h4 className='flex justify-between'>
+                    <strong>
+                      {school.school} • {school.degree} • {school.study}
+                    </strong>
+                    <span>
+                      <strong>
+                        {school.city}, {school.state} • {school.start} -{' '}
+                        {school.end}
+                      </strong>
+                    </span>
+                  </h4>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <footer className='rounded bg-slate-700 text-white py-3 px-4 -mx-4 text-right flex justify-between'>
+            <span>
+              &copy; {new Date().getFullYear()} <strong>Michael Gulline</strong>
+              , {jobTitle}. All Rights Reserved.
+            </span>
+            <span className='text-teal-100'>
+              <strong>Resume ID:</strong> {companyKey}
+            </span>
+          </footer>
+        </div>
       </div>
     </div>
   );
