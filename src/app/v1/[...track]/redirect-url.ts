@@ -4,6 +4,7 @@ type RedirectUrl = {
 
 export const redirectUrl: RedirectUrl = {
   portfolio: 'https://www.gulline.com/works',
+  qr: 'https://www.gulline.com/works',
   resume: 'https://www.gulline.com/resume',
   link: 'https://www.gulline.com/works',
   button: 'https://www.gulline.com/works',

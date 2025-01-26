@@ -4,9 +4,9 @@ import CopyToClipboard from './copy-to-clipboard';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { PiEggCrackThin } from 'react-icons/pi';
+import PrintResume from '@/components/print-resume';
 
 const links = ['portfolio', 'linkedin', 'github'];
-// http://ip-api.com/json/205.169.39.170
 
 const copyToClipboard = (text: string) => {
   navigator.clipboard
@@ -119,6 +119,7 @@ export default async function CompanyByKey({
           </table>
         </div>
       )}
+      <PrintResume companyKey={key} title={company.position} />
     </div>
   );
 }

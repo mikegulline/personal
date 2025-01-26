@@ -30,6 +30,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^4.9.0",
+    "react-qr-code": "^2.0.15",
     "react-to-print": "^3.0.4",
     "sharp": "^0.33.3",
     "tailwindcss": "3.3.2",
