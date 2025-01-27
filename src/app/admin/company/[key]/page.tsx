@@ -100,6 +100,7 @@ export default async function CompanyByKey({
                           href={redirectlink}
                           title={redirectlink}
                           className='font-bold'
+                          prefetch={false}
                         >
                           {redirectkey}
                         </Link>

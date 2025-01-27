@@ -235,6 +235,7 @@ export default function PrintResume({ title, companyKey }: PrintResumeProps) {
           <Link
             key={label}
             href={url}
+            prefetch={false}
             target='_blank'
             className='underline text-white hover:text-teal-200'
           >
@@ -315,6 +316,7 @@ export default function PrintResume({ title, companyKey }: PrintResumeProps) {
                         <Link
                           href={work.url(companyKey)}
                           target='_blank'
+                          prefetch={false}
                           className='text-teal-500 underline hover:text-black'
                         >
                           {work.company}
