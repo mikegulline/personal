@@ -315,15 +315,14 @@ export async function updateStatus(companyKey: string, status: string) {
   return rowCount;
 }
 
-export async function generateRandomKey(count: number): Promise<string> {
-  const key = randomKey();
-
-  const pass = await checkKey(key);
-
-  if (pass) return key;
-
-  if (count >= 5) return '';
-  return await generateRandomKey(count + 1);
+export async function generateRandomKey(): Promise<string> {
+  let pass = false;
+  let key = '';
+  while (!pass) {
+    key = randomKey();
+    pass = await checkKey(key);
+  }
+  return key;
 }
 
 function randomKey() {

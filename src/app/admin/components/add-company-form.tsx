@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function AddCompanyForm({ passKey }: { passKey: string }) {
+export default function AddCompanyForm() {
   const [disabled, setDisabled] = useState(false);
   const [message, setMessage] = useState('');
   const router = useRouter();
@@ -31,9 +31,9 @@ export default function AddCompanyForm({ passKey }: { passKey: string }) {
       if (result.message === 'Company added successfully') {
         if (ref.current) {
           ref.current.classList.add('fade-out-up');
-          router.prefetch(`/admin/company/${passKey}`);
+          router.prefetch(`/admin/company/${result.key}`);
           setTimeout(() => {
-            router.push(`/admin/company/${passKey}`);
+            router.push(`/admin/company/${result.key}`);
           }, 500);
         }
       }
@@ -47,9 +47,7 @@ export default function AddCompanyForm({ passKey }: { passKey: string }) {
   return (
     <div ref={ref}>
       <header className='flex justify-between items-center mb-6 px-4'>
-        <h1 className='text-4xl text-gray-800 font-black mb-2'>
-          Add Company ({passKey})
-        </h1>
+        <h1 className='text-4xl text-gray-800 font-black mb-2'>Add Company</h1>
         <div>
           <Link
             href='/admin'
@@ -64,17 +62,6 @@ export default function AddCompanyForm({ passKey }: { passKey: string }) {
       <form className={disabled ? 'opacity-25' : ''} onSubmit={handleSubmit}>
         <div className='flex'>
           <div className='w-1/2 flex flex-col justify-between px-4'>
-            <input
-              type='hidden'
-              name='key'
-              id='key'
-              maxLength={4}
-              defaultValue={passKey}
-              placeholder='Company Key'
-              disabled={disabled}
-              className='bg-gray-50 w-28 h-10 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block  p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500'
-            />
-
             <input
               type='text'
               ref={startRef}

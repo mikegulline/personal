@@ -29,7 +29,7 @@ export default async function AdminDashboard({
   const showRejected = params?.rejected as string | '';
   const showViewed = params?.views as string | '';
   const showAll = !showViewed && !showRejected && !showRecent;
-  const itemsPerPage: number = +(params?.show ?? '5');
+  const itemsPerPage: number = +(params?.show ?? '20');
   const offset: number = +(params?.page ?? '1');
 
   let companies;
