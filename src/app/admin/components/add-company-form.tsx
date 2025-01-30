@@ -58,7 +58,7 @@ export default function AddCompanyForm() {
           </Link>
         </div>
       </header>
-      {message && <p className='my-4'>{message}</p>}
+      {message !== '' && <p className='px-4 pb-6'>{message}</p>}
       <form className={disabled ? 'opacity-25' : ''} onSubmit={handleSubmit}>
         <div className='flex'>
           <div className='w-1/2 flex flex-col justify-between px-4'>
