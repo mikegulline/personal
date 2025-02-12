@@ -5,3 +5,41 @@ export function toUrlSafeString(input: string): string {
     .trim() // Remove any leading or trailing spaces
     .replace(/\s+/g, '-'); // Replace spaces with hyphens
 }
+
+export function formatDate(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    month: 'long', // Full month name (e.g., January)
+    day: 'numeric', // Numeric day (e.g., 4)
+    year: 'numeric', // Full year (e.g., 2025)
+  };
+
+  const formatter = new Intl.DateTimeFormat('en-US', options);
+  const parts = formatter.formatToParts(date);
+
+  let month = '';
+  let day = '';
+  let year = '';
+
+  for (const part of parts) {
+    if (part.type === 'month') month = part.value;
+    if (part.type === 'day') day = part.value;
+    if (part.type === 'year') year = part.value;
+  }
+
+  // Function to determine the ordinal suffix
+  const getOrdinalSuffix = (day: number): string => {
+    if (day > 3 && day < 21) return 'th'; // Covers 4-20
+    switch (day % 10) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  };
+
+  return `${month} ${day}${getOrdinalSuffix(Number(day))}, ${year}`;
+}

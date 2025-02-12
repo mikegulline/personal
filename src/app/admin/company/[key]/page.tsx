@@ -120,7 +120,12 @@ export default async function CompanyByKey({
           </table>
         </div>
       )}
-      <PrintResume companyKey={key} title={company.position} />
+      <PrintResume
+        companyKey={key}
+        company={company.name}
+        title={company.position}
+        description={company.description}
+      />
     </div>
   );
 }
