@@ -5,7 +5,9 @@ export const Header = ({ children }: HeaderProps) => (
     <h1 className='text-2xl font-bold'>Michael Gulline</h1>
     <div className='flex justify-between'>
       <h2 className='font-medium'>{children}</h2>
-      <p>Eastvale, CA, USA | 949-290-8705 | michaelgulline@gmail.com</p>
+      <p>
+        949-290-8705 | michaelgulline@gmail.com | linkedin.com/in/mikegulline/
+      </p>
     </div>
   </header>
 );

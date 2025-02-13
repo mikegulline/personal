@@ -101,11 +101,11 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Signal Hill, CA',
         dates: 'Apr 2021 - Present',
         responsibilities: [
-          "Migrated the company's defunct shopping cart to a modern e-commerce solution, leading the mobile-first website redesign that boosted user engagement and conversions by 300%.",
-          "Pioneered the introduction of React microfrontends and built an interactive 'good, better, best' discount structure to align with customer retention efforts, leading to a 54% increase in the average order value from $134 to $206.",
-          'Integrated third-party analytics to monitor campaign engagement, track user activity, and A/B testing.',
-          'Implemented code splitting, tree shaking, lazy loading, and image optimization, reducing page load times by 25%.',
-          'Generated AI-driven graphics using Midjourney, aligning brand identity and saving $300/month on Shutterstock.',
+          `Migrated the company's defunct shopping cart to a modern e-commerce solution, leading the mobile-first website redesign that boosted user engagement and conversions by 300%.`,
+          `Pioneered the introduction of React microfrontends and built an interactive “good, better, best” discount structure to align with customer retention efforts, leading to a 54% increase in the average order value from $134 to $206. `,
+          `Integrated third-party analytics to monitor campaign engagement, track user activity, and A/B testing.`,
+          `Implemented code splitting, tree shaking, lazy loading and image optimization, reducing page load times by 25%.`,
+          `Generated AI-driven graphics using Midjourney, aligning brand identity and saving $300/month on Shutterstock.`,
         ],
       },
       {
@@ -114,9 +114,9 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Oceanside, CA',
         dates: 'Dec 2020 - Mar 2021',
         responsibilities: [
-          'Developed a headless e-commerce site with React 18, NextJS 13, TailwindCSS, and NextAuth, emphasizing modular architecture and minimal, user-friendly UX/UI.',
-          'Created an admin tool to integrate third-party shipping, labeling, and billing APIs, streamlining operations and reducing packing and shipping times by 500%.',
-          'Enhanced site performance with mobile-first design, async image rendering, and CSV exports in NodeJS, boosting sales conversions by 25% and improving SEO.',
+          `Developed a headless e-commerce site with React, NextJS, TailwindCSS, and NextAuth, emphasizing modular architecture and minimal, user-friendly UX/UI.`,
+          `Created an admin tool to integrate third-party shipping, labeling, and billing APIs, streamlining operations and reducing packing, and shipping times by 500%.`,
+          `Enhanced site performance with mobile-first design, async image rendering, and CSV exports in NodeJS, boosting sales conversions by 25% and improving SEO.`,
         ],
       },
       {
@@ -125,8 +125,8 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Signal Hill, CA',
         dates: 'Nov 2015 - Dec 2020',
         responsibilities: [
-          'Directed all creative and development initiatives, spanning branding, product packaging, responsive web design, custom CMS, e-commerce, and email marketing.',
-          'Worked with copywriters and FDA compliance to navigate CBD regulations, maintaining compliance and quickly resolving issues with banks and payment processors during service suspensions.',
+          `Led creative and development initiatives, covering branding, product packaging, and CMS development.`,
+          `Collaborated with legal teams to navigate CBD regulations, ensuring compliance and seamless payment processing.`,
         ],
       },
       {
@@ -135,8 +135,8 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Long Beach, CA',
         dates: 'Mar 2011 - Sep 2015',
         responsibilities: [
-          'Led the end-to-end design, development, and management of responsive e-commerce sites, blogs, and landing pages, ensuring brand consistency and optimizing user experience from concept to deployment.',
-          'Developed an interactive dashboard, enabling executive leadership and shareholders to visually consume complex data points across multiple initiatives using modern UX/UI.',
+          `Led the end-to-end design, development, and management of responsive e-commerce sites, blogs, and landing pages, ensuring brand consistency and optimizing user experience from concept to deployment.`,
+          `Developed an interactive dashboard, enabling executive leadership and shareholders to visually consume complex data points across multiple initiatives using modern UX/UI.`,
         ],
       },
       {
@@ -145,9 +145,9 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Huntington Beach, CA',
         dates: 'Jun 2008 - Mar 2011',
         responsibilities: [
-          'Built a social media and tournament gaming app for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.',
-          'Developed double elimination brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, promotions, and role-based management to improve security and user experience.',
-          'Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through innovative monetization and communication features.',
+          `Built a social media and tournament gaming app for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
+          `Developed double elimination brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, promotions, and role-based management to improve security and user experience.`,
+          `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through innovative monetization and communication features.`,
         ],
       },
     ],
@@ -236,13 +236,13 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
           <Section title='PROFESSIONAL EXPERIENCE'>
             {userData.work.map((work) => (
               <li key={work.company}>
-                <header className='mb-1 flex flex-col'>
+                <header className='mb-1 flex justify-between'>
                   <h4 className='font-bold'>
                     {work.title(jobTitle, jobTitleOther)}
                   </h4>
                   <p>
-                    {work.company}, {work.city}, {work.state} • {work.start} -{' '}
-                    {work.end}
+                    <strong>{work.company}</strong>, {work.city}, {work.state} •{' '}
+                    {work.start} - {work.end}
                   </p>
                 </header>
                 <ul className='list-disc list-outside ml-4 flex flex-col gap-1'>
@@ -256,14 +256,15 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
             ))}
           </Section>
 
-          <Section title='Education'>
+          <Section title='Education' gap={1}>
             {userData.education.map((school) => (
-              <li key={school.school} className='flex flex-col'>
+              <li key={school.school} className='flex justify-between'>
                 <h4 className='font-bold'>
                   {school.degree} in {school.study}
                 </h4>
                 <p>
-                  {school.school}, {school.city}, {school.state}
+                  <strong>{school.school}</strong>, {school.city},{' '}
+                  {school.state}
                 </p>
               </li>
             ))}

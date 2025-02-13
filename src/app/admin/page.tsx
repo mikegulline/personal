@@ -3,6 +3,7 @@ import {
   getAllViewedCompaniesWithActionCount,
   getAllRejectedCompaniesWithActionCount,
   getRecentWithActionCount,
+  getSearch,
 } from './actions';
 import DeleteActionsLink from '@/components/delete-actions-link';
 import UpdateCompanyStatusLink from '@/components/update-company-status-link';
@@ -15,6 +16,7 @@ import { GoThumbsup } from 'react-icons/go';
 import { HiOutlineFaceFrown } from 'react-icons/hi2';
 import { LiaTrashAlt } from 'react-icons/lia';
 import DeleteCompanyLink from '@/components/delete-company-link';
+import Search from '@/components/search';
 
 export default async function AdminDashboard({
   searchParams,
@@ -26,6 +28,7 @@ export default async function AdminDashboard({
 }) {
   const params = await searchParams;
   const showRecent = params?.recent as string | '';
+  const showSearch = params?.s as string | '';
   const showRejected = params?.rejected as string | '';
   const showViewed = params?.views as string | '';
   const showAll = !showViewed && !showRejected && !showRecent;
@@ -33,7 +36,9 @@ export default async function AdminDashboard({
   const offset: number = +(params?.page ?? '1');
 
   let companies;
-  if (showRecent) {
+  if (showSearch) {
+    companies = await getSearch(showSearch);
+  } else if (showRecent) {
     companies = await getRecentWithActionCount(itemsPerPage, offset);
   } else if (showViewed) {
     companies = await getAllViewedCompaniesWithActionCount(
@@ -79,6 +84,7 @@ export default async function AdminDashboard({
                   page: '1',
                   rejected: '',
                   recent: '1',
+                  s: '',
                 })}`}
                 className={`${
                   showRecent ? 'underline text-teal-500' : 'hover:underline'
@@ -95,6 +101,7 @@ export default async function AdminDashboard({
                   page: '1',
                   rejected: '',
                   recent: '',
+                  s: '',
                 })}`}
                 className={`${
                   showAll ? 'underline text-teal-500' : 'hover:underline'
@@ -111,6 +118,7 @@ export default async function AdminDashboard({
                   page: '1',
                   rejected: '',
                   recent: '',
+                  s: '',
                 })}`}
                 className={`${
                   showViewed ? 'underline text-teal-500' : 'hover:underline'
@@ -126,6 +134,7 @@ export default async function AdminDashboard({
                   rejected: '1',
                   page: '1',
                   recent: '',
+                  s: '',
                 })}`}
                 className={`${
                   showRejected ? 'underline text-teal-500' : 'hover:underline'
@@ -151,130 +160,132 @@ export default async function AdminDashboard({
           </Link>
         </div>
       </header>
-      <div className='border border-gray-200 dark:border-gray-900 overflow-hidden rounded bg-white'>
-        <table className='table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
-          <thead className='text-xs text-gray-700 uppercase border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-500'>
-            <tr>
-              <th className='px-6 py-3'>Key</th>
-              <th className='px-6 py-3 text-center'>Applied</th>
-              <th className='px-6 py-3 text-center'>Views</th>
-              <th className='px-6 py-3'>Company/Position</th>
-              <th className='px-6 py-3'>Salary</th>
-              <th className='px-6 py-3 text-center'>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {companies.map(
-              ({ id, key, name, date, salary, position, status, views }) => {
-                let classes =
-                  'bg-white/20 hover:bg-gray-200/20 border-gray-200';
-                if (+views) {
-                  classes =
-                    'bg-teal-100/20 hover:bg-teal-200/20 border-teal-600/20';
-                }
-                if (status === 'rejected') {
-                  classes =
-                    'bg-red-100/20 hover:bg-red-200/20 border-red-700/10';
-                }
-                return (
-                  <ClickableTr
-                    key={id}
-                    link={`/admin/company/${key}`}
-                    className={`${classes} cursor-pointer border-b`}
-                  >
-                    <td className='pl-6 py-4'>{key}</td>
-                    <td className='px-6 py-4 text-center'>
-                      {daysFromNow(date)}
-                    </td>
-                    <td className='px-6 py-4 text-center'>
-                      <DeleteActionsLink companyKey={id}>
-                        {views}
-                      </DeleteActionsLink>
-                    </td>
-                    <td className='px-6 py-4'>
-                      <div className='truncate block line-clamp-1 font-bold w-48'>
-                        {name}
-                      </div>
-                      <div className='truncate block line-clamp-1 w-48'>
-                        {position}
-                      </div>
-                      <div
-                        className={`text-[0.6rem] leading-[0.95rem] uppercase font-medium ${
-                          status === 'rejected' && 'text-red-600'
-                        }`}
-                      >
-                        {status}
-                      </div>
-                    </td>
-                    <td className='px-6 py-4'>
-                      <div className='line-clamp-1'>{salary && salary}</div>
-                    </td>
-                    <td className='px-6 py-4 text-center'>
-                      <div className='flex justify-center items-center text-xl'>
-                        {status !== 'interviewing' && (
+      <Search>
+        <div className='border border-gray-200 dark:border-gray-900 overflow-hidden rounded-lg bg-white'>
+          <table className='table-auto w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
+            <thead className='text-xs text-gray-700 uppercase border-b bg-gray-50 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-500'>
+              <tr>
+                <th className='px-6 py-3'>Key</th>
+                <th className='px-6 py-3 text-center'>Applied</th>
+                <th className='px-6 py-3 text-center'>Views</th>
+                <th className='px-6 py-3'>Company/Position</th>
+                <th className='px-6 py-3'>Salary</th>
+                <th className='px-6 py-3 text-center'>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {companies.map(
+                ({ id, key, name, date, salary, position, status, views }) => {
+                  let classes =
+                    'bg-white/20 hover:bg-gray-200/20 border-gray-200';
+                  if (+views) {
+                    classes =
+                      'bg-teal-100/20 hover:bg-teal-200/20 border-teal-600/20';
+                  }
+                  if (status === 'rejected') {
+                    classes =
+                      'bg-red-100/20 hover:bg-red-200/20 border-red-700/10';
+                  }
+                  return (
+                    <ClickableTr
+                      key={id}
+                      link={`/admin/company/${key}`}
+                      className={`${classes} cursor-pointer border-b`}
+                    >
+                      <td className='pl-6 py-4'>{key}</td>
+                      <td className='px-6 py-4 text-center'>
+                        {daysFromNow(date)}
+                      </td>
+                      <td className='px-6 py-4 text-center'>
+                        <DeleteActionsLink companyKey={id}>
+                          {views}
+                        </DeleteActionsLink>
+                      </td>
+                      <td className='px-6 py-4'>
+                        <div className='truncate block line-clamp-1 font-bold w-48'>
+                          {name}
+                        </div>
+                        <div className='truncate block line-clamp-1 w-48'>
+                          {position}
+                        </div>
+                        <div
+                          className={`text-[0.6rem] leading-[0.95rem] uppercase font-medium ${
+                            status === 'rejected' && 'text-red-600'
+                          }`}
+                        >
+                          {status}
+                        </div>
+                      </td>
+                      <td className='px-6 py-4'>
+                        <div className='line-clamp-1'>{salary && salary}</div>
+                      </td>
+                      <td className='px-6 py-4 text-center'>
+                        <div className='flex justify-center items-center text-xl'>
+                          {status !== 'interviewing' && (
+                            <UpdateCompanyStatusLink
+                              companyKey={key}
+                              status='interviewing'
+                            >
+                              <GoThumbsup />
+                            </UpdateCompanyStatusLink>
+                          )}
                           <UpdateCompanyStatusLink
                             companyKey={key}
-                            status='interviewing'
+                            status={
+                              status === 'rejected' ? 'applied' : 'rejected'
+                            }
                           >
-                            <GoThumbsup />
+                            {status === 'rejected' ? (
+                              <HiOutlineFaceFrown />
+                            ) : (
+                              <FaBomb />
+                            )}
                           </UpdateCompanyStatusLink>
-                        )}
-                        <UpdateCompanyStatusLink
-                          companyKey={key}
-                          status={
-                            status === 'rejected' ? 'applied' : 'rejected'
-                          }
-                        >
-                          {status === 'rejected' ? (
-                            <HiOutlineFaceFrown />
-                          ) : (
-                            <FaBomb />
-                          )}
-                        </UpdateCompanyStatusLink>
-                        <SPLink
-                          href={`/admin/company/${key.trim()}/edit`}
-                          className='p-2 rounded-full hover:text-white hover:bg-teal-500'
-                          title='Edit'
-                        >
-                          <LiaEdit />
-                        </SPLink>
-                        <DeleteCompanyLink
-                          className='p-2 rounded-full hover:text-white hover:bg-teal-500'
-                          id={id}
-                        >
-                          <LiaTrashAlt />
-                        </DeleteCompanyLink>
-                      </div>
-                    </td>
-                  </ClickableTr>
-                );
-              }
-            )}
-          </tbody>
-        </table>
-        <div className='flex gap-1 text-sm p-3 items-baseline'>
-          {pagination.map((page, i) => {
-            if (page < 0) return <span key={`...${i}`}>…</span>;
+                          <SPLink
+                            href={`/admin/company/${key.trim()}/edit`}
+                            className='p-2 rounded-full hover:text-white hover:bg-teal-500'
+                            title='Edit'
+                          >
+                            <LiaEdit />
+                          </SPLink>
+                          <DeleteCompanyLink
+                            className='p-2 rounded-full hover:text-white hover:bg-teal-500'
+                            id={id}
+                          >
+                            <LiaTrashAlt />
+                          </DeleteCompanyLink>
+                        </div>
+                      </td>
+                    </ClickableTr>
+                  );
+                }
+              )}
+            </tbody>
+          </table>
+          <div className='flex gap-1 text-sm p-3 items-baseline'>
+            {pagination.map((page, i) => {
+              if (page < 0) return <span key={`...${i}`}>…</span>;
 
-            return (
-              <Link
-                href={`/admin?${getParams(params, {
-                  page: page.toString(),
-                })}`}
-                title={`Page ${page}`}
-                key={`page-${page}`}
-                className={` w-8 h-8 flex items-center justify-center rounded border ${
-                  page === offset
-                    ? 'border-teal-500 text-white bg-teal-500'
-                    : 'border-gray-200'
-                }`}
-              >
-                {page}
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  href={`/admin?${getParams(params, {
+                    page: page.toString(),
+                  })}`}
+                  title={`Page ${page}`}
+                  key={`page-${page}`}
+                  className={` w-8 h-8 flex items-center justify-center rounded border ${
+                    page === offset
+                      ? 'border-teal-500 text-white bg-teal-500'
+                      : 'border-gray-200'
+                  }`}
+                >
+                  {page}
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </Search>
     </div>
   );
 }
