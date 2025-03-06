@@ -1,4 +1,5 @@
 import {
+  getAllInterviewing,
   getAllCompaniesWithActionCount,
   getAllViewedCompaniesWithActionCount,
   getAllRejectedCompaniesWithActionCount,
@@ -29,15 +30,17 @@ export default async function AdminDashboard({
   const params = await searchParams;
   const showRecent = params?.recent as string | '';
   const showSearch = params?.s as string | '';
+  const showInterviewing = params?.interviewing as string | '';
   const showRejected = params?.rejected as string | '';
   const showViewed = params?.views as string | '';
-  const showAll = !showViewed && !showRejected && !showRecent;
+  const showAll =
+    !showViewed && !showRejected && !showRecent && !showInterviewing;
   const itemsPerPage: number = +(params?.show ?? '20');
   const offset: number = +(params?.page ?? '1');
 
   let companies;
   if (showSearch) {
-    companies = await getSearch(showSearch);
+    companies = await getSearch(showSearch, itemsPerPage, offset);
   } else if (showRecent) {
     companies = await getRecentWithActionCount(itemsPerPage, offset);
   } else if (showViewed) {
@@ -50,7 +53,8 @@ export default async function AdminDashboard({
       itemsPerPage,
       offset
     );
-    console.log(companies, 'here');
+  } else if (showInterviewing) {
+    companies = await getAllInterviewing(itemsPerPage, offset);
   }
   if (!companies) {
     companies = await getAllCompaniesWithActionCount(itemsPerPage, offset);
@@ -69,7 +73,7 @@ export default async function AdminDashboard({
   return (
     <div
       className='fade-in-up  mx-4'
-      key={`show-${showViewed}-per-${itemsPerPage}-cur-${offset}`}
+      // key={`show-${showViewed}-per-${itemsPerPage}-cur-${offset}`}
     >
       <header className='flex justify-between items-center mb-6'>
         <div className='flex items-baseline justify-start gap-4'>
@@ -77,72 +81,70 @@ export default async function AdminDashboard({
           <div className='flex justify-start items-center text-sm gap-2'>
             <div className='font-bold'>{totalItems || 0} total</div>
             <>|</>
-            <div>
-              <Link
-                href={`/admin?${getParams(params, {
-                  views: '',
-                  page: '1',
-                  rejected: '',
-                  recent: '1',
-                  s: '',
-                })}`}
-                className={`${
-                  showRecent ? 'underline text-teal-500' : 'hover:underline'
-                }`}
-              >
-                Recent
-              </Link>
-            </div>
 
-            <div>
-              <Link
-                href={`/admin?${getParams(params, {
-                  views: '',
-                  page: '1',
-                  rejected: '',
-                  recent: '',
-                  s: '',
-                })}`}
-                className={`${
-                  showAll ? 'underline text-teal-500' : 'hover:underline'
-                }`}
-              >
-                All
-              </Link>
-            </div>
+            <Link
+              href={`/admin?${getParams(params, {
+                views: '',
+                page: '1',
+                rejected: '',
+                interviewing: '',
+                recent: '',
+                s: '',
+              })}`}
+              className={`${
+                showAll ? 'underline text-teal-500' : 'hover:underline'
+              }`}
+            >
+              All
+            </Link>
 
-            <div>
-              <Link
-                href={`/admin?${getParams(params, {
-                  views: '1',
-                  page: '1',
-                  rejected: '',
-                  recent: '',
-                  s: '',
-                })}`}
-                className={`${
-                  showViewed ? 'underline text-teal-500' : 'hover:underline'
-                }`}
-              >
-                Viewed
-              </Link>
-            </div>
-            <div>
-              <Link
-                href={`/admin?${getParams(params, {
-                  views: '',
-                  rejected: '1',
-                  page: '1',
-                  recent: '',
-                  s: '',
-                })}`}
-                className={`${
-                  showRejected ? 'underline text-teal-500' : 'hover:underline'
-                }`}
-              >
-                Rejected
-              </Link>
-            </div>
+            <Link
+              href={`/admin?${getParams(params, {
+                views: '',
+                page: '1',
+                rejected: '',
+                interviewing: '',
+                recent: '1',
+                s: '',
+              })}`}
+              className={`${
+                showRecent ? 'underline text-teal-500' : 'hover:underline'
+              }`}
+            >
+              Recent
+            </Link>
+            <Link
+              href={`/admin?${getParams(params, {
+                views: '',
+                page: '1',
+                rejected: '',
+                interviewing: '1',
+                recent: '',
+                s: '',
+              })}`}
+              className={`${
+                showInterviewing ? 'underline text-teal-500' : 'hover:underline'
+              }`}
+            >
+              Interviewing
+            </Link>
+
+            <Link
+              href={`/admin?${getParams(params, {
+                views: '',
+                rejected: '1',
+                interviewing: '',
+                page: '1',
+                recent: '',
+                s: '',
+              })}`}
+              className={`${
+                showRejected ? 'underline text-teal-500' : 'hover:underline'
+              }`}
+            >
+              Rejected
+            </Link>
+
             <>|</>
             <ViewCountLink {...viewCountArgs} itemsToShow={5} />
             <ViewCountLink {...viewCountArgs} itemsToShow={10} />
@@ -178,9 +180,13 @@ export default async function AdminDashboard({
                 ({ id, key, name, date, salary, position, status, views }) => {
                   let classes =
                     'bg-white/20 hover:bg-gray-200/20 border-gray-200';
-                  if (+views) {
+                  if (+views || status === 'interviewing') {
                     classes =
                       'bg-teal-100/20 hover:bg-teal-200/20 border-teal-600/20';
+                  }
+                  if (status === 'interviewing') {
+                    classes =
+                      'bg-teal-100/50 hover:bg-teal-200/50 border-teal-600/20';
                   }
                   if (status === 'rejected') {
                     classes =

@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { formatSalaryRange, formatCompanyName } from '@/utils/index';
 
 export default function AddCompanyForm() {
   const [disabled, setDisabled] = useState(false);
@@ -78,6 +79,9 @@ export default function AddCompanyForm() {
               id='name'
               placeholder='Company…'
               disabled={disabled}
+              onChange={(e) => {
+                e.target.value = formatCompanyName(e.target.value);
+              }}
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500'
             />
             <input
@@ -85,6 +89,9 @@ export default function AddCompanyForm() {
               name='salary'
               id='salary'
               placeholder='Salary…'
+              onChange={(e) => {
+                e.target.value = formatSalaryRange(e.target.value);
+              }}
               disabled={disabled}
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-teal-500 dark:focus:border-teal-500'
             />

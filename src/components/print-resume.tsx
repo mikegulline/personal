@@ -219,30 +219,19 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
         <div
           ref={contentRef}
           style={{ transform: isPrinting ? '' : 'scale(1.2)' }}
-          className=' text-black origin-top flex flex-col justify-between text-xs p-[0.5in] py-[0.25in]  w-[8.5in] h-[11in]  bg-white shadow-xl'
+          className=' text-black origin-top flex flex-col justify-between text-xs p-[0.5in] w-[8.5in] h-[11in]  bg-white shadow-xl'
         >
           <Header>{jobTitle}</Header>
-
-          <Section title='TECHNICAL SKILLS' gap={1}>
-            {userData.skills.map(({ label, items }) => (
-              <li key={label}>
-                <p>
-                  <strong>{label}:</strong> {items.join(', ')}
-                </p>
-              </li>
-            ))}
-          </Section>
 
           <Section title='PROFESSIONAL EXPERIENCE'>
             {userData.work.map((work) => (
               <li key={work.company}>
-                <header className='mb-1 flex justify-between'>
-                  <h4 className='font-bold'>
-                    {work.title(jobTitle, jobTitleOther)}
+                <header className='mb-1 flex justify-between font-bold'>
+                  <h4>
+                    {work.title(jobTitle, jobTitleOther)} | {work.company}
                   </h4>
                   <p>
-                    <strong>{work.company}</strong>, {work.city}, {work.state} •{' '}
-                    {work.start} - {work.end}
+                    {work.city}, {work.state} | {work.start} - {work.end}
                   </p>
                 </header>
                 <ul className='list-disc list-outside ml-4 flex flex-col gap-1'>
@@ -256,21 +245,33 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
             ))}
           </Section>
 
-          <Section title='Education' gap={1}>
-            {userData.education.map((school) => (
-              <li key={school.school} className='flex justify-between'>
-                <h4 className='font-bold'>
-                  {school.degree} in {school.study}
-                </h4>
+          <Section title='TECHNICAL SKILLS' gap={1}>
+            {userData.skills.map(({ label, items }) => (
+              <li key={label}>
                 <p>
-                  <strong>{school.school}</strong>, {school.city},{' '}
-                  {school.state}
+                  <strong>{label}:</strong> {items.join(', ')}
                 </p>
               </li>
             ))}
           </Section>
 
-          <Footer companyKey={companyKey}>{jobTitle}</Footer>
+          <Section title='Education' gap={1}>
+            {userData.education.map((school) => (
+              <li
+                key={school.school}
+                className='flex justify-between font-bold'
+              >
+                <h4>
+                  {school.degree} in {school.study} | {school.school}
+                </h4>
+                <p>
+                  {school.city}, {school.state}
+                </p>
+              </li>
+            ))}
+          </Section>
+
+          {/* <Footer companyKey={companyKey}>{jobTitle}</Footer> */}
         </div>
       </div>
 
@@ -310,7 +311,7 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
         <div
           ref={coverletterRef}
           style={{ transform: isPrinting ? '' : 'scale(1.2)' }}
-          className=' text-black origin-top flex flex-col  text-xs px-[0.5in] py-[0.25in]  w-[8.5in] h-[11in]  bg-white shadow-xl'
+          className=' text-black origin-top flex flex-col  text-xs p-[0.5in]  w-[8.5in] h-[11in]  bg-white shadow-xl'
         >
           <Header>{jobTitle}</Header>
 
@@ -335,7 +336,7 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
               Michael Gulline
             </p>
           </section>
-          <Footer companyKey={companyKey}>{jobTitle}</Footer>
+          {/* <Footer companyKey={companyKey}>{jobTitle}</Footer> */}
         </div>
       </div>
 

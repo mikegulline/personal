@@ -2,7 +2,7 @@ export const userData = {
   header: {
     name: 'Michael Gulline',
     contact: {
-      city: 'Eastvale',
+      city: 'Corona',
       state: 'CA',
       phone: '949-290-8705',
     },
@@ -31,20 +31,27 @@ export const userData = {
   skills: [
     {
       label: 'Languages',
-      items: ['JavaScript (ES6+)', 'TypeScript', 'PHP', 'Python', 'Java'],
+      items: [
+        'JavaScript (ES6+)',
+        'TypeScript',
+        'PHP',
+        'Python',
+        'C++',
+        'Java',
+      ],
     },
     {
       label: 'Frontend',
       items: [
+        'React',
+        'Next.js',
+        'Redux',
+        'Zustand',
         'HTML',
         'CSS',
         'TailwindCSS',
         'SASS',
         'LESS',
-        'React',
-        'Next.js',
-        'Redux',
-        'Zustand',
         'Web APIs',
       ],
     },
@@ -343,6 +350,359 @@ export const userData2 = {
     },
   ],
 };
+
+// export const userData = {
+//   header: {
+//     name: 'Michael Gulline',
+//     contact: {
+//       city: 'Eastvale',
+//       state: 'CA',
+//       phone: '949-290-8705',
+//     },
+//     links: [
+//       (key: string) => ({
+//         label: 'Portfolio',
+//         url: `https://www.gulline.com/v1/${key}/portfolio`,
+//       }),
+//       '•',
+//       (key: string) => ({
+//         label: 'LinkedIn',
+//         url: `https://www.gulline.com/v1/${key}/linkedin`,
+//       }),
+//       '•',
+//       (key: string) => ({
+//         label: 'GitHub',
+//         url: `https://www.gulline.com/v1/${key}/github`,
+//       }),
+//       '•',
+//       (key: string) => ({
+//         label: 'michaelgulline@gmail.com',
+//         url: `https://www.gulline.com/v1/${key}/mail`,
+//       }),
+//     ],
+//   },
+//   skills: [
+//     {
+//       label: 'Languages',
+//       items: [
+//         'JavaScript (ES6+)',
+//         'TypeScript',
+//         'PHP',
+//         'Python',
+//         'C++',
+//         'Java',
+//       ],
+//     },
+//     {
+//       label: 'Frontend',
+//       items: [
+//         'HTML',
+//         'CSS',
+//         'TailwindCSS',
+//         'SASS',
+//         'LESS',
+//         'React',
+//         'Next.js',
+//         'Redux',
+//         'Zustand',
+//         'Web APIs',
+//       ],
+//     },
+//     {
+//       label: 'Backend & Databases',
+//       items: [
+//         'Node.js',
+//         'Express',
+//         'MySQL',
+//         'PostgreSQL',
+//         'MongoDB',
+//         'GraphQL',
+//       ],
+//     },
+//     {
+//       label: 'Testing & Optimization',
+//       items: [
+//         'Git',
+//         'Jest',
+//         'React Testing Library',
+//         'SEO',
+//         'Web Performance',
+//         'A/B Testing',
+//       ],
+//     },
+//     {
+//       label: 'UX/UI',
+//       items: [
+//         'Figma',
+//         'Adobe Suite',
+//         'MUI',
+//         'Shadcn',
+//         'Radix UI',
+//         'Storybook',
+//         'Accessibility',
+//       ],
+//     },
+//   ],
+//   work: [
+//     {
+//       company: 'KumatoLabs',
+//       title: (title: string, titleOther: string) => `Senior ${title}`,
+//       city: 'Signal Hill',
+//       state: 'CA',
+//       start: 'Apr 2021',
+//       end: 'Present',
+//       items: [
+//         `Migrated the company's defunct shopping cart to a modern e-commerce solution, leading the mobile-first website redesign that boosted user engagement and conversions by 300%.`,
+//         `Pioneered the introduction of React microfrontends and built an interactive “good, better, best” discount structure to align with customer retention efforts, leading to a 54% increase in the average order value from $134 to $206.`,
+//         `Integrated third-party analytics to monitor campaign engagement, track user activity, and A/B testing.`,
+//         `Implemented code splitting, tree shaking, lazy loading and image optimization, reducing page load times by 25%.`,
+//         `Generated AI-driven graphics using Midjourney, aligning brand identity and saving $300/month on Shutterstock.`,
+//       ],
+//     },
+//     {
+//       company: 'LoyalToFew',
+//       title: (title: string, titleOther: string) => `Senior ${title}`,
+//       city: 'Oceanside',
+//       state: 'CA',
+//       start: 'Dec 2020',
+//       end: 'Mar 2021',
+//       items: [
+//         `Developed a headless e-commerce site with React, NextJS, TailwindCSS, and NextAuth, emphasizing modular architecture and minimal, user-friendly UX/UI.`,
+//         `Created an admin tool to integrate third-party shipping, labeling, and billing APIs, streamlining operations and reducing packing, and shipping times by 500%.`,
+//         `Enhanced site performance with mobile-first design, async image rendering, and CSV exports in NodeJS, boosting sales conversions by 25% and improving SEO.`,
+//       ],
+//     },
+//     {
+//       company: 'HempLandUSA',
+//       title: (title: string, titleOther: string) => `Senior ${titleOther}`,
+//       city: 'Signal Hill',
+//       state: 'CA',
+//       start: 'Nov 2015',
+//       end: 'Dec 2020',
+//       items: [
+//         `Led creative and development initiatives, covering branding, product packaging, and CMS development.`,
+//         `Collaborated with legal teams to navigate CBD regulations, ensuring compliance and seamless payment processing.`,
+//       ],
+//     },
+//     {
+//       company: 'Immunocorp',
+//       title: (title: string, titleOther: string) => `${titleOther}`,
+//       city: 'Long Beach',
+//       state: 'CA',
+//       start: 'Mar 2011',
+//       end: 'Sep 2015',
+//       items: [
+//         `Led the end-to-end design, development, and management of responsive e-commerce sites, blogs, and landing pages, ensuring brand consistency and optimizing user experience from concept to deployment.`,
+//         `Developed an interactive dashboard, enabling executive leadership and shareholders to visually consume complex data points across multiple initiatives using modern UX/UI.`,
+//       ],
+//     },
+//     {
+//       company: 'Galaxy4Gamers',
+//       title: (title: string, titleOther: string) => `${titleOther}`,
+//       city: 'Huntington Beach',
+//       state: 'CA',
+//       start: 'Jun 2008',
+//       end: 'Mar 2011',
+//       items: [
+//         `Built a social media and tournament gaming app for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
+//         `Developed double elimination brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, promotions, and role-based management to improve security and user experience.`,
+//         `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through innovative monetization and communication features.`,
+//       ],
+//     },
+//   ],
+//   education: [
+//     {
+//       school: 'Western Governors University',
+//       degree: 'Bachelor of Science',
+//       study: 'Computer Science',
+//       city: 'Salt Lake City',
+//       state: 'UT',
+//       start: 'Feb 2025',
+//       end: 'July 2025',
+//     },
+//     {
+//       school: 'Brooks College',
+//       degree: 'Associate of Science',
+//       study: 'Graphic Design',
+//       city: 'Long Beach',
+//       state: 'CA',
+//       start: 'Aug 1997',
+//       end: 'Jan 1999',
+//     },
+//   ],
+// };
+// export const userData2 = {
+//   header: {
+//     name: 'Michael Gulline',
+//     contact: {
+//       city: 'Eastvale',
+//       state: 'CA',
+//       phone: '949-290-8705',
+//     },
+//     links: [
+//       (key: string) => ({
+//         label: 'Portfolio',
+//         url: `https://www.gulline.com/v1/${key}/portfolio`,
+//       }),
+//       '•',
+//       (key: string) => ({
+//         label: 'LinkedIn',
+//         url: `https://www.gulline.com/v1/${key}/linkedin`,
+//       }),
+//       '•',
+//       (key: string) => ({
+//         label: 'GitHub',
+//         url: `https://www.gulline.com/v1/${key}/github`,
+//       }),
+//       '•',
+//       (key: string) => ({
+//         label: 'michaelgulline@gmail.com',
+//         url: `https://www.gulline.com/v1/${key}/mail`,
+//       }),
+//     ],
+//   },
+//   skills: [
+//     {
+//       label: 'Languages',
+//       items: ['JavaScript (ES6+)', 'TypeScript', 'PHP', 'Python', 'Java'],
+//     },
+//     {
+//       label: 'Frontend',
+//       items: [
+//         'HTML',
+//         'CSS',
+//         'TailwindCSS',
+//         'SASS',
+//         'LESS',
+//         'React',
+//         'Next.js',
+//         'Redux',
+//         'Zustand',
+//         'Web APIs',
+//       ],
+//     },
+//     {
+//       label: 'Backend & Databases',
+//       items: [
+//         'Node.js',
+//         'Express',
+//         'MySQL',
+//         'PostgreSQL',
+//         'MongoDB',
+//         'GraphQL',
+//       ],
+//     },
+//     {
+//       label: 'Testing & Optimization',
+//       items: [
+//         'Git',
+//         'Jest',
+//         'React Testing Library',
+//         'SEO',
+//         'Web Performance',
+//         'A/B Testing',
+//       ],
+//     },
+//     {
+//       label: 'UX/UI',
+//       items: [
+//         'Figma',
+//         'Adobe Suite',
+//         'MUI',
+//         'Shadcn',
+//         'Radix UI',
+//         'Storybook',
+//         'Accessibility',
+//       ],
+//     },
+//   ],
+//   work: [
+//     {
+//       company: 'KumatoLabs',
+//       title: (title: string, titleOther: string) => `Senior ${title}`,
+//       city: 'Signal Hill',
+//       state: 'CA',
+//       start: 'Apr 2021',
+//       end: 'Present',
+//       items: [
+//         `Redesigned and migrated a legacy e-commerce site to a modern CMS, boosting engagement and conversions by 300%.`,
+//         `Developed React microfrontends and an interactive pricing model, boosting AOV by 54% ($134 → $206).`,
+//         `Integrated third-party analytics, tracking user activity and A/B testing performance.`,
+//         `Implemented code splitting, lazy loading, and image optimization, cutting page load times by 25%.`,
+//         `Designed AI-driven graphics using MidJourney, reducing stock image costs by $300/month.`,
+//       ],
+//     },
+//     {
+//       company: 'LoyalToFew',
+//       title: (title: string, titleOther: string) => `Senior ${title}`,
+//       city: 'Oceanside',
+//       state: 'CA',
+//       start: 'Dec 2020',
+//       end: 'Mar 2021',
+//       items: [
+//         `Built a headless e-commerce site with React, Next.js, and TailwindCSS.`,
+//         `Developed an admin tool for third-party shipping, labeling, and billing APIs, reducing fulfillment time by 500%.`,
+//         `Optimized site performance with mobile-first design and async rendering, boosting conversions by 25%.`,
+//       ],
+//     },
+//     {
+//       company: 'HempLandUSA',
+//       title: (title: string, titleOther: string) => `Senior ${titleOther}`,
+//       city: 'Signal Hill',
+//       state: 'CA',
+//       start: 'Nov 2015',
+//       end: 'Dec 2020',
+//       items: [
+//         `Led creative and development initiatives, covering branding, product packaging, and CMS development.`,
+//         `Collaborated with legal teams to navigate CBD regulations, ensuring compliance and seamless payment processing.`,
+//       ],
+//     },
+//     {
+//       company: 'Immunocorp',
+//       title: (title: string, titleOther: string) => `${titleOther}`,
+//       city: 'Long Beach',
+//       state: 'CA',
+//       start: 'Mar 2011',
+//       end: 'Sep 2015',
+//       items: [
+//         `Designed and managed responsive e-commerce platforms, blogs, and landing pages.`,
+//         `Created an interactive dashboard for executive data visualization.`,
+//       ],
+//     },
+//     {
+//       company: 'Galaxy4Gamers',
+//       title: (title: string, titleOther: string) => `${titleOther}`,
+//       city: 'Huntington Beach',
+//       state: 'CA',
+//       start: 'Jun 2008',
+//       end: 'Mar 2011',
+//       items: [
+//         `Built a social media and tournament gaming app for PlayStation, Xbox, and Nintendo.`,
+//         `Developed a double-elimination bracket system and integrated Twitch API for live streaming.`,
+//       ],
+//     },
+//   ],
+//   education: [
+//     {
+//       school: 'Western Governors University',
+//       degree: 'Bachelor of Science',
+//       study: 'Computer Science',
+//       city: 'Salt Lake City',
+//       state: 'UT',
+//       start: 'Feb 2025',
+//       end: 'July 2025',
+//     },
+//     {
+//       school: 'Brooks College',
+//       degree: 'Associate of Science',
+//       study: 'Graphic Design',
+//       city: 'Long Beach',
+//       state: 'CA',
+//       start: 'Aug 1997',
+//       end: 'Jan 1999',
+//     },
+//   ],
+// };
 // export const userData = {
 //   header: {
 //     name: 'Michael Gulline',

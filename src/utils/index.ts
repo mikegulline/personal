@@ -43,3 +43,21 @@ export function formatDate(date: Date): string {
 
   return `${month} ${day}${getOrdinalSuffix(Number(day))}, ${year}`;
 }
+
+export function formatSalaryRange(input: string) {
+  const matches = input.match(/\$?\d+(?:,\d+)?K?|\$/g);
+
+  if (!matches) return input;
+
+  const numbers = matches
+    .map((match) => match.replace(/[^\d]/g, ''))
+    .map(
+      (num) => (Number(num) > 1000 ? Math.round(Number(num) / 1000) : num) + 'K'
+    );
+
+  return numbers.length === 2 ? `$${numbers[0]} - $${numbers[1]}` : input;
+}
+
+export function formatCompanyName(name: string) {
+  return name.split(/[\s-]?logo[\s-]?/i)[0].trim();
+}

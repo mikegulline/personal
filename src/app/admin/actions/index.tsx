@@ -18,7 +18,11 @@ export interface CompanyTypeWithViews extends CompanyType {
   total_matching: number;
 }
 
-export async function getSearch(term: string) {
+export async function getSearch(
+  term: string,
+  limit: number = 1000,
+  offset: number = 1
+) {
   const { rows } = await sql`
   WITH CompanyViews AS (
     SELECT
@@ -53,7 +57,8 @@ export async function getSearch(term: string) {
   FROM
       CompanyViews
   ORDER BY
-      date DESC;
+      date DESC
+  LIMIT ${limit} OFFSET ${(offset - 1) * limit};
 `;
 
   return rows as CompanyTypeWithViews[];
@@ -100,7 +105,48 @@ export async function getRecentWithActionCount(limit: number, offset: number) {
 
   return rows as CompanyTypeWithViews[];
 }
+//
+export async function getAllInterviewing(limit: number, offset: number) {
+  const { rows } = await sql`
+  WITH CompanyViews AS (
+    SELECT
+        c.id,
+        c.name,
+        c.key,
+        c.salary,
+        c.position,
+        c.status,
+        COUNT(a.id) AS views,
+        c.date
+    FROM
+        company c
+    LEFT JOIN
+        actions a
+    ON
+        c.id = a.companyId
+    WHERE
+        c.status = 'interviewing'
+    GROUP BY
+        c.id,
+        c.name,
+        c.key,
+        c.position,
+        c.status,
+        c.salary,
+        c.date
+  )
+  SELECT
+      *,
+      COUNT(*) OVER() AS total_matching
+  FROM
+      CompanyViews
+  ORDER BY
+      date DESC
+  LIMIT ${limit} OFFSET ${(offset - 1) * limit};
+`;
 
+  return rows as CompanyTypeWithViews[];
+}
 export async function getAllRejectedCompaniesWithActionCount(
   limit: number,
   offset: number
