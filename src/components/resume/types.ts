@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 
-export type HeaderProps = { children: string | ReactNode };
+export type HeaderProps = {
+  children: string | ReactNode;
+  companyKey: string;
+};
 
 export type SectionProps = {
   children: React.ReactNode;

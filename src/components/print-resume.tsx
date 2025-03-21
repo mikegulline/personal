@@ -10,6 +10,7 @@ import {
   Section,
   PrintResumeProps,
 } from '@/components/resume/index';
+import { Span } from 'next/dist/trace';
 
 export default function PrintResume(props: PrintResumeProps) {
   const { company, title, description, companyKey } = props;
@@ -221,14 +222,14 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
           style={{ transform: isPrinting ? '' : 'scale(1.2)' }}
           className=' text-black origin-top flex flex-col justify-between text-xs p-[0.5in] w-[8.5in] h-[11in]  bg-white shadow-xl'
         >
-          <Header>{jobTitle}</Header>
+          <Header companyKey={companyKey}>{jobTitle}</Header>
 
           <Section title='PROFESSIONAL EXPERIENCE'>
             {userData.work.map((work) => (
               <li key={work.company}>
                 <header className='mb-1 flex justify-between font-bold'>
                   <h4>
-                    {work.title(jobTitle, jobTitleOther)} | {work.company}
+                    {work.title(jobTitle, jobTitleOther)} @ {work.company}
                   </h4>
                   <p>
                     {work.city}, {work.state} | {work.start} - {work.end}
@@ -262,7 +263,7 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
                 className='flex justify-between font-bold'
               >
                 <h4>
-                  {school.degree} in {school.study} | {school.school}
+                  {school.degree} in {school.study} @ {school.school}
                 </h4>
                 <p>
                   {school.city}, {school.state}
@@ -275,37 +276,35 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
         </div>
       </div>
 
-      {!!description && (
-        <form
-          className='pt-10'
-          onSubmit={(e) => {
-            e.preventDefault();
-            complete(prompt);
-          }}
+      <form
+        className='pt-10'
+        onSubmit={(e) => {
+          e.preventDefault();
+          complete(prompt);
+        }}
+      >
+        <button
+          type='submit'
+          className='px-4 py-1 bg-teal-500 text-white rounded hover:bg-slate-700'
         >
+          Create Coverletter
+        </button>
+        {!!completion && (
           <button
-            type='submit'
-            className='px-4 py-1 bg-teal-500 text-white rounded hover:bg-slate-700'
+            onClick={(e) => {
+              e.preventDefault();
+              setIsPrinting(true);
+              setTimeout(() => {
+                reactToPrintLeterFn();
+                setIsPrinting(false);
+              }, 10);
+            }}
+            className='ml-2 px-4 py-1 bg-teal-500 text-white rounded hover:bg-slate-700'
           >
-            Create Coverletter
+            Print
           </button>
-          {!!completion && (
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setIsPrinting(true);
-                setTimeout(() => {
-                  reactToPrintLeterFn();
-                  setIsPrinting(false);
-                }, 10);
-              }}
-              className='ml-2 px-4 py-1 bg-teal-500 text-white rounded hover:bg-slate-700'
-            >
-              Print
-            </button>
-          )}
-        </form>
-      )}
+        )}
+      </form>
 
       <div className='h-[13.2in]'>
         <div
@@ -313,7 +312,7 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
           style={{ transform: isPrinting ? '' : 'scale(1.2)' }}
           className=' text-black origin-top flex flex-col  text-xs p-[0.5in]  w-[8.5in] h-[11in]  bg-white shadow-xl'
         >
-          <Header>{jobTitle}</Header>
+          {/* <Header companyKey={companyKey}>{jobTitle}</Header> */}
 
           <section className='flex-grow py-10 px-10 text-xs'>
             <p className='mb-4'>

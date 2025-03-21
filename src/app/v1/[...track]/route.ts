@@ -49,7 +49,7 @@ export async function GET(req: NextRequest, { params }: { params: Params }) {
     const { id, name, position } = company;
     try {
       await Promise.all([
-        sendNotification(name, position, redirectKey, browserInfo),
+        sendNotification(name, position, redirectKey, browserInfo, id),
         saveActionToDB({
           companyId: id,
           redirectKey,

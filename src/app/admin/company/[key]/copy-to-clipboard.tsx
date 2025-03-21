@@ -56,6 +56,7 @@ const CopyToClipboard = ({ links, k }: { links: string[]; k: string }) => {
         ))}
       </span>
       <span className='flex gap-2'>
+        <CopyButton value={'19492908705'} name='phone' />
         <CopyButton value={k} name='code' />
         <CopyButton
           value={'https://www.linkedin.com/in/mikegulline/'}

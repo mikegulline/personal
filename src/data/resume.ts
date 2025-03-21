@@ -9,21 +9,22 @@ export const userData = {
     links: [
       (key: string) => ({
         label: 'Portfolio',
+        display: `gulline.com/`,
         url: `https://www.gulline.com/v1/${key}/portfolio`,
       }),
-      '•',
       (key: string) => ({
         label: 'LinkedIn',
+        display: `linkedin.com/in/mikegulline/`,
         url: `https://www.gulline.com/v1/${key}/linkedin`,
       }),
-      '•',
       (key: string) => ({
         label: 'GitHub',
+        display: `github.com/mikegulline/`,
         url: `https://www.gulline.com/v1/${key}/github`,
       }),
-      '•',
       (key: string) => ({
-        label: 'michaelgulline@gmail.com',
+        label: 'Email',
+        display: `michaelgulline@gmail.com`,
         url: `https://www.gulline.com/v1/${key}/mail`,
       }),
     ],
@@ -99,11 +100,10 @@ export const userData = {
       start: 'Apr 2021',
       end: 'Present',
       items: [
-        `Migrated the company's defunct shopping cart to a modern e-commerce solution, leading the mobile-first website redesign that boosted user engagement and conversions by 300%.`,
-        `Pioneered the introduction of React microfrontends and built an interactive “good, better, best” discount structure to align with customer retention efforts, leading to a 54% increase in the average order value from $134 to $206.`,
-        `Integrated third-party analytics to monitor campaign engagement, track user activity, and A/B testing.`,
-        `Implemented code splitting, tree shaking, lazy loading and image optimization, reducing page load times by 25%.`,
-        `Generated AI-driven graphics using Midjourney, aligning brand identity and saving $300/month on Shutterstock.`,
+        `Led the transition from an outdated shopping cart to a modern eCommerce CMS, implementing a mobile-first responsive website redesign that enhanced user experience and increased conversions by 300%.`,
+        `Designed and implemented an interactive "good, better, best" discount tool with React, aligning with outbound customer acquisition and retention strategies to increase average order value by 54%, from $134 to $206.`,
+        `Built and trained an AI-powered chat agent to equip off-site call center agents with accurate product and company information, improving customer satisfaction, operational efficiency, and after-hours conversion rates.`,
+        `Created AI-generated graphics using Midjourney to visually align with brand identity, cutting design costs and eliminating a $300/month Shutterstock subscription.`,
       ],
     },
     {
@@ -114,20 +114,21 @@ export const userData = {
       start: 'Dec 2020',
       end: 'Mar 2021',
       items: [
-        `Developed a headless e-commerce site with React, NextJS, TailwindCSS, and NextAuth, emphasizing modular architecture and minimal, user-friendly UX/UI.`,
-        `Created an admin tool to integrate third-party shipping, labeling, and billing APIs, streamlining operations and reducing packing, and shipping times by 500%.`,
-        `Enhanced site performance with mobile-first design, async image rendering, and CSV exports in NodeJS, boosting sales conversions by 25% and improving SEO.`,
+        `Designed and built a custom eCommerce site with React, Next.js, TailwindCSS, and NextAuth, integrating a headless shopping cart to improve scalability, performance, and user experience.`,
+        `Leveraged Static Site Generation (SSG) in Next.js to dynamically generate static pages and metadata for all products, leading to increased organic traffic and achieving first-page Google rankings above competitors.`,
+        `Created a backend admin panel in Next.js to automate shipping, labeling, billing, and email notification workflows, using webhooks to integrate third-party APIs and enhance operational efficiency, reducing order processing time by 500%.`,
+        `Developed an automated CSV generation tool in Node.js to export product data for social media and ad platforms, improving data consistency and reducing time-to-market across multiple channels.`,
       ],
     },
     {
       company: 'HempLandUSA',
-      title: (title: string, titleOther: string) => `Senior ${titleOther}`,
+      title: (title: string, titleOther: string) => `${title}`,
       city: 'Signal Hill',
       state: 'CA',
       start: 'Nov 2015',
       end: 'Dec 2020',
       items: [
-        `Led creative and development initiatives, covering branding, product packaging, and CMS development.`,
+        `Led creative and development initiatives, covering branding, product packaging, and custom CMS solutions.`,
         `Collaborated with legal teams to navigate CBD regulations, ensuring compliance and seamless payment processing.`,
       ],
     },
@@ -139,8 +140,8 @@ export const userData = {
       start: 'Mar 2011',
       end: 'Sep 2015',
       items: [
-        `Led the end-to-end design, development, and management of responsive e-commerce sites, blogs, and landing pages, ensuring brand consistency and optimizing user experience from concept to deployment.`,
-        `Developed an interactive dashboard, enabling executive leadership and shareholders to visually consume complex data points across multiple initiatives using modern UX/UI.`,
+        `Led the end-to-end design, development, and management of responsive eCommerce platforms, blogs, and landing pages, ensuring brand consistency and optimized user experiences from concept to deployment.`,
+        `Developed an interactive dashboard, enabling executive leadership and shareholders to visually consume complex data points across multiple products, companies, and marketing campaigns.`,
       ],
     },
     {
@@ -151,9 +152,9 @@ export const userData = {
       start: 'Jun 2008',
       end: 'Mar 2011',
       items: [
-        `Built a social media and tournament gaming app for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
-        `Developed double elimination brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, promotions, and role-based management to improve security and user experience.`,
-        `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through innovative monetization and communication features.`,
+        `Built a social media and tournament gaming platform for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
+        `Developed custom tournament brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, and role-based access, improving security and user experience.`,
+        `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through monetization and real-time communication features.`,
       ],
     },
   ],
