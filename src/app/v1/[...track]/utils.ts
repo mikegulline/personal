@@ -82,9 +82,9 @@ export async function sendNotification(
   position: string,
   redirectKey: string,
   browserInfo: any,
-  id: string
+  companyKey: string
 ) {
-  const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link (${id})`;
+  const subject = `🤘🏻 ${name} clicked on your ${redirectKey} link (${companyKey})`;
   const text = `
   Great News…
 
@@ -98,7 +98,7 @@ export async function sendNotification(
   Country: ${browserInfo.country}
   Region: ${browserInfo.region}
   City: ${browserInfo.city}
-  Key: ${id}
+  Key: ${companyKey}
 
   Go get em tiger.
 
@@ -119,7 +119,7 @@ export async function sendNotification(
   <li><strong>Country:</strong> ${browserInfo.country}</li>
   <li><strong>Region:</strong> ${browserInfo.region}</li>
   <li><strong>City:</strong> ${browserInfo.city}</li>
-  <li><strong>Key:</strong> ${id}</li>
+  <li><strong>Key:</strong> ${companyKey}</li>
   </ul>
 
   <p><em>Go get em tiger.</em></p>
