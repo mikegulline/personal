@@ -30,6 +30,7 @@
       "@/public/*": ["./public/*"],
       "@/scripts/*": ["./scripts/*"],
       "@/styles/*": ["./src/styles/*"],
+      "@/state/*": ["./src/state/*"],
       "@/types/*": ["./src/types/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/*": ["./*"]

@@ -1,22 +1,21 @@
 'use client';
 import { useReactToPrint } from 'react-to-print';
 import { useRef, useState } from 'react';
-import { userData } from '@/data/resume';
+import { userData, userDataWP } from '@/data/resume';
 import { useCompletion } from 'ai/react';
 import { formatDate } from '@/utils/index';
-import {
-  Header,
-  Footer,
-  Section,
-  PrintResumeProps,
-} from '@/components/resume/index';
-import { Span } from 'next/dist/trace';
+import { Header, Section, PrintResumeProps } from '@/components/resume/index';
+import { useRedact, useSetRedact } from '@/state/redact-state';
 
 export default function PrintResume(props: PrintResumeProps) {
   const { company, title, description, companyKey } = props;
   const [jobTitle, setJobTitle] = useState(title);
   const [jobTitleOther, setJobTitleOther] = useState('Web Developer');
   const [isPrinting, setIsPrinting] = useState(false);
+  const [wordpress, setWordpress] = useState(false);
+  const resumeData = wordpress ? userDataWP : userData;
+  const setRedact = useSetRedact();
+  const redact = useRedact();
   const contentRef = useRef<HTMLDivElement>(null);
   const coverletterRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({
@@ -102,11 +101,10 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Signal Hill, CA',
         dates: 'Apr 2021 - Present',
         responsibilities: [
-          `Migrated the company's defunct shopping cart to a modern e-commerce solution, leading the mobile-first website redesign that boosted user engagement and conversions by 300%.`,
-          `Pioneered the introduction of React microfrontends and built an interactive “good, better, best” discount structure to align with customer retention efforts, leading to a 54% increase in the average order value from $134 to $206. `,
-          `Integrated third-party analytics to monitor campaign engagement, track user activity, and A/B testing.`,
-          `Implemented code splitting, tree shaking, lazy loading and image optimization, reducing page load times by 25%.`,
-          `Generated AI-driven graphics using Midjourney, aligning brand identity and saving $300/month on Shutterstock.`,
+          `Led the transition from an outdated shopping cart to a modern eCommerce CMS, implementing a mobile-first responsive website redesign that enhanced user experience and increased conversions by 300%.`,
+          `Designed and implemented an interactive "good, better, best" discount tool with React, aligning with outbound customer acquisition and retention strategies to increase average order value by 54%, from $134 to $206.`,
+          `Built and trained an AI-powered chat agent to equip off-site call center agents with accurate product and company information, improving customer satisfaction, operational efficiency, and after-hours conversion rates.`,
+          `Created AI-generated graphics using Midjourney to visually align with brand identity, cutting design costs and eliminating a $300/month Shutterstock subscription.`,
         ],
       },
       {
@@ -115,9 +113,10 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Oceanside, CA',
         dates: 'Dec 2020 - Mar 2021',
         responsibilities: [
-          `Developed a headless e-commerce site with React, NextJS, TailwindCSS, and NextAuth, emphasizing modular architecture and minimal, user-friendly UX/UI.`,
-          `Created an admin tool to integrate third-party shipping, labeling, and billing APIs, streamlining operations and reducing packing, and shipping times by 500%.`,
-          `Enhanced site performance with mobile-first design, async image rendering, and CSV exports in NodeJS, boosting sales conversions by 25% and improving SEO.`,
+          `Designed and built a custom eCommerce site with React, Next.js, TailwindCSS, and NextAuth, integrating a headless shopping cart to improve scalability, performance, and user experience.`,
+          `Leveraged Static Site Generation (SSG) in Next.js to dynamically generate static pages and metadata for all products, leading to increased organic traffic and achieving first-page Google rankings above competitors.`,
+          `Created a backend admin panel in Next.js to automate shipping, labeling, billing, and email notification workflows, using webhooks to integrate third-party APIs and enhance operational efficiency, reducing order processing time by 500%.`,
+          `Developed an automated CSV generation tool in Node.js to export product data for social media and ad platforms, improving data consistency and reducing time-to-market across multiple channels.`,
         ],
       },
       {
@@ -146,9 +145,9 @@ export default function PrintResume(props: PrintResumeProps) {
         location: 'Huntington Beach, CA',
         dates: 'Jun 2008 - Mar 2011',
         responsibilities: [
-          `Built a social media and tournament gaming app for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
-          `Developed double elimination brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, promotions, and role-based management to improve security and user experience.`,
-          `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through innovative monetization and communication features.`,
+          `Built a social media and tournament gaming platform for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
+          `Developed custom tournament brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, and role-based access, improving security and user experience.`,
+          `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through monetization and real-time communication features.`,
         ],
       },
     ],
@@ -184,6 +183,8 @@ The cover letter should be structured into at least three well-defined paragraph
 2. **Body Paragraph(s):** Highlight key experiences, skills, and achievements that are directly relevant to the job description. Use specific examples from past work to demonstrate impact.
 3. **Closing Paragraph:** Reaffirm interest in the role, express enthusiasm for a conversation, and thank the reader for their time.
 
+Do not site years of experience.
+
 Make sure the response is **formatted naturally**, with clear paragraph breaks.
 
 Respond with only the cover letter text, no extra explanations or greetings.`;
@@ -191,6 +192,11 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
   return (
     <div className='flex justify-center items-center flex-col gap-4 mt-10'>
       <div className='flex gap-2'>
+        <input
+          type='checkbox'
+          checked={wordpress}
+          onChange={() => setWordpress((wp) => !wp)}
+        />
         <input
           type='text'
           value={jobTitle}
@@ -215,17 +221,22 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
         >
           Print
         </button>
+        <button
+          onClick={() => setRedact((r) => !r)}
+          className='px-4 py-1 bg-teal-500 text-white rounded hover:bg-slate-700'
+        >
+          {redact ? 'unredact' : 'redact'}
+        </button>
       </div>
-      <div className='h-[13.2in]'>
+      <div>
         <div
           ref={contentRef}
-          style={{ transform: isPrinting ? '' : 'scale(1.2)' }}
-          className=' text-black origin-top flex flex-col justify-between text-xs p-[0.5in] w-[8.5in] h-[11in]  bg-white shadow-xl'
+          className=' text-black origin-top flex flex-col justify-between text-xs px-[0.5in] pt-[0.5in] pb-[0.35in] w-[8.5in] min-h-[11in] overflow-scroll  bg-white shadow-xl'
         >
           <Header companyKey={companyKey}>{jobTitle}</Header>
 
           <Section title='PROFESSIONAL EXPERIENCE'>
-            {userData.work.map((work) => (
+            {resumeData.work.map((work) => (
               <li key={work.company}>
                 <header className='mb-1 flex justify-between font-bold'>
                   <h4>
@@ -247,7 +258,7 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
           </Section>
 
           <Section title='TECHNICAL SKILLS' gap={1}>
-            {userData.skills.map(({ label, items }) => (
+            {resumeData.skills.map(({ label, items }) => (
               <li key={label}>
                 <p>
                   <strong>{label}:</strong> {items.join(', ')}
@@ -257,7 +268,7 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
           </Section>
 
           <Section title='Education' gap={1}>
-            {userData.education.map((school) => (
+            {resumeData.education.map((school) => (
               <li
                 key={school.school}
                 className='flex justify-between font-bold'
@@ -323,11 +334,13 @@ Respond with only the cover letter text, no extra explanations or greetings.`;
               <strong>Date:</strong> {formatDate(new Date())}
             </p>
             <hr className='mb-4 border-slate-950' />
-            {completion.split('\n\n').map((paragraph, index) => (
-              <p key={index} className='mb-4'>
-                {paragraph}
-              </p>
-            ))}
+            {completion
+              .split('\n\n')
+              .map((paragraph: string, index: number) => (
+                <p key={index} className='mb-4'>
+                  {paragraph}
+                </p>
+              ))}
             <hr className='mb-4 border-slate-950' />
             <p>
               Looking forward to the opportunity,

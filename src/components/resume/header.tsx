@@ -1,12 +1,16 @@
 import Link from 'next/link';
 import { HeaderProps } from './types';
+import { Redact } from '@/components/redact';
 
 export const Header = (props: HeaderProps) => (
   <header className='bg-black text-white px-4 py-3 -mt-4 -mx-4 rounded '>
     <div className='flex justify-between items-baseline'>
-      <h1 className='text-2xl font-bold'>Michael Gulline</h1>
+      <h1 className='text-2xl font-bold'>
+        <Redact value='Its me the mayor'>Michael Gulline</Redact>
+      </h1>
       <p>
-        (949) 290-8705 |{' '}
+        (<Redact value='XXX'>949</Redact>) <Redact value='XXX'>290</Redact>-
+        <Redact value='XXXX'>8705</Redact> |{' '}
         <Link
           href={`https://www.gulline.com/v1/${props.companyKey}/mail`}
           title='Email'
@@ -14,12 +18,12 @@ export const Header = (props: HeaderProps) => (
           target='_blank'
           rel='noreferrer'
         >
-          michaelgulline@gmail.com
+          <Redact value='name-redacted'>michaelgulline</Redact>@gmail.com
         </Link>
       </p>
     </div>
     <div className='flex justify-between items-baseline'>
-      <h2 className='text-sm font-medium'>{props.children}</h2>
+      <h2 className='text-sm font-medium'>Senior {props.children}</h2>
       <p>
         <Link
           href={`https://www.gulline.com/v1/${props.companyKey}/linkedin`}
@@ -28,7 +32,8 @@ export const Header = (props: HeaderProps) => (
           target='_blank'
           rel='noreferrer'
         >
-          linkedin.com/in/mikegulline/
+          linkedin.com/in/
+          <Redact value='name-redacted'>mikegulline</Redact>/
         </Link>
         {' | '}
 
@@ -39,7 +44,7 @@ export const Header = (props: HeaderProps) => (
           target='_blank'
           rel='noreferrer'
         >
-          github.com/mikegulline/
+          github.com/<Redact value='name-redacted'>mikegulline</Redact>/
         </Link>
         {' | '}
 
@@ -50,7 +55,7 @@ export const Header = (props: HeaderProps) => (
           target='_blank'
           rel='noreferrer'
         >
-          gulline.com/
+          <Redact value='name-redacted'>gulline</Redact>.com/
         </Link>
       </p>
     </div>

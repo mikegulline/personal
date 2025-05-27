@@ -1,3 +1,184 @@
+export const userDataWP = {
+  header: {
+    name: 'Michael Gulline',
+    contact: {
+      city: 'Corona',
+      state: 'CA',
+      phone: '949-290-8705',
+    },
+    links: [
+      (key: string) => ({
+        label: 'Portfolio',
+        display: `gulline.com/`,
+        url: `https://www.gulline.com/v1/${key}/portfolio`,
+      }),
+      (key: string) => ({
+        label: 'LinkedIn',
+        display: `linkedin.com/in/mikegulline/`,
+        url: `https://www.gulline.com/v1/${key}/linkedin`,
+      }),
+      (key: string) => ({
+        label: 'GitHub',
+        display: `github.com/mikegulline/`,
+        url: `https://www.gulline.com/v1/${key}/github`,
+      }),
+      (key: string) => ({
+        label: 'Email',
+        display: `michaelgulline@gmail.com`,
+        url: `https://www.gulline.com/v1/${key}/mail`,
+      }),
+    ],
+  },
+  skills: [
+    {
+      label: 'Languages',
+      items: [
+        'JavaScript (ES6+)',
+        'TypeScript',
+        'PHP',
+        'Python',
+        'C++',
+        'Java',
+      ],
+    },
+    {
+      label: 'Frontend',
+      items: [
+        'React',
+        'Next.js',
+        'Redux',
+        'Zustand',
+        'HTML',
+        'CSS',
+        'TailwindCSS',
+        'SASS',
+        'LESS',
+        'Web APIs',
+      ],
+    },
+    {
+      label: 'Backend & Databases',
+      items: [
+        'Node.js',
+        'Express',
+        'MySQL',
+        'PostgreSQL',
+        'MongoDB',
+        'GraphQL',
+      ],
+    },
+    {
+      label: 'Testing & Optimization',
+      items: [
+        'Git',
+        'Jest',
+        'React Testing Library',
+        'SEO',
+        'Web Performance',
+        'A/B Testing',
+      ],
+    },
+    {
+      label: 'UX/UI',
+      items: [
+        'Figma',
+        'Adobe Suite',
+        'MUI',
+        'Shadcn',
+        'Radix UI',
+        'Storybook',
+        'Accessibility',
+      ],
+    },
+  ],
+  work: [
+    {
+      company: 'KumatoLabs',
+      title: (title: string, titleOther: string) => `Senior ${title}`,
+      city: 'Signal Hill',
+      state: 'CA',
+      start: 'Apr 2021',
+      end: 'Present',
+      items: [
+        `Led the transition from an outdated shopping cart to a WordPress eCommerce CMS, implementing a mobile-first responsive website redesign that enhanced user experience and increased conversions by 300%.`,
+        `Designed and implemented an interactive "good, better, best" discount plug-in with React, aligning with outbound customer acquisition and retention strategies to increase average order value by 54%, from $134 to $206.`,
+        `Built and trained an AI-powered chat agent to equip off-site call center agents with accurate product and company information, improving customer satisfaction, operational efficiency, and after-hours conversion rates.`,
+        `Created AI-generated graphics using Midjourney to visually align with brand identity, cutting design costs and eliminating a $300/month Shutterstock subscription.`,
+      ],
+    },
+    {
+      company: 'LoyalToFew',
+      title: (title: string, titleOther: string) => `Senior ${title}`,
+      city: 'Oceanside',
+      state: 'CA',
+      start: 'Dec 2020',
+      end: 'Mar 2021',
+      items: [
+        `Designed and built a custom eCommerce site with React, Next.js, TailwindCSS, and NextAuth, integrating a headless shopping cart to improve scalability, performance, and user experience.`,
+        `Leveraged Static Site Generation (SSG) in Next.js to dynamically generate static pages and metadata for all products, leading to increased organic traffic and achieving first-page Google rankings above competitors.`,
+        `Created a backend admin panel in Next.js to automate shipping, labeling, billing, and email notification workflows, using webhooks to integrate third-party APIs and enhance operational efficiency, reducing order processing time by 500%.`,
+        `Developed an automated CSV generation tool in Node.js to export product data for social media and ad platforms, improving data consistency and reducing time-to-market across multiple channels.`,
+      ],
+    },
+    {
+      company: 'HempLandUSA',
+      title: (title: string, titleOther: string) => `${title}`,
+      city: 'Signal Hill',
+      state: 'CA',
+      start: 'Nov 2015',
+      end: 'Dec 2020',
+      items: [
+        `Led creative and development initiatives, covering branding, product packaging, and custom WordPress CMS solutions.`,
+        `Collaborated with legal teams to navigate CBD regulations, ensuring compliance and seamless payment processing.`,
+      ],
+    },
+    {
+      company: 'Immunocorp',
+      title: (title: string, titleOther: string) => `${titleOther}`,
+      city: 'Long Beach',
+      state: 'CA',
+      start: 'Mar 2011',
+      end: 'Sep 2015',
+      items: [
+        `Led the end-to-end design, development, and management of responsive WordPress eCommerce platforms, blogs, and landing pages, ensuring brand consistency and optimized user experiences from concept to deployment.`,
+        `Developed an interactive dashboard, enabling executive leadership and shareholders to visually consume complex data points across multiple products, companies, and marketing campaigns.`,
+      ],
+    },
+    {
+      company: 'Galaxy4Gamers',
+      title: (title: string, titleOther: string) => `${titleOther}`,
+      city: 'Huntington Beach',
+      state: 'CA',
+      start: 'Jun 2008',
+      end: 'Mar 2011',
+      items: [
+        `Built a social media and tournament gaming platform for PlayStation, Xbox, and Nintendo using JavaScript, PHP, and MySQL, enhancing community engagement and competitive gaming with a sleek UI.`,
+        `Developed custom tournament brackets for up to 128 players, featuring drag-and-drop advancement, dispute resolution, and role-based access, improving security and user experience.`,
+        `Integrated Justin.tv (now Twitch) API for live streaming and launched the Beat-A-Pro app, increasing engagement and visibility through monetization and real-time communication features.`,
+      ],
+    },
+  ],
+  education: [
+    {
+      school: 'Western Governors University',
+      degree: 'Bachelor of Science',
+      study: 'Computer Science',
+      city: 'Salt Lake City',
+      state: 'UT',
+      start: 'Feb 2025',
+      end: 'July 2025',
+    },
+    {
+      school: 'Brooks College',
+      degree: 'Associate of Science',
+      study: 'Graphic Design',
+      city: 'Long Beach',
+      state: 'CA',
+      start: 'Aug 1997',
+      end: 'Jan 1999',
+    },
+  ],
+};
 export const userData = {
   header: {
     name: 'Michael Gulline',
@@ -351,6 +532,8 @@ export const userData2 = {
     },
   ],
 };
+
+/////////////
 
 // export const userData = {
 //   header: {
