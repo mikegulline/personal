@@ -39,7 +39,8 @@ export default async function AdminDashboard({
   const itemsPerPage: number = +(params?.show ?? '20');
   const offset: number = +(params?.page ?? '1');
 
-  let companies: CompanyTypeWithViews[];
+  let companies: CompanyTypeWithViews[] = [];
+
   if (showSearch) {
     companies = await getSearch(showSearch, itemsPerPage, offset);
   } else if (showRecent) {
@@ -57,7 +58,8 @@ export default async function AdminDashboard({
   } else if (showInterviewing) {
     companies = await getAllInterviewing(itemsPerPage, offset);
   }
-  if (!companies) {
+
+  if (!companies.length) {
     try {
       companies = await getAllCompaniesWithActionCount(itemsPerPage, offset);
     } catch (err) {

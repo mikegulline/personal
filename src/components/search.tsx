@@ -29,7 +29,7 @@ export default function Search({ children }: { children: ReactNode }) {
     }, 200);
 
     return () => clearTimeout(timerId);
-  }, [input]);
+  }, [input, enter]);
 
   useEffect(() => {
     if (ref.current) ref.current.focus();
