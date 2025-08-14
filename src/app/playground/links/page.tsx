@@ -26,7 +26,7 @@ export default function LinksPage() {
   };
   return (
     <GridContainer columns={4}>
-      <ul className='px-4'>
+      <ul className='px-4`'>
         {theLinks.map(({ title, url, clicked = false }, index) => (
           <li key={`${url}-${index}`}>
             <Link

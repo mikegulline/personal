@@ -5,6 +5,7 @@ import {
   getAllRejectedCompaniesWithActionCount,
   getRecentWithActionCount,
   getSearch,
+  type CompanyTypeWithViews,
 } from './actions';
 import DeleteActionsLink from '@/components/delete-actions-link';
 import UpdateCompanyStatusLink from '@/components/update-company-status-link';
@@ -38,7 +39,7 @@ export default async function AdminDashboard({
   const itemsPerPage: number = +(params?.show ?? '20');
   const offset: number = +(params?.page ?? '1');
 
-  let companies;
+  let companies: CompanyTypeWithViews[];
   if (showSearch) {
     companies = await getSearch(showSearch, itemsPerPage, offset);
   } else if (showRecent) {
@@ -57,7 +58,12 @@ export default async function AdminDashboard({
     companies = await getAllInterviewing(itemsPerPage, offset);
   }
   if (!companies) {
-    companies = await getAllCompaniesWithActionCount(itemsPerPage, offset);
+    try {
+      companies = await getAllCompaniesWithActionCount(itemsPerPage, offset);
+    } catch (err) {
+      console.log('error on line 63 getAllCompaniesWithActionCount', err);
+      companies = [];
+    }
   }
 
   const totalItems = companies[0]?.total_matching;

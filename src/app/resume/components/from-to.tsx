@@ -6,14 +6,16 @@ interface IFromTo {
 }
 
 export default function FromTo({ from, to }: IFromTo) {
-  const fromDate = new Date(Date.parse(from));
+  const [fYear, fMonth] = from.split('-').map(Number);
+  const fromDate = new Date(fYear, fMonth - 1, 1);
   const fromShow = format(fromDate, 'MMM yyyy');
 
   let toDate: Date = new Date();
   let toShow = `Present`;
 
   if (to !== 'Present') {
-    toDate = new Date(Date.parse(to));
+    const [tYear, tMonth] = to.split('-').map(Number);
+    toDate = new Date(tYear, tMonth - 1, 1);
     toShow = format(toDate, 'MMM yyyy');
   }
 

@@ -281,9 +281,9 @@ export const userData = {
       start: 'Apr 2021',
       end: 'Present',
       items: [
-        `Led the transition from an outdated shopping cart to a modern eCommerce CMS, implementing a mobile-first responsive website redesign that enhanced user experience and increased conversions by 300%.`,
+        `Developed an AI-driven support dashboard in React and Next.js using Vercel's AI SDK to equip off-site call center agents with real-time company and product info, increasing customer satisfaction and after-hours conversions by 30%.`,
         `Designed and implemented an interactive "good, better, best" discount tool with React, aligning with outbound customer acquisition and retention strategies to increase average order value by 54%, from $134 to $206.`,
-        `Built and trained an AI-powered chat agent to equip off-site call center agents with accurate product and company information, improving customer satisfaction, operational efficiency, and after-hours conversion rates.`,
+        `Led the transition from an outdated shopping cart to a modern eCommerce CMS, implementing a mobile-first responsive website redesign that enhanced user experience and increased conversions by 300%.`,
         `Created AI-generated graphics using Midjourney to visually align with brand identity, cutting design costs and eliminating a $300/month Shutterstock subscription.`,
       ],
     },

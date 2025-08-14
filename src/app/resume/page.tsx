@@ -2,6 +2,8 @@ import GridContainer from '@/components/grid-container';
 import BorderLeft from '@/components/border-left';
 import Skills from './components/skills';
 import Work from './components/work';
+import SideProjects from './components/side-projects';
+import Education from './components/ecucation';
 
 export const metadata = {
   title: 'Michael Gulline Software Engineer Resume ',
@@ -49,12 +51,12 @@ export default function Resume() {
           <Work />
         </div>
 
-        {/* <div className=' '>
+        <div className=' '>
           <h3 className='text-5xl sm:text-6xl mb-8 font-bold px-5 sm:pr-10'>
-            Side Projects
+            Education
           </h3>
-          <SideProjects />
-        </div> */}
+          <Education />
+        </div>
       </div>
     </GridContainer>
   );
